@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "CyGrotesk";
+  src: url("./assets/fonts/CyGrotesk-WideRegular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CyGrotesk";
+  src: url("./assets/fonts/CyGrotesk-WideMedium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CyGrotesk";
+  src: url("./assets/fonts/CyGrotesk-WideBold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("./assets/fonts/Roboto.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-grotesk: "CyGrotesk", "sans-serif";
+  --font-roboto: "Roboto", "sans-serif";
+}
