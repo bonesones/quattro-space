@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:modx": "vite build && node scripts/generate-modx.js"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.2.1",

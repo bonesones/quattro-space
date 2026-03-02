@@ -27,12 +27,94 @@
 @font-face {
   font-family: "Roboto";
   src: url("./assets/fonts/Roboto.ttf") format("truetype");
-  font-weight: 400;
   font-style: normal;
   font-display: swap;
+}
+
+:root {
+  --lg-bg-color: rgba(255, 255, 255, 0.15);
+  --lg-highlight: rgba(255, 255, 255, 0.75);
 }
 
 @theme {
   --font-grotesk: "CyGrotesk", "sans-serif";
   --font-roboto: "Roboto", "sans-serif";
+  --color-accentPink: #d40063;
+  --radius-main: 20px;
+  --text-titleMobile: 32px;
+  --text-title: 64px;
+  --text-mainSectionTitleMobile: 45px;
+  --text-mainSectionTitle: 150px;
+  --leading-sectionTitle: 150%;
+  --spacing-main: 24px;
+  --color-glassOverlay: rgba(255, 255, 255, 0.15);
+  --color-glassHighlight: rgba(255, 255, 255, 0.75);
+  --shadow-glassSpecular:
+    inset 1px 1px 0 var(--color-glassHighlight),
+    inset 0 0 5px var(--color-glassHighlight);
+}
+
+@layer utilities {
+  @keyframes bgSlide {
+    0% {
+      transform: translateY(-40px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes logoCenterToTop {
+    0% {
+      transform: translateY(calc(35vh));
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeRight {
+    0% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-bgSlide {
+    animation: bgSlide 0.5s ease 0.8s both;
+  }
+
+  .animate-logoMove {
+    animation: logoCenterToTop 0.5s ease 0.8s both;
+  }
+
+  .animate-fadeLeft {
+    animation: fadeLeft 0.5s ease 0.8s both;
+  }
+
+  .animate-fadeRight {
+    animation: fadeRight 0.5s ease 0.8s both;
+  }
+}
+
+.glass-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--lg-bg-color);
 }

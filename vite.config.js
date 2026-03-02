@@ -16,6 +16,8 @@ export default defineConfig({
     outDir: resolve(__dirname, "dist"),
     emptyOutDir: true,
 
+    manifest: true,
+
     rollupOptions: {
       input: {
         home: resolve(__dirname, "index.html"),
@@ -23,6 +25,23 @@ export default defineConfig({
         services: resolve(__dirname, "services.html"),
         contacts: resolve(__dirname, "contacts.html"),
       },
+      output: {
+        entryFileNames: "js/[name].[hash].js",
+        chunkFileNames: "js/[name].[hash].js",
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name.endsWith(".css")) {
+            return "css/[name].[hash][extname]";
+          }
+          if (/\.(png|jpe?g|gif|svg|webp)$/.test(assetInfo.name)) {
+            return "images/[name].[hash][extname]";
+          }
+          return "assets/[name].[hash][extname]";
+        },
+      },
     },
+  },
+
+  server: {
+    open: true,
   },
 });

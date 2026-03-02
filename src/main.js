@@ -8,13 +8,17 @@ import homeTemplate from "./pages/home.html?raw";
 import aboutTemplate from "./pages/about.html?raw";
 import servicesTemplate from "./pages/services.html?raw";
 import contactsTemplate from "./pages/contacts.html?raw";
+import { renderVenueFilter } from "./components/venues-filter/venues-filter.js";
+import { renderVenues } from "./components/venues/venues.js";
 
 const page = document.body.dataset.page || "home";
 
 const PAGES = {
   home: {
     title: "Главная | Quattro Space",
-    content: renderBanner() + homeTemplate,
+    content:
+      renderBanner() +
+      `<div class="space-y-25">${renderVenueFilter() + renderVenues()}</div>`,
   },
   about: {
     title: "О компании | Quattro Space",
@@ -42,11 +46,14 @@ BaseLayout({
   content: current.content,
 });
 
-// Подсветка активного пункта меню по data-page
-const navLinks = document.querySelectorAll(".nav-link");
-navLinks.forEach((link) => {
-  const linkPage = link.dataset.page;
-  if (linkPage === page) {
-    link.classList.add("nav-link--active");
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.body.dataset.page === "home") {
+    if (window.scrollY === 0) {
+      document.body.classList.add("overflow-y-hidden");
+
+      setTimeout(() => {
+        document.body.classList.remove("overflow-y-hidden");
+      }, 1300);
+    }
   }
 });
