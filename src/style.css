@@ -26,7 +26,7 @@
 
 @font-face {
   font-family: "Roboto";
-  src: url("./assets/fonts/Roboto.ttf") format("truetype");
+  src: url("./assets/fonts/Roboto.woff2") format("woff2");
   font-style: normal;
   font-display: swap;
 }
@@ -37,21 +37,52 @@
 }
 
 @theme {
+  /* Fonts */
   --font-grotesk: "CyGrotesk", "sans-serif";
   --font-roboto: "Roboto", "sans-serif";
-  --color-accentPink: #d40063;
+
+  /* Colors */
+  --color-accent-pink: #d40063;
+  --color-gray: #dfdfdf;
+
+  /*Radius*/
   --radius-main: 20px;
-  --text-titleMobile: 32px;
-  --text-title: 64px;
-  --text-mainSectionTitleMobile: 45px;
-  --text-mainSectionTitle: 150px;
-  --leading-sectionTitle: 150%;
+
+  /* Typography */
+  --text-title-lg: 150px;
+  --text-title-lg--line-height: 1.5;
+  --text-title-lg-sm: 45px;
+
+  --text-title-md: 100px;
+  --text-title-md--line-height: 1.5;
+
+  --text-title-sm: 64px;
+  --text-title-sm--line-height: 1.238;
+  --text-title-sm--font-weight: 700;
+
+  --text-subtitle-lg: 64px;
+  --text-subtitle-lg--font-weight: 500;
+  --text-subtitle-lg-sm: 32px;
+
+  --text-subtitle-md: 32px;
+  --text-subtitle-md--line-height: 1.5;
+  --text-subtitle-md--font-weight: 500;
+  --text-subtitle-md-sm: 24px;
+
+  --text-subtitle-sm: 24px;
+  --text-subtitle-sm--line-height: 1.5;
+  --text-subtitle-sm--font-weight: 500;
+
+  --text-body-lg: 18px;
+
+  --text-body-base: 16px;
+  --text-body-base--line-height: 1.5;
+
+  --text-body-sm: 14px;
+  --text-body-sm--line-height: 1.5;
+
+  /* Spacing */
   --spacing-main: 24px;
-  --color-glassOverlay: rgba(255, 255, 255, 0.15);
-  --color-glassHighlight: rgba(255, 255, 255, 0.75);
-  --shadow-glassSpecular:
-    inset 1px 1px 0 var(--color-glassHighlight),
-    inset 0 0 5px var(--color-glassHighlight);
 }
 
 @layer utilities {
@@ -112,9 +143,29 @@
   }
 }
 
-.glass-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: var(--lg-bg-color);
+@layer components {
+  .dash-list li {
+    @apply relative pl-8;
+  }
+
+  .dash-list li::before {
+    content: "—";
+    @apply absolute left-0 text-black text-xl font-semibold;
+  }
+
+  .accordion-list span {
+    @apply text-accent-pink font-extrabold;
+  }
+
+  .service-description span {
+    @apply text-accent-pink;
+  }
+
+  .kitchen-swiper .swiper-pagination-bullet {
+    @apply w-5! h-5! bg-gray!;
+  }
+
+  .kitchen-swiper .swiper-pagination-bullet-active {
+    @apply bg-accent-pink!;
+  }
 }

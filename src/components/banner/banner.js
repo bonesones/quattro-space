@@ -4,7 +4,7 @@ export function renderBanner() {
   return template;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+/*document.addEventListener("DOMContentLoaded", function () {
   const isChrome =
     /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 
@@ -15,4 +15,4 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     element.className = "glass-fallback";
   }
-});
+});*/

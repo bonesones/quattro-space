@@ -8,8 +8,8 @@ const renderRadio = (venue) => {
   return `
     <label class="flex items-center gap-3 cursor-pointer">
         <input type="radio" name="venue_type" value="${venue.value}" class="hidden peer">
-        <div class="w-9 h-9 shrink-0 border-2 border-accentPink resize-none rounded-xl flex items-center justify-center peer-checked:[&_svg]:block">
-            <svg class="w-4 h-3 hidden fill-current text-accentPink">
+        <div class="w-9 h-9 shrink-0 border-2 border-accent-pink resize-none rounded-xl flex items-center justify-center peer-checked:[&_svg]:block">
+            <svg class="w-4 h-3 hidden fill-current text-accent-pink">
                 <use href="/sprite.svg#check"></use>
             </svg>
         </div>
@@ -18,9 +18,9 @@ const renderRadio = (venue) => {
   `;
 };
 
-document.addEventListener("DOMContentLoaded", function () {
-  const eventTypesContainer = document.getElementById("event-types-container");
-  const capacityContainer = document.getElementById("venue-capacity-container");
+export function initVenueFilter(root = document) {
+  const eventTypesContainer = root.querySelector("#event-types-container");
+  const capacityContainer = root.querySelector("#venue-capacity-container");
 
   if (eventTypesContainer) {
     eventTypesContainer.innerHTML = mockEventTypes.map(renderRadio).join("");
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (capacityContainer) {
     capacityContainer.innerHTML = mockCapacity.map(renderRadio).join("");
   }
-});
+}
 
 const mockEventTypes = [
   {
