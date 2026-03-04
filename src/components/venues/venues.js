@@ -19,7 +19,7 @@ const renderForm = () => {
 
       <form method="post" action="#" aria-label="Форма записи на просмотр" class="mt-22 grid grid-cols-2 gap-x-6 gap-y-4">
         <input type="text" id="name" name="name" class="px-4 py-4.5 bg-gray rounded-main outline-none placeholder-black" placeholder="Имя" required> 
-        <input type="tel" id="phone" name="phone" class="px-4 py-4.5 bg-gray rounded-main outline-none placeholder-black" placeholder="Телефон" required> 
+        <input type="tel" id="phone" name="phone" class="phone-input px-4 py-4.5 bg-gray rounded-main outline-none placeholder-black" placeholder="Телефон" required> 
 
         <label class="flex items-center gap-2 cursor-pointer select-none text-xs self-start">
           <input type="checkbox" class="peer hidden" required />
@@ -35,7 +35,7 @@ const renderForm = () => {
 
         <button 
           type="submit" 
-          class="bg-accent-pink text-white text-body-base py-4 rounded-main hover:bg-pink-600 focus:outline-none uppercase"
+          class="bg-accent-pink text-white text-body-base py-4 rounded-main hover:bg-pink-600 focus:outline-none uppercase cursor-pointer"
         >
           Записаться на просмотр
         </button>
@@ -51,19 +51,19 @@ const renderVenue = (venue) => {
         <img src="${venue.image}" class="w-full h-full object-cover" alt="${venue.name}" />
       </div>
 
-      <div class="grid grid-cols-2 mt-main lg:mt-10 lg:px-main flex-1">
-        <h3 class="text-subtitle-lg-sm font-extrabold col-span-2 xl:col-span-1">${venue.name}</h3>
+      <div class="grid grid-cols-4 mt-main lg:mt-10 lg:px-main flex-1">
+        <h3 class="text-subtitle-lg-sm font-extrabold col-span-4 xl:col-span-3">${venue.name}</h3>
 
-        <span class="hidden xl:inline self-center text-2xl font-medium justify-self-end text-accent-pink">${venue.capacity}</span>
+        <span class="hidden xl:inline col-span-1 self-center text-2xl font-medium justify-self-end text-accent-pink">${venue.capacity}</span>
 
-        <a href="${venue.link}" class="flex gap-2 text-lg text-accent-pink">
+        <a href="${venue.link}" class="flex gap-2 text-lg text-accent-pink col-span-2">
           подробнее
           <svg class="h-7.5 w-10" aria-hidden="true">
             <use href="/sprite.svg#arrow-right"></use>
           </svg>
         </a>
 
-        <span class="xl:hidden mt-2 text-xl font-medium justify-self-end text-accent-pink">${venue.capacity}</span>
+        <span class="xl:hidden mt-2 text-xl font-medium justify-self-end text-accent-pink col-span-2">${venue.capacity}</span>
       </div>
     </article>
   `;
@@ -74,11 +74,13 @@ document.addEventListener("DOMContentLoaded", () => {
   container.innerHTML = mockVenues.map(renderVenue).join("");
   container.innerHTML += renderForm();
 
-  const phoneInput = document.getElementById("phone");
+  const phoneInput = document.querySelectorAll(".phone-input");
 
-  IMask(phoneInput, {
-    mask: "+{7} (000) 000-00-00",
-    lazy: false,
+  phoneInput.forEach((input) => {
+    IMask(input, {
+      mask: "+{7} (000) 000-00-00",
+      lazy: false,
+    });
   });
 });
 

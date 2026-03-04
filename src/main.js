@@ -8,11 +8,19 @@ import homeTemplate from "./pages/home.html?raw";
 import aboutTemplate from "./pages/about.html?raw";
 import servicesTemplate from "./pages/services.html?raw";
 import contactsTemplate from "./pages/contacts.html?raw";
-import { renderVenueFilter, initVenueFilter } from "./components/venues-filter/venues-filter.js";
+import {
+  renderVenueFilter,
+  initVenueFilter,
+} from "./components/venues-filter/venues-filter.js";
 import { renderVenues } from "./components/venues/venues.js";
-import { renderServices, initServices } from "./components/services/services.js";
+import {
+  renderServices,
+  initServices,
+} from "./components/services/services.js";
 import { renderKitchen } from "./components/kitchen/kitchen.js";
 import { renderOnlineEventDesigner } from "./components/online-event-designer/online-event-designer.js";
+import { renderVenueViewingForm } from "./components/venue-viewing-form/venue-viewing-form.js";
+import { renderAbout } from "./components/about-us/about-us.js";
 
 const page = document.body.dataset.page || "home";
 
@@ -21,7 +29,7 @@ const PAGES = {
     title: "Главная | Quattro Space",
     content:
       renderBanner() +
-      `<div class="space-y-25 lg:space-y-50">${renderVenueFilter() + renderVenues() + renderServices() + renderKitchen() + renderOnlineEventDesigner()}</div>`,
+      `<div class="space-y-25 lg:space-y-50">${renderVenueFilter() + renderVenues() + renderServices() + renderKitchen() + renderOnlineEventDesigner() + renderVenueViewingForm() + renderAbout()}</div>`,
   },
   about: {
     title: "О компании | Quattro Space",
@@ -63,8 +71,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (currentPage === "home") {
-    const servicesContainer = document.getElementById("services-list-container");
-    
+    const servicesContainer = document.getElementById(
+      "services-list-container",
+    );
+
     if (servicesContainer) {
       initServices(servicesContainer);
     }

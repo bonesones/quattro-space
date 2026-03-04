@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="clock" viewBox="0 0 60 60">
+      <g fill="none" stroke="currentColor" stroke-width="2" 
+         stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M29.7106 59.1321C45.6803 59.1321 58.6262 46.1861 58.6262 30.2165C58.6262 14.2468 45.6803 1.30078 29.7106 1.30078C13.7409 1.30078 0.794922 14.2468 0.794922 30.2165C0.794922 46.1861 13.7409 59.1321 29.7106 59.1321Z"/>
+        <path d="M29.7109 11.5156V30.2173H52.2968"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>

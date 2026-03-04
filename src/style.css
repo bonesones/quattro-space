@@ -168,4 +168,8 @@
   .kitchen-swiper .swiper-pagination-bullet-active {
     @apply bg-accent-pink!;
   }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    @apply opacity-0 block w-full h-full cursor-pointer absolute right-0;
+  }
 }

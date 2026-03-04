@@ -9,6 +9,16 @@ export default defineConfig({
     svgSpritemap({
       pattern: "src/assets/icons/*.svg",
       filename: "sprite.svg",
+      svgo: {
+        plugins: [
+          {
+            name: "cleanupIds",
+            params: {
+              prefix: "icon-",
+            },
+          },
+        ],
+      },
     }),
   ],
 

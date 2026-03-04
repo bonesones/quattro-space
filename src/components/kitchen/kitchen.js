@@ -13,7 +13,7 @@ const renderSlide = (slide, index) => {
     <div class="swiper-slide flex! flex-col items-center gap-2">
       <span class="text-subtitle-md text-accent-pink font-medium">0${index + 1}/</span>
       <span>${slide.title}</span>
-      <img src="${slide.img}" class="w-full h-full rounded-main mt-4" />
+      <img src="${slide.img}" class="w-full h-full rounded-main mt-4" alt="${slide.title}" />
     </div>
   `;
 };
@@ -40,7 +40,7 @@ const renderFlexItem = (slide, index) => {
     <div class="flex flex-col items-center gap-2 w-45.5">
       <span class="text-subtitle-md text-accent-pink font-medium">0${index + 1}/</span>
       <span>${slide.title}</span>
-      <img src="${slide.img}" class="w-full h-full rounded-main mt-4" />
+      <img src="${slide.img}" class="w-full h-full rounded-main mt-4" alt="${slide.title}" />
     </div>
   `;
 };
