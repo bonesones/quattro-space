@@ -29,7 +29,7 @@ const PAGES = {
     title: "Главная | Quattro Space",
     content:
       renderBanner() +
-      `<div class="space-y-25 lg:space-y-50">${renderVenueFilter() + renderVenues() + renderServices() + renderKitchen() + renderOnlineEventDesigner() + renderVenueViewingForm() + renderAbout()}</div>`,
+      `<div class="space-y-25 lg:space-y-0">${renderVenueFilter() + renderVenues() + renderServices() + renderKitchen() + renderOnlineEventDesigner() + renderVenueViewingForm() + renderAbout()}</div>`,
   },
   about: {
     title: "О компании | Quattro Space",
@@ -77,21 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isDesktop) {
       const header = document.querySelector(".desktop-header");
       const bannerSection = document.querySelector("#section-0");
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-            }
-          });
-        },
-        { threshold: 0.3 },
-      );
-
-      sections.forEach((sec) => {
-        observer.observe(sec);
-      });
+      const banner = document.querySelector("#section-0");
 
       if (header && bannerSection) {
         const headerObserver = new IntersectionObserver(
@@ -120,26 +106,68 @@ document.addEventListener("DOMContentLoaded", () => {
           if (index === sections.length - 1) return;
 
           const nextSection = sections[index + 1];
-
-          if (index === 0) {
-            slowScrollTo(nextSection, 1000);
-          } else {
-            nextSection.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-          }
+          const currentSection = sections[index];
 
           const animations = [
-            "animate-section-1",
-            "animate-section-2",
-            "animate-section-3",
-            "animate-section-4",
+            ["animate-current-section-0", "animate-next-section-0"],
+            ["animate-current-section-1", "animate-next-section-1"],
+            ["animate-current-section-2", "animate-next-section-2"],
+            ["animate-current-section-3", "animate-next-section-3"],
+            ["animate-current-section-4", "animate-next-section-4"],
+            ["animate-current-section-5", "animate-next-section-5"],
+            ["animate-current-section-6", "animate-next-section-6"],
           ];
 
           const animation = animations[index];
-          nextSection.classList.add(animation);
-          setTimeout(() => nextSection.classList.remove(animation), 700);
+
+          console.log("starting animations", animation);
+
+          nextSection.classList.remove("lg:invisible");
+
+          console.log("remoed invisible");
+
+          if (index === 0) {
+            console.log(index);
+            banner.classList.add(animation[0]);
+          }
+
+          currentSection.classList.add(animation[0]);
+          nextSection.classList.add(animation[1]);
+
+          console.log("added animations", animation);
+
+          let finishedAnimations = 0;
+
+          const handleAnimationEnd = () => {
+            finishedAnimations++;
+
+            if (finishedAnimations < 2) return;
+
+            if (index === 1) {
+              return;
+            }
+
+            currentSection.classList.add("lg:invisible");
+
+            console.log("invisible");
+
+            if (index !== 0) {
+              currentSection.classList.remove(animation[0]);
+              console.log("removed", animation[0]);
+            }
+
+            setTimeout(() => {
+              nextSection.classList.remove(animation[1]);
+              console.log("removed", animation[1]);
+            }, 500);
+          };
+
+          currentSection.addEventListener("animationend", handleAnimationEnd, {
+            once: true,
+          });
+          nextSection.addEventListener("animationend", handleAnimationEnd, {
+            once: true,
+          });
         });
       });
     }
@@ -155,22 +183,3 @@ document.addEventListener("DOMContentLoaded", () => {
     initVenueFilter();
   }
 });
-
-function slowScrollTo(element, duration = 2500) {
-  const start = window.scrollY;
-  const end = element.getBoundingClientRect().top + window.scrollY;
-  const distance = end - start;
-  const startTime = performance.now();
-
-  function step(time) {
-    const progress = Math.min((time - startTime) / duration, 1);
-
-    window.scrollTo(0, start + distance * progress);
-
-    if (progress < 1) {
-      requestAnimationFrame(step);
-    }
-  }
-
-  requestAnimationFrame(step);
-}

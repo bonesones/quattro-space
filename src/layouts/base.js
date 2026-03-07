@@ -5,7 +5,7 @@ export function BaseLayout({ header, footer, content }) {
 
   container.innerHTML = `
     ${header}
-    <main>
+    <main class="lg:min-h-screen">
       ${content}
     </main>
     ${footer}
