@@ -31,19 +31,32 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Manrope Medium";
+  src: url("./assets/fonts/Manrope-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --lg-bg-color: rgba(255, 255, 255, 0.15);
   --lg-highlight: rgba(255, 255, 255, 0.75);
 }
 
 @theme {
+  /* Breakpoints */
+  --breakpoint-3xl: 1800px;
+  --breakpoint-4xl: 2150px;
+
   /* Fonts */
   --font-grotesk: "CyGrotesk", "sans-serif";
   --font-roboto: "Roboto", "sans-serif";
+  --font-manrope: "Manrope Medium", "sans-serif";
 
   /* Colors */
   --color-accent-pink: #d40063;
   --color-gray: #dfdfdf;
+  --color-pink: #e07aa9;
 
   /*Radius*/
   --radius-main: 20px;
@@ -83,6 +96,9 @@
 
   /* Spacing */
   --spacing-main: 24px;
+
+  /* Shadows */
+  --shadow-pink: 3px 3px 13.2px 0 #e07aa9;
 }
 
 @layer utilities {
@@ -141,6 +157,100 @@
   .animate-fadeRight {
     animation: fadeRight 0.5s ease 0.8s both;
   }
+
+  @keyframes tMoveUp {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-48.8vh);
+    }
+  }
+
+  @keyframes atMoveLeft {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(var(--move-distance));
+    }
+  }
+
+  @keyframes fadeToRight {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100vw);
+    }
+  }
+
+  @keyframes fadeScaleOut {
+    0% {
+      scale: 1;
+      opacity: 1;
+    }
+    100% {
+      scale: 1.2;
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .animate-tMoveUp {
+    animation: tMoveUp 0.5s ease 0.6s both;
+  }
+
+  .animate-atMoveLeft {
+    animation: atMoveLeft 0.5s ease 1.1s both;
+  }
+
+  .animate-fadeToRight {
+    animation: fadeToRight 0.5s ease 2s both;
+  }
+
+  .animate-fadeScaleOut {
+    animation: fadeScaleOut 0.5s ease 2s both;
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease 2s both;
+  }
+
+  .animate-fadeFromRight {
+    animation: fadeLeft 0.4s ease 2s both;
+  }
+
+  @keyframes fadeToTop {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes sectionScrollReveal {
+    0% {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 @layer components {
@@ -171,5 +281,13 @@
 
   input[type="date"]::-webkit-calendar-picker-indicator {
     @apply opacity-0 block w-full h-full cursor-pointer absolute right-0;
+  }
+
+  #app.home section {
+    @apply lg:min-h-screen lg:snap-start lg:opacity-0 lg:transition-all lg:duration-1000;
+  }
+
+  #app.home section.visible {
+    @apply lg:opacity-100 lg:translate-y-0;
   }
 }

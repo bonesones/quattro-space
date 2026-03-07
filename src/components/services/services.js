@@ -13,14 +13,27 @@ const updateServiceHeights = (article) => {
 
   if (!img || !button || !inner) return;
 
+  const isMobile = window.innerWidth < 1024;
+
   if (article.classList.contains("is-open")) {
     const contentHeight = inner.scrollHeight;
-    console.log(contentHeight);
-    img.style.height = `${contentHeight + button.offsetHeight}px`;
+
+    if (isMobile) {
+      img.style.height = "250px";
+    } else {
+      img.style.height = `${contentHeight + button.offsetHeight}px`;
+    }
+
     inner.style.maxHeight = `${contentHeight}px`;
   } else {
     const buttonHeight = button.offsetHeight;
-    img.style.height = `${buttonHeight}px`;
+
+    if (isMobile) {
+      img.style.height = `73px`;
+    } else {
+      img.style.height = `${buttonHeight}px`;
+    }
+
     inner.style.maxHeight = "0px";
   }
 };
@@ -70,7 +83,7 @@ const renderService = (service) => {
          : `<div class="service-image w-full max-lg:h-62.5 lg:w-1/2 lg:shrink-0 lg:self-stretch rounded-main transition-all duration-500 bg-[#C4C4C4]"></div>`
      }
 
-      <div class="mt-main lg:mt-0 lg:w-1/2 lg:shrink-0">
+      <div class="mt-main lg:mt-0 lg:w-1/2">
         <button 
           type="button" 
           class="text-xl lg:text-2xl w-full uppercase font-medium flex justify-between gap-6 items-center text-start border-b pb-8 cursor-pointer"
@@ -101,7 +114,7 @@ const renderService = (service) => {
 
             <a 
               href="${service.link}" 
-              class="block text-center uppercase lg:normal-case text-base w-full lg:w-1/2 ml-auto cursor-pointer bg-accent-pink rounded-main py-4 text-white"
+              class="block text-center uppercase lg:normal-case text-base w-full lg:w-1/2 ml-auto cursor-pointer bg-accent-pink hover:shadow-pink rounded-main py-4 text-white"
             >
               ${service.linkLabel}
             </a>

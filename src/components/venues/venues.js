@@ -8,7 +8,7 @@ export function renderVenues() {
 const renderForm = () => {
   return `
     <article class="hidden lg:block">
-      <svg class="w-36 h-32 ml-auto">
+      <svg class="w-36 h-32 ml-auto text-accent-pink">
           <use href="/sprite.svg#big-arrow"></use>
       </svg>
 
@@ -35,7 +35,7 @@ const renderForm = () => {
 
         <button 
           type="submit" 
-          class="bg-accent-pink text-white text-body-base py-4 rounded-main hover:bg-pink-600 focus:outline-none uppercase cursor-pointer"
+          class="bg-accent-pink text-white text-body-base py-4 rounded-main hover:shadow-pink focus:outline-none uppercase cursor-pointer"
         >
           Записаться на просмотр
         </button>
@@ -56,7 +56,7 @@ const renderVenue = (venue) => {
 
         <span class="hidden xl:inline col-span-1 self-center text-2xl font-medium justify-self-end text-accent-pink">${venue.capacity}</span>
 
-        <a href="${venue.link}" class="flex gap-2 text-lg text-accent-pink col-span-2">
+        <a href="${venue.link}" class="flex gap-2 text-lg text-accent-pink hover:text-black col-span-2">
           подробнее
           <svg class="h-7.5 w-10" aria-hidden="true">
             <use href="/sprite.svg#arrow-right"></use>

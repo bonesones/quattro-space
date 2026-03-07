@@ -4,15 +4,17 @@ export function renderBanner() {
   return template;
 }
 
-/*document.addEventListener("DOMContentLoaded", function () {
-  const isChrome =
-    /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+document.addEventListener("DOMContentLoaded", function () {
+  const leftBlock = document.querySelector(
+    ".col-span-2 .absolute.inset-0.left-0",
+  );
+  const atSpan = document.getElementById("at");
 
-  const element = document.getElementById("liquid-glass-element");
+  if (leftBlock && atSpan) {
+    const leftBlockWidth = leftBlock.offsetWidth;
+    const atWidth = atSpan.offsetWidth;
+    const moveDistance = -(leftBlockWidth - atWidth);
 
-  if (isChrome) {
-    element.className = "glass-main";
-  } else {
-    element.className = "glass-fallback";
+    atSpan.style.setProperty("--move-distance", moveDistance + "px");
   }
-});*/
+});

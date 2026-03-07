@@ -71,6 +71,79 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (currentPage === "home") {
+    const sections = document.querySelectorAll("section");
+    const isDesktop = window.innerWidth > 1024;
+
+    if (isDesktop) {
+      const header = document.querySelector(".desktop-header");
+      const bannerSection = document.querySelector("#section-0");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.3 },
+      );
+
+      sections.forEach((sec) => {
+        observer.observe(sec);
+      });
+
+      if (header && bannerSection) {
+        const headerObserver = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              header.classList.remove("bg-black", "pt-6", "px-main");
+              header.classList.add("bg-transparent", "pt-12.5", "px-12");
+            } else {
+              header.classList.add("bg-black", "pt-6", "px-main");
+              header.classList.remove("bg-transparent", "pt-12.5", "px-12");
+            }
+          },
+          { threshold: 0.1 },
+        );
+        headerObserver.observe(bannerSection);
+      }
+
+      let currentIndex = 0;
+      sections[currentIndex].classList.add("visible");
+
+      sections.forEach((section, index) => {
+        section.addEventListener("click", (e) => {
+          if (e.target.closest("button, a, input, textarea, select, label"))
+            return;
+
+          if (index === sections.length - 1) return;
+
+          const nextSection = sections[index + 1];
+
+          if (index === 0) {
+            slowScrollTo(nextSection, 1000);
+          } else {
+            nextSection.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+
+          const animations = [
+            "animate-section-1",
+            "animate-section-2",
+            "animate-section-3",
+            "animate-section-4",
+          ];
+
+          const animation = animations[index];
+          nextSection.classList.add(animation);
+          setTimeout(() => nextSection.classList.remove(animation), 700);
+        });
+      });
+    }
+
     const servicesContainer = document.getElementById(
       "services-list-container",
     );
@@ -82,3 +155,22 @@ document.addEventListener("DOMContentLoaded", () => {
     initVenueFilter();
   }
 });
+
+function slowScrollTo(element, duration = 2500) {
+  const start = window.scrollY;
+  const end = element.getBoundingClientRect().top + window.scrollY;
+  const distance = end - start;
+  const startTime = performance.now();
+
+  function step(time) {
+    const progress = Math.min((time - startTime) / duration, 1);
+
+    window.scrollTo(0, start + distance * progress);
+
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    }
+  }
+
+  requestAnimationFrame(step);
+}

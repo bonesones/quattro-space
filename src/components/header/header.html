@@ -1,15 +1,152 @@
-<header
-  class="bg-black px-main py-2 flex items-center justify-between fixed inset-0 h-fit z-50"
->
-  <button aria-label="Открыть меню">
-    <svg class="h-10 w-10">
-      <use href="/sprite.svg#burger"></use>
-    </svg>
-  </button>
+<header class="bg-black lg:bg-transparent fixed inset-0 z-50 h-fit">
+  <div class="flex lg:hidden items-center justify-between h-14 px-main">
+    <button id="burgerBtn" aria-label="Открыть меню">
+      <svg class="h-10 w-10">
+        <use href="/sprite.svg#burger"></use>
+      </svg>
+    </button>
 
-  <button aria-label="Перейти в профиль">
-    <svg class="h-7.5 w-7.5">
-      <use href="/sprite.svg#profile"></use>
+    <button
+      id="closeModal"
+      aria-label="Закрыть меню"
+      class="hidden text-white rotate-45"
+    >
+      <svg class="h-10 w-10">
+        <use href="/sprite.svg#plus"></use>
+      </svg>
+    </button>
+
+    <button aria-label="Перейти в профиль">
+      <svg class="h-7.5 w-7.5">
+        <use href="/sprite.svg#profile"></use>
+      </svg>
+    </button>
+  </div>
+
+  <div
+    class="desktop-header hidden lg:flex justify-between pt-12.5 pb-6 w-full px-main"
+  >
+    <svg class="w-69 h-7 text-accent-pink">
+      <use href="/sprite.svg#logo"></use>
     </svg>
-  </button>
+
+    <nav class="flex items-center gap-6 text-base uppercase text-white">
+      <a href="#">Форматы</a>
+      <a href="#">Площадки</a>
+      <a href="#">Услуги</a>
+      <a href="#">О нас</a>
+      <a href="#">Отзывы</a>
+      <a href="#">Контакты</a>
+    </nav>
+
+    <div class="flex gap-6 text-white">
+      <a href="#" aria-label="Перейти в профиль">
+        <svg class="w-7.5 h-7.5">
+          <use href="/sprite.svg#telegram"></use>
+        </svg>
+      </a>
+
+      <a href="#" aria-label="Перейти в профиль">
+        <svg class="w-7.5 h-7.5">
+          <use href="/sprite.svg#profile"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
 </header>
+
+<div
+  id="menuModal"
+  class="fixed inset-0 bg-black text-white transform -translate-y-full transition-transform duration-300 ease-in-out z-40"
+>
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    class="absolute top-0 left-0 w-full h-full object-cover"
+  >
+    <source src="/video/bg-video-pink.mp4" type="video/mp4" />
+    Ваш браузер не поддерживает видео.
+  </video>
+
+  <div class="relative z-10">
+    <svg class="w-62.5 h-6 text-accent-pink mt-20 mx-auto">
+      <use href="/sprite.svg#logo"></use>
+    </svg>
+
+    <nav class="flex flex-col items-center gap-6 mt-6 text-xl">
+      <a href="#">О нас</a>
+      <a href="#">Площадки</a>
+      <a href="#">Услуги</a>
+      <a href="#">Отзывы</a>
+      <a href="#">Контакты</a>
+    </nav>
+
+    <div class="flex flex-col">
+      <ul class="text-white mt-10 text-lg flex flex-col gap-4 w-full">
+        <li class="flex flex-col items-center gap-4">
+          <svg class="w-6 h-6">
+            <use href="/sprite.svg#phone"></use>
+          </svg>
+
+          <address class="not-italic">
+            <a
+              href="tel:+74994441908"
+              aria-label="Позвонить +7 (499) 444-19-08"
+              class="not-italic"
+            >
+              +7 (499) 444-19-08
+            </a>
+          </address>
+        </li>
+
+        <li class="flex flex-col items-center gap-4">
+          <svg class="w-6 h-6">
+            <use href="/sprite.svg#mail"></use>
+          </svg>
+
+          <address class="not-italic">
+            <a
+              href="mailto:Info@quattro.space"
+              aria-label="Написать письмо на Info@quattro.space"
+            >
+              Info@quattro.space
+            </a>
+          </address>
+        </li>
+
+        <li class="flex flex-col items-center gap-4">
+          <svg class="w-6 h-6">
+            <use href="/sprite.svg#location"></use>
+          </svg>
+
+          <address class="not-italic">
+            <a
+              href="https://yandex.ru/maps/-/CPuUa-kt"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Открыть адрес Москва, ул. Мясницкая, 13, с. 20 на Яндекс.Картах"
+            >
+              Москва, ул. Мясницкая, 13, с. 20
+            </a>
+          </address>
+        </li>
+      </ul>
+
+      <div class="flex gap-4 justify-center mt-4">
+        <svg class="w-10 h-10 bg-black rounded-lg border border-white">
+          <use href="/sprite.svg#max"></use>
+        </svg>
+
+        <svg class="w-10 h-10 text-white">
+          <use href="/sprite.svg#telegram"></use>
+        </svg>
+      </div>
+
+      <span class="text-xs text-white mt-8 mx-auto"
+        >QUATTRO SPACE © {{year}}</span
+      >
+    </div>
+  </div>
+</div>

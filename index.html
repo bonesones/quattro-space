@@ -1,5 +1,8 @@
 <!doctype html>
-<html lang="ru" class="scroll-smooth">
+<html
+  lang="ru"
+  class="scroll-smooth lg:snap-y lg:snap-mandatory lg:h-full lg:overflow-y-scroll"
+>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,8 +13,11 @@
     <title>Главная | Quattro Space</title>
   </head>
 
-  <body data-page="home" class="font-roboto">
-    <div id="app"></div>
+  <body
+    data-page="home"
+    class="font-roboto lg:bg-[url(/images/site-bg.png)] bg-repeat-y"
+  >
+    <div id="app" class="home"></div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
