@@ -50,10 +50,20 @@ const renderFooterDesktopList = (list) => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  const mobileFooter = document.querySelector("#mobile-footer");
-  const desktopFooter = document.querySelector("#desktop-footer");
+  const mobileFooter = document.querySelectorAll(".mobile-footer");
+  const desktopFooter = document.querySelectorAll(".desktop-footer");
+
+  if (mobileFooter.length === 0 || desktopFooter.length == 0) return;
+
+  mobileFooter.forEach(
+    (el) => (el.innerHTML = mockFooter.map(renderFooterMobileList).join("")),
+  );
+  desktopFooter.forEach(
+    (el) => (el.innerHTML = mockFooter.map(renderFooterDesktopList).join("")),
+  );
 
   mobileFooter.innerHTML = mockFooter.map(renderFooterMobileList).join("");
+
   desktopFooter.innerHTML = mockFooter.map(renderFooterDesktopList).join("");
 
   const accordions = document.querySelectorAll(".accordion-btn");
@@ -82,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-const mockFooter = [
+export const mockFooter = [
   {
     title: "Главная страница",
     items: [

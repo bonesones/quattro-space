@@ -322,38 +322,59 @@
     }
   }
 
-@keyframes scaleUp {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.4);
-  }
-}
-
-@keyframes scaleUpWithTranslate {
+  @keyframes scaleUp {
     0% {
-    transform: scale(1) translateX(0);
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.4);
+    }
   }
-  100% {
-    transform: scale(1.4) translateX(-10%);
-  }
-}
 
-@keyframes fadeToBottom {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-    
+  @keyframes scaleUpWithTranslate {
+    0% {
+      transform: scale(1) translateX(0);
+    }
+    100% {
+      transform: scale(1.4) translateX(-10%);
+    }
   }
-  100% {
-    transform: translateY(100%);
-    opacity: 0;
+
+  @keyframes fadeToBottom {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
   }
-}
+
+  @keyframes fadeInWithWidth {
+    0% {
+      width: 75%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
+  @keyframes bgOpacity {
+    0% {
+      background-color: rgb(0 0 0 / 0.4);
+    }
+    100% {
+      background-color: rgb(0 0 0 / 0.7);
+    }
+  }
 
   .animate-current-section-0 .image-new {
     animation: scaleUpWithTranslate 1.4s ease both;
+  }
+
+  .animate-current-section-0 {
+    animation: fadeOut 1.4s linear both;
   }
 
   .animate-current-section-0 .banner-side-text {
@@ -361,117 +382,157 @@
   }
 
   .animate-current-section-0 .banner-shadow {
-     animation: scaleUpWithTranslate 1.4s ease both;
+    animation:
+      scaleUpWithTranslate 1.4s ease both,
+      bgOpacity 1.4s linear both;
   }
 
   .animate-current-section-0 .main-text {
     animation: fadeToRight 1.4s ease both;
   }
 
-  .animate-next-section-0 {
-    animation: fadeFromBottom 1.6s ease both;
+  .animate-next-section-0 img,
+  .animate-next-section-0 .secondary-shadow {
+    animation: fadeInWithWidth 1.4s ease both;
+    transform-origin: right;
+    margin-left: auto;
   }
 
-  .animate-next-section-0 div {
-    animation: fadeFromBottom 1.9s ease 0.4s both;
+  .animate-next-section-0 .second-banner-content {
+    animation: fadeFromBottomVH 1.4s ease 0.8s both;
   }
 
   .animate-current-section-1 {
     animation: fadeToTopWithOpacity 2s ease both;
   }
 
-  .animate-next-section-1 {
-    animation: fadeIn 2s ease both;
+  .animate-next-section-1 div {
+    animation: fadeFromBottomVH 1.4s ease 0.4s both;
   }
-
-  .animate-next-section-1 h2 {
-    animation: fadeFromBottomVH 0.6s ease 0.8s both;
-  }
-
-  .animate-current-section-2 h2 {
-    animation: fadeToTopWithOpacity 1.3s ease both;
-  }
-
-  .animate-current-section-2 #venues-list-container {
-    animation: fadeOut 2s ease both;
+  .animate-current-section-2 {
+    animation: fadeToTopWithOpacity 2s ease both;
   }
 
   .animate-next-section-2 {
-    animation: fadeFromBottom 2s ease 0.7s both;
+    animation: fadeIn 2s ease both;
+  }
+
+  .animate-next-section-2 h2 {
+    animation: fadeFromBottomVH 2.3s ease both;
   }
 
   .animate-current-section-3 h2 {
-    animation: fadeToTopWithOpacity 1.9s ease both;
+    animation: fadeToTopWithOpacity 1.3s ease both;
   }
 
-  .animate-current-section-3 article:first-of-type {
-    animation: fadeOut 1.9s ease both; /* было 1.7s */
-  }
-
-  .animate-current-section-3 article:nth-of-type(2n) {
-    animation: fadeToRight 1.9s ease both; /* было 1.7s */
-  }
-
-  .animate-current-section-3 article:nth-of-type(2n + 1):not(:first-of-type) {
-    animation: fadeToLeft 1.9s ease both; /* было 1.7s */
+  .animate-current-section-3 #venues-list-container {
+    animation: fadeOut 2s ease both;
   }
 
   .animate-next-section-3 {
-    animation: fadeFromBottom 1.8s ease 0.4s both; /* было 1.6s */
+    animation: fadeFromBottom 2s ease 0.6s both;
   }
 
-  .animate-current-section-4 {
-    animation: fadeToTop 1.7s ease both;
+  .animate-current-section-4 h2 {
+    animation: fadeToTopWithOpacity 1.9s ease both;
   }
 
-  .animate-current-section-4 .main-image {
-    animation: scaleUp 1.3s ease both;
+  .animate-current-section-4 article:first-of-type {
+    animation: fadeOut 1.9s ease both; /* было 1.7s */
+  }
+
+  .animate-current-section-4 article:nth-of-type(2n) {
+    animation: fadeToRight 1.9s ease both; /* было 1.7s */
+  }
+
+  .animate-current-section-4 article:nth-of-type(2n + 1):not(:first-of-type) {
+    animation: fadeToLeft 1.9s ease both; /* было 1.7s */
   }
 
   .animate-next-section-4 {
+    animation: fadeFromBottom 1.8s ease 0.4s both;
+  }
+
+  .animate-current-section-5 {
+    animation: fadeToTop 1.5s ease both;
+  }
+
+  .animate-current-section-5 .main-image {
+    animation: scaleUp 1.4s ease both;
+  }
+
+  .animate-next-section-5 {
     animation: fadeFromBottom 1.7s ease 0.4s both;
   }
 
-  .animate-next-section-4 p {
+  .animate-next-section-5 p {
     animation: fadeFromBottom 1.2s ease 0.8s both;
   }
 
-  .animate-next-section-4 img:first-of-type {
+  .animate-next-section-5 img:first-of-type {
     animation: fadeFromBottom 1.4s ease 0.6s both;
   }
 
-  .animate-next-section-4 img:nth-of-type(2) {
+  .animate-next-section-5 img:nth-of-type(2) {
     animation: fadeFromBottom 1.3s ease 0.7s both;
   }
 
-  .animate-next-section-4 img:last-of-type {
+  .animate-next-section-5 img:last-of-type {
     animation: fadeFromBottom 1.5s ease 0.5s both;
   }
 
-  .animate-current-section-5 p,
-  .animate-current-section-5 img:nth-of-type(-n + 2) {
+  .animate-current-section-6 p,
+  .animate-current-section-6 img:nth-of-type(-n + 2) {
     animation: fadeToLeft 1.2s ease both;
   }
 
-  .animate-current-section-5 img:last-of-type,
-  .animate-current-section-5 div div div {
+  .animate-current-section-6 img:last-of-type,
+  .animate-current-section-6 div div div {
     animation: fadeToRight 1.2s ease both;
   }
-  .animate-next-section-5 {
-    animation: fadeFromBottom 1.2s ease both;
-  }
-
-  .animate-current-section-6 {
-    animation: fadeToTop 1.2s ease both;
-  }
-
   .animate-next-section-6 {
     animation: fadeFromBottom 1.2s ease both;
   }
 
-  .animate-next-section-6 ul,
-  .animate-next-section-6 img {
+  .animate-current-section-7 {
+    animation: fadeToTop 1.2s ease both;
+  }
+
+  .animate-next-section-7 {
+    animation: fadeFromBottom 1.2s ease both;
+  }
+
+  .animate-next-section-7 ul,
+  .animate-next-section-7 img {
     animation: fadeFromBottom 1.1s ease 0.1s both;
+  }
+
+  .animate-current-section-8 {
+    animation: fadeToTop 1.2s ease both;
+  }
+
+  .animate-next-section-8 {
+    animation: fadeFromBottom 1.3s ease both;
+  }
+
+  .animate-next-section-8 .advantages-container div:first-of-type {
+    animation: fadeFromBottom 1.1s ease both;
+  }
+
+  .animate-next-section-8 .advantages-container div:nth-of-type(2) {
+    animation: fadeFromBottom 1.7s ease both;
+  }
+
+  .animate-next-section-8 .advantages-container div:last-of-type {
+    animation: fadeFromBottom 2.3s ease both;
+  }
+
+  .animate-current-section-9 {
+    animation: fadeToTop 1.2s ease both;
+  }
+
+  .animate-next-section-9 {
+    animation: fadeFromBottom 1.2s ease both;
   }
 }
 
@@ -505,11 +566,9 @@
     @apply opacity-0 block w-full h-full cursor-pointer absolute right-0;
   }
 
-  /* В @layer base или components */
   .fullpage-section {
     @apply lg:absolute lg:inset-0 lg:min-h-screen w-full overflow-hidden;
     will-change: transform, opacity;
-    /* pointer-events: none;  ← можно включить для неактивных */
   }
 
   .fullpage-section.active {
@@ -521,5 +580,7 @@
     @apply lg:z-0 lg:opacity-0 lg:pointer-events-none;
   }
 
-  /* Уберите lg:invisible — лучше opacity + pointer-events */
+  .home section:not(#section-0):not(#section-1) {
+    @apply max-lg:mt-25;
+  }
 }

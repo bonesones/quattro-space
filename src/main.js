@@ -21,6 +21,7 @@ import { renderKitchen } from "./components/kitchen/kitchen.js";
 import { renderOnlineEventDesigner } from "./components/online-event-designer/online-event-designer.js";
 import { renderVenueViewingForm } from "./components/venue-viewing-form/venue-viewing-form.js";
 import { renderAbout } from "./components/about-us/about-us.js";
+import { renderReviews } from "./components/reviews/reviews.js";
 
 const page = document.body.dataset.page || "home";
 
@@ -35,7 +36,8 @@ const PAGES = {
       renderKitchen() +
       renderOnlineEventDesigner() +
       renderVenueViewingForm() +
-      renderAbout(),
+      renderAbout() +
+      renderReviews(),
   },
   about: {
     title: "О компании | Quattro Space",
@@ -85,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const header = document.querySelector(".desktop-header");
           if (!header) return;
 
-          if (nextIndex === 0) {
+          if (nextIndex === 0 || nextIndex === 1) {
             header.classList.remove("bg-black", "pt-6", "px-main");
             header.classList.add("bg-transparent", "pt-12.5", "px-12");
           } else {
