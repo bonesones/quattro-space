@@ -352,7 +352,7 @@
   }
 
   .animate-current-section-2 h2 {
-    animation: fadeToTopWithOpacity 2s ease both;
+    animation: fadeToTopWithOpacity 1.3s ease both;
   }
 
   .animate-current-section-2 #venues-list-container {
@@ -364,7 +364,7 @@
   }
 
   .animate-current-section-3 h2 {
-    animation: fadeToTopWithOpacity 1.9s ease both; /* было 1.7s */
+    animation: fadeToTopWithOpacity 1.9s ease both;
   }
 
   .animate-current-section-3 article:first-of-type {
@@ -417,7 +417,7 @@
   }
 
   .animate-current-section-5 img:last-of-type,
-  .animate-current-section-5 div div {
+  .animate-current-section-5 div div div {
     animation: fadeToRight 1.2s ease both;
   }
   .animate-next-section-5 {

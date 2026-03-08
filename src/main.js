@@ -134,8 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
           currentSection.classList.add(animation[0]);
           nextSection.classList.add(animation[1]);
 
-          console.log("added animations", animation);
-
           let finishedAnimations = 0;
 
           const handleAnimationEnd = () => {
@@ -149,16 +147,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             currentSection.classList.add("lg:invisible");
 
-            console.log("invisible");
-
             if (index !== 0) {
               currentSection.classList.remove(animation[0]);
-              console.log("removed", animation[0]);
             }
 
             setTimeout(() => {
               nextSection.classList.remove(animation[1]);
-              console.log("removed", animation[1]);
             }, 500);
           };
 
