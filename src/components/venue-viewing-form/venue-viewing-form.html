@@ -117,28 +117,26 @@
         </div>
       </fieldset>
 
-      <div class="flex flex-col gap-2 mt-2 lg:order-6">
+      <div class="flex flex-col gap-2 mt-2 lg:order-6 relative w-40">
         <label for="contact-date" class="text-sm cursor-pointer select-none">
           Выберите подходящую дату для связи с вами
         </label>
 
-        <div class="relative w-fit">
-          <input
-            type="date"
-            id="contact-date"
-            name="contact-date"
-            class="absolute opacity-0 pointer-events-auto w-0 h-0"
-          />
+        <input
+          type="date"
+          id="contact-date"
+          name="contact-date"
+          class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+        />
 
-          <div
-            id="custom-date-display"
-            class="w-40 py-3 rounded-2xl text-base flex items-center justify-between cursor-pointer"
-          >
-            <span>ДД.ММ.ГГГГ</span>
-            <svg class="w-10 h-10 text-accent-pink" fill="currentColor">
-              <use href="/sprite.svg#calendar"></use>
-            </svg>
-          </div>
+        <div
+          id="custom-date-display"
+          class="absolute top-0 left-0 w-full h-full py-3 px-4 rounded-2xl text-base flex items-center justify-between pointer-events-none"
+        >
+          <span>ДД.ММ.ГГГГ</span>
+          <svg class="w-6 h-6 text-accent-pink" fill="currentColor">
+            <use href="/sprite.svg#calendar"></use>
+          </svg>
         </div>
       </div>
 

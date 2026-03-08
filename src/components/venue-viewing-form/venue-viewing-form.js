@@ -8,18 +8,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const nativeInput = document.getElementById("contact-date");
   const display = document.getElementById("custom-date-display");
 
-  display.addEventListener("click", () => {
-    nativeInput.showPicker?.();
-    nativeInput.click();
-  });
-
   nativeInput.addEventListener("change", () => {
     const date = nativeInput.value;
+    const span = display.querySelector("span");
     if (date) {
       const [year, month, day] = date.split("-");
-      display.querySelector("span").textContent = `${day}.${month}.${year}`;
+      span.textContent = `${day}.${month}.${year}`;
+      span.classList.remove("text-gray-400");
     } else {
-      display.querySelector("span").textContent = "ДД.ММ.ГГГГ";
+      span.textContent = "ДД.ММ.ГГГГ";
+      span.classList.add("text-gray-400");
     }
   });
 });
