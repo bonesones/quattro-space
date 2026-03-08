@@ -127,14 +127,6 @@ export const initFullPage = ({ onSectionChange } = {}) => {
       section.addEventListener("click", (e) => {
         if (isAnimating) return;
 
-        const currentSection = sections[currentIndex];
-        if (
-          currentIndex === 0 &&
-          !currentSection.classList.contains("initial-second")
-        ) {
-          return;
-        }
-
         if (e.target.closest("a, button, input, label, select, textarea, form"))
           return;
         const now = Date.now();

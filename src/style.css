@@ -324,6 +324,15 @@
 
 @keyframes scaleUp {
   0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.4);
+  }
+}
+
+@keyframes scaleUpWithTranslate {
+    0% {
     transform: scale(1) translateX(0);
   }
   100% {
@@ -331,8 +340,32 @@
   }
 }
 
+@keyframes fadeToBottom {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+    
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
   .animate-current-section-0 .image-new {
-    animation: scaleUp 1.4s ease both;
+    animation: scaleUpWithTranslate 1.4s ease both;
+  }
+
+  .animate-current-section-0 .banner-side-text {
+    animation: fadeToBottom 1.4s ease both;
+  }
+
+  .animate-current-section-0 .banner-shadow {
+     animation: scaleUpWithTranslate 1.4s ease both;
+  }
+
+  .animate-current-section-0 .main-text {
+    animation: fadeToRight 1.4s ease both;
   }
 
   .animate-next-section-0 {
