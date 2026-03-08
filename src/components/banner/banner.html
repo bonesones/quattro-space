@@ -1,21 +1,13 @@
-<section
-  class="relative text-white lg:bg-black min-h-[90vh] lg:min-h-screen w-full overflow-hidden"
-  id="section-0"
->
+<section class="lg:absoulute lg:inset-0 relative text-white lg:bg-black min-h-[90vh] w-full overflow-y-auto"
+  id="section-0">
   <!------------Мобильный баннер-------------->
-  <div
-    class="flex lg:hidden flex-col items-center pt-20 mt-14 relative pb-37 px-main h-full"
-  >
-    <img
-      src="/images/banner.webp"
-      class="absolute inset-0 animate-bgSlide h-full w-full object-cover object-center"
-      fetchpriority="high"
-      alt="Баннер Quattro Space"
-    />
+  <div class="flex lg:hidden flex-col items-center pt-20 mt-14 relative pb-37 px-main h-full">
+    <img src="/images/banner.webp" class="absolute inset-0 animate-bgSlide h-full w-full object-cover object-center"
+      fetchpriority="high" alt="Баннер Quattro Space" />
     <div class="absolute inset-0 bg-black/40 animate-bgSlide"></div>
     <div
-      class="absolute w-full h-62 top-1/3 -translate-y-[15%] bg-linear-to-t from-black/90 via-black/60 to-black/20 blur-md animate-bgSlide"
-    ></div>
+      class="absolute w-full h-62 top-1/3 -translate-y-[15%] bg-linear-to-t from-black/90 via-black/60 to-black/20 blur-md animate-bgSlide">
+    </div>
 
     <div class="relative z-20 flex flex-col items-center w-full">
       <svg class="w-62.5 h-6.25 animate-logoMove">
@@ -23,23 +15,19 @@
       </svg>
 
       <h1
-        class="mt-40 opacity-0 animate-fadeLeft uppercase text-subtitle-lg-sm font-bold font-grotesk text-center leading-[124%]"
-      >
+        class="mt-40 opacity-0 animate-fadeLeft uppercase text-subtitle-lg-sm font-bold font-grotesk text-center leading-[124%]">
         Площадки<br />для<br />мероприятий<br />в Москве
       </h1>
 
       <p
-        class="mt-18.25 opacity-0 animate-fadeRight bg-white/10 rounded-main p-4 text-lg backdrop-blur-sm backdrop-saturate-100 backdrop-contrast-125 border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
-      >
+        class="mt-18.25 opacity-0 animate-fadeRight bg-white/10 rounded-main p-4 text-lg backdrop-blur-sm backdrop-saturate-100 backdrop-contrast-125 border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.25)]">
         Добро пожаловать в <span class="text-accent-pink">Quattro Space</span> —
         уникальное место, где каждая деталь создана для того, чтобы сделать ваше
         событие незабываемым.
       </p>
 
-      <a
-        href="#section-1"
-        class="w-full opacity-0 animate-fadeRight bg-accent-pink mt-4.5 text-center py-[12.5px] rounded-main cursor-pointer"
-      >
+      <a href="#section-1"
+        class="w-full opacity-0 animate-fadeRight bg-accent-pink mt-4.5 text-center py-[12.5px] rounded-main cursor-pointer">
         Подобрать площадку
       </a>
     </div>
@@ -48,11 +36,8 @@
   <!------------ПК баннер-------------->
 
   <div
-    class="hidden bg-white lg:grid grid-cols-4 h-[calc(100vh-1.5rem)] mx-6 mt-6 rounded-main animate-fadeScaleOut absolute"
-  >
-    <div
-      class="flex flex-col gap-10 items-center justify-end mb-14 pl-10 pr-16 text-black"
-    >
+    class="hidden bg-white lg:grid grid-cols-4 h-[calc(100vh-1.5rem)] mx-6 mt-6 rounded-main animate-fadeScaleOut absolute">
+    <div class="flex flex-col gap-10 items-center justify-end mb-14 pl-10 pr-16 text-black">
       <span class="uppercase text-subtitle-sm">
         Комплекс залов большой вместимости в одном здании
       </span>
@@ -63,12 +48,8 @@
     </div>
 
     <div class="relative my-0.5">
-      <div
-        class="w-full h-full absolute inset-0 left-0 flex items-center animate-fadeToRight"
-      >
-        <div
-          class="flex flex-col items-end h-full text-[200px] 3xl:text-[250px] 4xl:text-[300px]"
-        >
+      <div class="w-full h-full absolute inset-0 left-0 flex items-center animate-fadeToRight">
+        <div class="flex flex-col items-end h-full text-[200px] 3xl:text-[250px] 4xl:text-[300px]">
           <div class="flex-1 flex items-center">
             <span class="font-manrope font-medium text-white" id="qu">
               QU
@@ -79,69 +60,41 @@
         </div>
       </div>
 
-      <video
-        autoplay
-        muted
-        loop
-        preload="auto"
-        class="w-full h-full object-cover rounded-l-main"
-      >
+      <video autoplay muted loop preload="auto" class="w-full h-full object-cover rounded-l-main">
         <source src="/video/bg-video-pink.mp4" type="video/mp4" />
         Ваш браузер не поддерживает видео.
       </video>
     </div>
 
     <div class="col-span-2 relative border-l-2 border-white my-0.5 mr-0.5">
-      <div
-        class="w-1/2 h-full border-r-2 border-white absolute inset-0 left-0 flex justify-end"
-      >
+      <div class="w-1/2 h-full border-r-2 border-white absolute inset-0 left-0 flex justify-end">
         <div
-          class="flex flex-col items-end h-full w-full animate-fadeToRight text-[200px] 3xl:text-[250px] 4xl:text-[300px]"
-        >
+          class="flex flex-col items-end h-full w-full animate-fadeToRight text-[200px] 3xl:text-[250px] 4xl:text-[300px]">
           <div class="flex-1 flex items-center">
-            <span
-              class="font-manrope font-medium text-accent-pink animate-atMoveLeft"
-              id="at"
-            >
+            <span class="font-manrope font-medium text-accent-pink animate-atMoveLeft" id="at">
               AT
             </span>
           </div>
 
-          <span
-            class="font-manrope font-medium text-white animate-tMoveUp"
-            id="t"
-          >
+          <span class="font-manrope font-medium text-white animate-tMoveUp" id="t">
             T
           </span>
         </div>
       </div>
 
-      <div
-        class="w-1/2 h-full border-r-2 border-white absolute inset-0 left-1/2 flex justify-end animate-fadeToRight"
-      >
-        <div
-          class="flex flex-col items-end h-full text-[200px] 3xl:text-[250px] 4xl:text-[300px]"
-        >
+      <div class="w-1/2 h-full border-r-2 border-white absolute inset-0 left-1/2 flex justify-end animate-fadeToRight">
+        <div class="flex flex-col items-end h-full text-[200px] 3xl:text-[250px] 4xl:text-[300px]">
           <div class="flex-1 flex items-center">
             <span class="opacity-0 font-manrope font-medium"> AT </span>
           </div>
 
-          <span
-            class="font-manrope font-medium text-accent-pink mr-4 animate-tMoveUp"
-            id="ro"
-          >
+          <span class="font-manrope font-medium text-accent-pink mr-4 animate-tMoveUp" id="ro">
             RO
           </span>
         </div>
       </div>
 
-      <video
-        autoplay
-        muted
-        loop
-        preload="auto"
-        class="w-full h-full object-cover filter grayscal rounded-r-main"
-      >
+      <video autoplay muted loop preload="auto" class="w-full h-full object-cover filter grayscal rounded-r-main">
         <source src="/video/bg-video-black.mp4" type="video/mp4" />
         Ваш браузер не поддерживает видео.
       </video>
@@ -151,9 +104,7 @@
   <!------------Баннер после анимации-------------->
 
   <div class="hidden lg:flex animate-fadeIn h-screen">
-    <div
-      class="flex flex-col gap-10 items-center justify-end basis-1/4 mb-14 pl-10 pr-16 text-white"
-    >
+    <div class="flex flex-col gap-10 items-center justify-end basis-1/4 mb-14 pl-10 pr-16 text-white">
       <h1 class="uppercase text-subtitle-sm">
         Комплекс залов большой вместимости в одном здании
       </h1>
@@ -164,27 +115,19 @@
     </div>
 
     <div class="relative basis-3/4 flex items-center justify-center">
-      <img
-        src="/images/banner.webp"
-        class="absolute inset-0 top-0 left-0 w-full h-full object-cover"
-      />
+      <img src="/images/banner.webp" class="absolute inset-0 top-0 left-0 w-full h-full object-cover" />
+      <div class="absolute inset-0 top-0 left-0 w-full h-full bg-black/40 z-10"></div>
       <div
-        class="absolute inset-0 top-0 left-0 w-full h-full bg-black/40 z-10"
-      ></div>
-      <div
-        class="absolute z-15 w-full mx-10 h-64 top-1/2 -translate-y-[65%] bg-linear-to-t from-black/40 via-black/30 to-black/20 blur-xl"
-      ></div>
+        class="absolute z-15 w-full mx-10 h-64 top-1/2 -translate-y-[65%] bg-linear-to-t from-black/40 via-black/30 to-black/20 blur-xl">
+      </div>
 
-      <div
-        class="relative z-20 pl-18 pr-34.5 mt-30 animate-fadeFromRight animate-fadeFromRight"
-      >
+      <div class="relative z-20 pl-18 pr-34.5 mt-30 animate-fadeFromRight animate-fadeFromRight">
         <h1 class="font-grotesk text-title-sm uppercase">
           Площадка<br />для мероприятий в Москве
         </h1>
 
         <div
-          class="w-9/12 mt-8 bg-white/10 rounded-main p-6 text-lg backdrop-blur-sm backdrop-saturate-100 backdrop-contrast-125 border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
-        >
+          class="w-9/12 mt-8 bg-white/10 rounded-main p-6 text-lg backdrop-blur-sm backdrop-saturate-100 backdrop-contrast-125 border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.25)]">
           <span class="text-base">
             Добро пожаловать в
             <span class="text-accent-pink">Quattro Space</span> — уникальное
@@ -192,19 +135,12 @@
             событие незабываемым.
           </span>
 
-          <div
-            class="flex items-center gap-4 font-manrope font-medium text-lg text-white mt-6 text-center"
-          >
-            <button
-              type="button"
-              class="py-3 flex-1 bg-accent-pink uppercase rounded-[10px]"
-            >
+          <div class="flex items-center gap-4 font-manrope font-medium text-lg text-white mt-6 text-center">
+            <button type="button" class="py-3 flex-1 bg-accent-pink uppercase rounded-[10px]">
               Онлайн-конструктор
             </button>
 
-            <a href="#section-1" class="py-3 flex-1 bg-pink rounded-[10px]"
-              >Подобрать площадку</a
-            >
+            <a href="#section-1" class="py-3 flex-1 bg-pink rounded-[10px]">Подобрать площадку</a>
           </div>
         </div>
       </div>

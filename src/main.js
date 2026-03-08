@@ -3,7 +3,7 @@ import { renderHeader } from "./components/header/header.js";
 import { renderFooter } from "./components/footer/footer.js";
 import { BaseLayout } from "./layouts/base.js";
 import { renderBanner } from "./components/banner/banner.js";
-
+import { initFullPage } from "./utils/fullpage.js";
 import homeTemplate from "./pages/home.html?raw";
 import aboutTemplate from "./pages/about.html?raw";
 import servicesTemplate from "./pages/services.html?raw";
@@ -29,7 +29,13 @@ const PAGES = {
     title: "Главная | Quattro Space",
     content:
       renderBanner() +
-      `<div class="space-y-25 lg:space-y-0">${renderVenueFilter() + renderVenues() + renderServices() + renderKitchen() + renderOnlineEventDesigner() + renderVenueViewingForm() + renderAbout()}</div>`,
+      renderVenueFilter() +
+      renderVenues() +
+      renderServices() +
+      renderKitchen() +
+      renderOnlineEventDesigner() +
+      renderVenueViewingForm() +
+      renderAbout(),
   },
   about: {
     title: "О компании | Quattro Space",
@@ -71,98 +77,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (currentPage === "home") {
-    const sections = document.querySelectorAll("section");
     const isDesktop = window.innerWidth > 1024;
 
     if (isDesktop) {
-      const header = document.querySelector(".desktop-header");
-      const bannerSection = document.querySelector("#section-0");
-      const banner = document.querySelector("#section-0");
+      initFullPage({
+        onSectionChange: (prevIndex, nextIndex) => {
+          const header = document.querySelector(".desktop-header");
+          if (!header) return;
 
-      if (header && bannerSection) {
-        const headerObserver = new IntersectionObserver(
-          ([entry]) => {
-            if (entry.isIntersecting) {
-              header.classList.remove("bg-black", "pt-6", "px-main");
-              header.classList.add("bg-transparent", "pt-12.5", "px-12");
-            } else {
-              header.classList.add("bg-black", "pt-6", "px-main");
-              header.classList.remove("bg-transparent", "pt-12.5", "px-12");
-            }
-          },
-          { threshold: 0.1 },
-        );
-        headerObserver.observe(bannerSection);
-      }
-
-      let currentIndex = 0;
-      sections[currentIndex].classList.add("visible");
-
-      sections.forEach((section, index) => {
-        section.addEventListener("click", (e) => {
-          if (e.target.closest("button, a, input, textarea, select, label"))
-            return;
-
-          if (index === sections.length - 1) return;
-
-          const nextSection = sections[index + 1];
-          const currentSection = sections[index];
-
-          const animations = [
-            ["animate-current-section-0", "animate-next-section-0"],
-            ["animate-current-section-1", "animate-next-section-1"],
-            ["animate-current-section-2", "animate-next-section-2"],
-            ["animate-current-section-3", "animate-next-section-3"],
-            ["animate-current-section-4", "animate-next-section-4"],
-            ["animate-current-section-5", "animate-next-section-5"],
-            ["animate-current-section-6", "animate-next-section-6"],
-          ];
-
-          const animation = animations[index];
-
-          console.log("starting animations", animation);
-
-          nextSection.classList.remove("lg:invisible");
-
-          console.log("remoed invisible");
-
-          if (index === 0) {
-            console.log(index);
-            banner.classList.add(animation[0]);
+          if (nextIndex === 0) {
+            header.classList.remove("bg-black", "pt-6", "px-main");
+            header.classList.add("bg-transparent", "pt-12.5", "px-12");
+          } else {
+            header.classList.add("bg-black", "pt-6", "px-main");
+            header.classList.remove("bg-transparent", "pt-12.5", "px-12");
           }
-
-          currentSection.classList.add(animation[0]);
-          nextSection.classList.add(animation[1]);
-
-          let finishedAnimations = 0;
-
-          const handleAnimationEnd = () => {
-            finishedAnimations++;
-
-            if (finishedAnimations < 2) return;
-
-            if (index === 1) {
-              return;
-            }
-
-            currentSection.classList.add("lg:invisible");
-
-            if (index !== 0) {
-              currentSection.classList.remove(animation[0]);
-            }
-
-            setTimeout(() => {
-              nextSection.classList.remove(animation[1]);
-            }, 500);
-          };
-
-          currentSection.addEventListener("animationend", handleAnimationEnd, {
-            once: true,
-          });
-          nextSection.addEventListener("animationend", handleAnimationEnd, {
-            once: true,
-          });
-        });
+        },
       });
     }
 

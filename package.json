@@ -16,6 +16,7 @@
     "vite-plugin-svg-spritemap": "^1.0.13"
   },
   "dependencies": {
+    "fullpage.js": "^4.0.41",
     "imask": "^7.6.1",
     "swiper": "^12.1.2"
   }
