@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (isDesktop) {
       initFullPage({
-        onSectionChange: (prevIndex, nextIndex) => {
+        onSectionChange: (_, nextIndex) => {
           const header = document.querySelector(".desktop-header");
           if (!header) return;
 

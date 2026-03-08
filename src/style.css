@@ -322,17 +322,17 @@
     }
   }
 
-  @keyframes scaleUp {
-    0% {
-      transform: scale(1);
-    }
-    100% {
-      transform: scale(1.4);
-    }
+@keyframes scaleUp {
+  0% {
+    transform: scale(1) translateX(0);
   }
+  100% {
+    transform: scale(1.4) translateX(-10%);
+  }
+}
 
-  .animate-current-section-0 {
-    animation: fadeToTop 1.6s ease both;
+  .animate-current-section-0 .image-new {
+    animation: scaleUp 1.4s ease both;
   }
 
   .animate-next-section-0 {
