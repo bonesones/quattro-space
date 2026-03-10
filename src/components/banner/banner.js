@@ -11,12 +11,12 @@ export const initBanner = (root = document) => {
 
   const mobileVideo = container?.querySelector(".mobile-video");
 
+  const imageFallback = container?.querySelector(".mobile-fallback");
+
   if (mobileVideo) {
     mobileVideo.play().catch(() => {
-      const img = mobileVideo.querySelector("img");
-
-      if (img) {
-        mobileVideo.parentNode.replaceChild(img, mobileVideo);
+      if (imageFallback) {
+        mobileVideo.parentNode.replaceChild(imageFallback, mobileVideo);
       }
     });
   }

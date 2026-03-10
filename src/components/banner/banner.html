@@ -7,6 +7,12 @@
   <div
     class="flex lg:hidden flex-col items-center pt-20 mt-14 relative pb-37 px-main h-full"
   >
+    <img
+      src="/video/banner-video-fallback.webp"
+      class="absolute inset-0 animate-bgSlide h-full w-full object-cover object-center mobile-fallback"
+      alt=""
+    />
+
     <video
       preload="auto"
       autoplay
@@ -18,10 +24,6 @@
     >
       <source src="/video/banner-video.webm" type="video/webm" />
       <source src="/video/banner-video.mp4" type="video/mp4" />
-      <img
-        src="/video/banner-video-fallback.webp"
-        class="absolute inset-0 animate-bgSlide h-full w-full object-cover object-center"
-      />
     </video>
 
     <div class="absolute inset-0 bg-black/40 animate-bgSlide"></div>
@@ -157,7 +159,6 @@
         poster="/video/bg-video-black-fallback.webp"
         class="w-full h-full object-cover filter grayscal rounded-r-main"
       >
-        <source src="/video/bg-video-black.webm" type="video/webm" />
         <source src="/video/bg-video-black.mp4" type="video/mp4" />
         Ваш браузер не поддерживает видео.
       </video>
@@ -243,7 +244,7 @@
 </section>
 
 <section
-  class="hidden lg:absolute lg:inset-0 lg:flex lg:items-center lg:justify-center lg:overflow-y-auto"
+  class="hidden lg:absolute lg:inset-0 lg:flex lg:items-center lg:justify-center overflow-hidden"
   id="banner-container-desktop"
   style="--leave: fadeToTopWithOpacity 2s ease both"
 >
