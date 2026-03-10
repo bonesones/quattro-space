@@ -31,9 +31,6 @@ export default defineConfig({
     rollupOptions: {
       input: {
         home: resolve(__dirname, "index.html"),
-        about: resolve(__dirname, "about.html"),
-        services: resolve(__dirname, "services.html"),
-        contacts: resolve(__dirname, "contacts.html"),
       },
       output: {
         entryFileNames: "js/[name].[hash].js",
