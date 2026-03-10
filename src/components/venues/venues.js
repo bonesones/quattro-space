@@ -68,21 +68,17 @@ const renderVenue = (venue) => {
     </article>
   `;
 };
-document.addEventListener("DOMContentLoaded", () => {
-  const container = document.getElementById("venues-list-container");
 
-  container.innerHTML = mockVenues.map(renderVenue).join("");
-  container.innerHTML += renderForm();
+export function initVenues(container) {
+  container.innerHTML = mockVenues.map(renderVenue).join("") + renderForm();
 
-  const phoneInput = document.querySelectorAll(".phone-input");
+  const phoneInput = container.querySelector(".phone-input");
 
-  phoneInput.forEach((input) => {
-    IMask(input, {
-      mask: "+{7} (000) 000-00-00",
-      lazy: false,
-    });
+  IMask(phoneInput, {
+    mask: "+{7} (000) 000-00-00",
+    lazy: false,
   });
-});
+}
 
 const mockVenues = [
   {

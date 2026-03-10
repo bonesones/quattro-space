@@ -1,6 +1,10 @@
 <section
   class="section px-main lg:px-9 lg:flex flex-col justify-center items-center lg:overflow-y-auto"
   id="section-8"
+  style="
+    --enter: fadeFromBottom 1.2s ease both;
+    --leave: fadeToTop 1.2s ease both;
+  "
 >
   <div class="h-full lg:mt-32 2xl:container">
     <h2
@@ -15,6 +19,8 @@
           src="/images/about-us-main.webp"
           alt="О нас"
           class="w-full lg:w-1/2 h-full lg:h-158 object-cover rounded-main"
+          data-animate
+          style="--enter: fadeFromBottom 1.1.s ease 0.1s both"
         />
 
         <div class="flex flex-col lg:items-start lg:justify-end">
@@ -26,7 +32,11 @@
             КОМПЛЕКС ЗАЛОВ ДЛЯ МЕРОПРИЯТИЙ БОЛЬШОЙ ВМЕСТИМОСТИ В ОДНОМ ЗДАНИИ
           </p>
 
-          <ul class="space-y-8 mt-10 lg:mt-8">
+          <ul
+            class="space-y-8 mt-10 lg:mt-8"
+            data-animate
+            style="--enter: fadeFromBottom 1.1.s ease 0.1s both"
+          >
             <li class="flex flex-col lg:flex-row items-center gap-2 lg:gap-6">
               <svg class="w-12.5 h-12.5 flex items-center justify-center">
                 <use href="/sprite.svg#kremlin"></use>
@@ -128,47 +138,10 @@
 <section
   class="hidden section mx-auto px-main lg:px-9 2xl:container lg:flex flex-col justify-center items-center lg:overflow-y-auto"
   id="section-9"
+  style="
+    --enter: fadeFromBottom 1.3s ease both;
+    --leave: fadeToTop 1.2s ease both;
+  "
 >
-  <div class="space-y-10 max-w-3xl mx-auto advantages-container">
-    <div class="flex flex-col lg:flex-row gap-6 md:gap-12">
-      <h3 class="text-subtitle-sm text-center lg:text-start basis-[30%]">
-        <span class="text-accent-pink text-subtitle-md">01/</span>Стильное
-        пространство
-      </h3>
-
-      <p class="text-body-base text-justify basis-[70%]">
-        Все 5 залов, расположенные в одном здании, интерьерно совмещают
-        аутентичные кирпичные стены и художественные дизайнерские решения
-        (многоуровневые потолки, разные сценарии освещения, стильную мебель).
-      </p>
-    </div>
-
-    <div class="flex flex-col lg:flex-row gap-6 md:gap-12">
-      <h3 class="text-subtitle-sm text-center lg:text-start basis-[30%]">
-        <span class="text-accent-pink text-subtitle-md">02/</span>Комфортный
-        сервис
-      </h3>
-
-      <p class="text-body-base text-justify basis-[70%]">
-        Большие технические возможности, дополнительные услуги (собственная
-        кухня, охрана, ночной менеджер), клининг образуют единую экосистему,
-        в которой себя удобно чувствуют как опытные организаторы, так и новички
-        в ивент-сфере.
-      </p>
-    </div>
-
-    <div class="flex flex-col lg:flex-row gap-6 md:gap-12">
-      <h3 class="text-subtitle-sm text-center lg:text-start basis-[30%]">
-        <span class="text-accent-pink text-subtitle-md">03/</span>Транспортная
-        доступность
-      </h3>
-
-      <p class="text-body-base text-justify basis-[70%]">
-        Площадки для мероприятий находятся в центре Москвы, что позволяет всем
-        участникам без особых проблем добраться до места проведения: станции
-        метро «Лубянка», «Чистые пруды», «Тургеневская» находятся в 5–7 мин.
-        пешей доступности.
-      </p>
-    </div>
-  </div>
+  <div class="space-y-10 max-w-3xl mx-auto advantages-container"></div>
 </section>

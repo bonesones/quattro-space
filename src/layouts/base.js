@@ -1,4 +1,4 @@
-export function BaseLayout({ header, footer, content }) {
+export function BaseLayout({ header, footer, content, initFns = [] }) {
   const container = document.getElementById("app");
 
   if (!container) return;
@@ -10,4 +10,6 @@ export function BaseLayout({ header, footer, content }) {
     </main>
     ${footer}
   `;
+
+  initFns.forEach((fn) => fn());
 }

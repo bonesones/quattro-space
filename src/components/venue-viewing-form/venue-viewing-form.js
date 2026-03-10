@@ -4,10 +4,7 @@ export function renderVenueViewingForm() {
   return template;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const nativeInput = document.getElementById("contact-date");
-  const display = document.getElementById("custom-date-display");
-
+export function initVenueViewingForm(nativeInput, display) {
   nativeInput.addEventListener("change", () => {
     const date = nativeInput.value;
     const span = display.querySelector("span");
@@ -20,4 +17,4 @@ document.addEventListener("DOMContentLoaded", () => {
       span.classList.add("text-gray-400");
     }
   });
-});
+}

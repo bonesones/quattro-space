@@ -5,56 +5,41 @@ export const initFullPage = ({ onSectionChange } = {}) => {
   let currentIndex = 0;
   let isAnimating = false;
   let lastScrollTime = 0;
-
   const SCROLL_DELAY = 900;
-
-  const animations = Array.from(sections).map((_, i) => [
-    `animate-current-section-${i}`,
-    `animate-next-section-${i}`,
-  ]);
 
   sections.forEach((el, i) => {
     el.classList.add("fullpage-section");
-    if (i === 0) el.classList.add("active");
+    if (i === 0) el.classList.add("active", "is-entering");
   });
 
-  if (onSectionChange) {
-    setTimeout(() => onSectionChange(0, 0), 0);
-  }
+  if (onSectionChange) setTimeout(() => onSectionChange(0, 0), 0);
 
-  const updateBodyScroll = (sections, currentIndex) => {
-    const isLast = currentIndex === sections.length - 1;
-
+  const updateBodyScroll = (index) => {
+    const isLast = index === sections.length - 1;
     document.body.classList.toggle("lg:overflow-hidden", !isLast);
     document.body.classList.toggle("lg:overflow-y-auto", isLast);
   };
 
-  const finalizeTransition = (current, next, animOut, animIn, nextIndex) => {
-    current.classList.remove(animOut, "active");
-    next.classList.remove(animIn);
+  const getMaxAnimationDuration = (el) => {
+    const elements = [el, ...el.querySelectorAll("[data-animate]")];
+    let max = 0;
 
-    currentIndex = nextIndex;
-    isAnimating = false;
+    elements.forEach((el) => {
+      const style = getComputedStyle(el);
+      const durations = (style.animationDuration || "0s")
+        .split(",")
+        .map((s) => parseFloat(s) * 1000);
+      const delays = (style.animationDelay || "0s")
+        .split(",")
+        .map((s) => parseFloat(s) * 1000);
 
-    updateBodyScroll(sections, currentIndex);
+      durations.forEach((d, i) => {
+        const total = d + (delays[i] || 0);
+        if (total > max) max = total;
+      });
+    });
 
-    if (onSectionChange) onSectionChange(currentIndex, nextIndex);
-  };
-
-  const canScrollSection = (deltaY) => {
-    const section = sections[currentIndex];
-
-    const scrollTop = section.scrollTop;
-    const scrollHeight = section.scrollHeight;
-    const height = section.clientHeight;
-
-    const atBottom = scrollTop + height >= scrollHeight - 1;
-    const isScrollable = scrollHeight > height;
-
-    if (deltaY < 0) return false;
-    if (isScrollable && !atBottom) return false;
-
-    return true;
+    return max;
   };
 
   const goTo = (nextIndex) => {
@@ -65,62 +50,34 @@ export const initFullPage = ({ onSectionChange } = {}) => {
     const current = sections[currentIndex];
     const next = sections[nextIndex];
 
-    const animOut = animations[currentIndex]?.[0] || "fadeOut";
-    const animIn = animations[currentIndex]?.[1] || "fadeFromBottom";
-
-    next.classList.add("active");
-    current.classList.add(animOut);
-    next.classList.add(animIn);
-
-    const animatedElements = [next, ...next.querySelectorAll("*")].filter(
-      (el) => {
-        const style = getComputedStyle(el);
-        return style.animationName && style.animationName !== "none";
-      },
-    );
-
-    let finishedCount = animatedElements.length + 1;
-
-    const handleEnd = () => {
-      if (--finishedCount <= 0) {
-        finalizeTransition(current, next, animOut, animIn, nextIndex);
-      }
-    };
-
-    animatedElements.forEach((el) =>
-      el.addEventListener("animationend", handleEnd, { once: true }),
-    );
-
-    current.addEventListener("animationend", handleEnd, { once: true });
+    current.classList.add("is-leaving");
+    next.classList.add("active", "is-entering");
 
     const maxDuration = Math.max(
-      ...animatedElements.map((el) => {
-        const style = getComputedStyle(el);
-
-        return (
-          ((parseFloat(style.animationDuration) || 0) +
-            (parseFloat(style.animationDelay) || 0)) *
-          1000
-        );
-      }),
-      3500,
+      getMaxAnimationDuration(current),
+      getMaxAnimationDuration(next),
+      1000,
     );
 
     setTimeout(() => {
-      if (isAnimating) handleEnd();
+      current.classList.remove("active", "is-leaving");
+      next.classList.remove("is-entering");
+
+      currentIndex = nextIndex;
+      isAnimating = false;
+
+      updateBodyScroll(currentIndex);
+      if (onSectionChange) onSectionChange(currentIndex, nextIndex);
     }, maxDuration);
   };
 
   document.querySelectorAll('a[href^="#"]').forEach((link) =>
     link.addEventListener("click", (e) => {
       const targetId = link.getAttribute("href").slice(1);
-
       const targetIndex = Array.from(sections).findIndex(
         (s) => s.id === targetId,
       );
-
       if (targetIndex === -1) return;
-
       e.preventDefault();
       goTo(targetIndex);
     }),
@@ -130,13 +87,14 @@ export const initFullPage = ({ onSectionChange } = {}) => {
     "wheel",
     (e) => {
       if (Math.abs(e.deltaY) < 30 || isAnimating) return;
-
       const now = Date.now();
       if (now - lastScrollTime < SCROLL_DELAY) return;
-
       lastScrollTime = now;
-
-      if (canScrollSection(e.deltaY)) {
+      const section = sections[currentIndex];
+      const scrollTop = section.scrollTop;
+      const atBottom =
+        scrollTop + section.clientHeight >= section.scrollHeight - 1;
+      if (e.deltaY > 0 && (!section.scrollHeight || atBottom)) {
         goTo(currentIndex + 1);
       }
     },
@@ -146,15 +104,11 @@ export const initFullPage = ({ onSectionChange } = {}) => {
   sections.forEach((section) =>
     section.addEventListener("click", (e) => {
       if (isAnimating) return;
-
       if (e.target.closest("a, button, input, label, select, textarea, form"))
         return;
-
       const now = Date.now();
       if (now - lastScrollTime < SCROLL_DELAY) return;
-
       lastScrollTime = now;
-
       goTo(currentIndex + 1);
     }),
   );

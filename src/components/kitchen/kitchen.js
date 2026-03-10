@@ -18,23 +18,6 @@ const renderSlide = (slide, index) => {
   `;
 };
 
-const initSwiper = () => {
-  const swiperEl = document.querySelector(".kitchen-swiper .swiper-wrapper");
-  swiperEl.innerHTML = mockSlides.map(renderSlide).join("");
-
-  new Swiper(".kitchen-swiper", {
-    modules: [Pagination],
-    slidesPerView: 1,
-    centeredSlides: true,
-    spaceBetween: 30,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-      type: "bullets",
-    },
-  });
-};
-
 const renderFlexItem = (slide, index) => {
   return `
     <div class="flex flex-col items-center gap-2 w-45.5">
@@ -45,13 +28,28 @@ const renderFlexItem = (slide, index) => {
   `;
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  initSwiper();
+export const initKitchen = (container) => {
+  const swiperEl = container.querySelector(".kitchen-swiper .swiper-wrapper");
 
-  const container = document.getElementById("kitchen-container");
+  if (swiperEl) {
+    swiperEl.innerHTML = mockSlides.map(renderSlide).join("");
 
-  container.innerHTML = mockSlides.map(renderFlexItem).join("");
-});
+    new Swiper(".kitchen-swiper", {
+      modules: [Pagination],
+      slidesPerView: 1,
+      centeredSlides: true,
+      spaceBetween: 30,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        type: "bullets",
+      },
+    });
+  }
+
+  const flexContainer = container.querySelector("#kitchen-container");
+  flexContainer.innerHTML = mockSlides.map(renderFlexItem).join("");
+};
 
 const mockSlides = [
   {

@@ -1,6 +1,10 @@
 <section
   class="lg:absoulute lg:inset-0 lg:top-20 mx-auto w-full lg:px-0 lg:flex lg:items-center lg:justify-center lg:overflow-y-auto lg:overflow-x-hidden"
-  id="section-5"
+  id="kitchen-container"
+  style="
+    --enter: fadeFromBottom 1.8s ease 0.4s both;
+    --leave: fadeToTop 1.5s ease both;
+  "
 >
   <div class="h-full space-y-10 lg:mt-24 lg:w-full">
     <h2
@@ -19,6 +23,8 @@
       src="/images/kitchen-main.webp"
       alt="Собственная кухня"
       class="h-137.5 object-cover hidden lg:block w-full main-image lg:mt-20"
+      data-animate
+      style="--leave: scaleUp 1.4s ease both"
     />
 
     <div
