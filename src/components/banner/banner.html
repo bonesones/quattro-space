@@ -8,15 +8,18 @@
     class="flex lg:hidden flex-col items-center pt-20 mt-14 relative pb-37 px-main h-full"
   >
     <video
+      preload="auto"
       autoplay
       muted
       loop
       playsinline
+      poster="/video/banner-video-fallback.webp"
       class="absolute inset-0 animate-bgSlide h-full w-full object-cover object-center mobile-video"
     >
+      <source src="/video/banner-video.webm" type="video/webm" />
       <source src="/video/banner-video.mp4" type="video/mp4" />
       <img
-        src="/images/banner.webp"
+        src="/video/banner-video-fallback.webp"
         class="absolute inset-0 animate-bgSlide h-full w-full object-cover object-center"
       />
     </video>
@@ -94,7 +97,9 @@
         loop
         preload="auto"
         class="w-full h-full object-cover rounded-l-main"
+        poster="/video/bg-video-pink-fallback.webp"
       >
+        <source src="/video/bg-video-pink.webm" type="video/webm" />
         <source src="/video/bg-video-pink.mp4" type="video/mp4" />
         Ваш браузер не поддерживает видео.
       </video>
@@ -149,8 +154,10 @@
         muted
         loop
         preload="auto"
+        poster="/video/bg-video-black-fallback.webp"
         class="w-full h-full object-cover filter grayscal rounded-r-main"
       >
+        <source src="/video/bg-video-black.webm" type="video/webm" />
         <source src="/video/bg-video-black.mp4" type="video/mp4" />
         Ваш браузер не поддерживает видео.
       </video>
@@ -176,10 +183,11 @@
 
     <div class="relative basis-3/4 flex items-center justify-center">
       <img
-        src="/images/banner.webp"
+        src="/video/banner-video-fallback.webp"
         class="absolute inset-0 top-0 left-0 w-full h-full object-cover image-new"
         data-animate
         style="--leave: scaleUpWithTranslate 1.4s ease both"
+        alt="партик"
       />
 
       <div
@@ -250,7 +258,7 @@
   ></div>
 
   <img
-    src="/images/banner.webp"
+    src="/video/banner-video-fallback.webp"
     class="absolute inset-0 w-full h-full object-cover"
     data-animate
     style="
@@ -258,6 +266,7 @@
       --enter-transform-origin: right;
       --enter-margin-left: auto;
     "
+    alt="партик"
   />
 
   <div
