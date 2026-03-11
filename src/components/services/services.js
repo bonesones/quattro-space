@@ -74,7 +74,7 @@ const renderService = (service, index) => {
   return `
     <article class="group service-item flex flex-col lg:flex-row lg:items-stretch lg:gap-12" 
       data-animate 
-      style="--leave: ${index === 0 ? "fadeOut" : index % 2 === 0 ? "fadeToRight" : "fadeToLeft"} 1.9s ease both">
+      style="--leave: ${index % 2 === 0 ? "fadeToRight" : "fadeToLeft"} 1.9s ease both">
      ${
        service.img
          ? `<img
