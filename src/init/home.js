@@ -9,9 +9,11 @@ import { initAboutParagraphs } from "../components/about-us/about-us.js";
 
 export function initHomePage() {
   const isDesktop = window.innerWidth > 1024;
+  const fullPageContainer = document.querySelector(".home");
 
   if (isDesktop) {
     initFullPage({
+      container: fullPageContainer,
       onSectionChange: (_, nextIndex) => {
         const header = document.querySelector(".desktop-header");
         if (!header) return;

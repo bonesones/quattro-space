@@ -419,7 +419,7 @@
   }
 
   .fullpage-section {
-    @apply lg:absolute lg:inset-0 lg:min-h-screen w-full overflow-hidden;
+    @apply lg:absolute lg:inset-0 w-full lg:min-h-screen lg:flex lg:items-center lg:justify-center overflow-y-auto;
     will-change: transform, opacity;
   }
 

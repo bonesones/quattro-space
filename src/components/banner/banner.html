@@ -170,7 +170,7 @@
 
   <!------------Баннер после анимации-------------->
 
-  <div class="hidden lg:flex animate-fadeIn h-screen overflow-hidden">
+  <div class="hidden lg:flex animate-fadeIn h-screen overflow-hidden w-full">
     <div
       class="flex flex-col gap-10 items-center justify-end basis-1/4 mb-14 pl-10 pr-16 text-white banner-side-text"
       data-animate
@@ -189,17 +189,12 @@
       <img
         src="/video/banner-video-fallback.webp"
         class="absolute inset-0 top-0 left-0 w-full h-full object-cover image-new"
-        data-animate
-        style="--leave: scaleUpWithTranslate 1.4s ease both"
         alt="партик"
       />
 
       <div
         class="absolute inset-0 top-0 left-0 w-full h-full bg-black/40 z-10 banner-shadow"
-        data-animate
-        style="
-          --leave:
-            bgOpacity 1.4s linear both, scaleUpWithTranslate 1.4s ease both;
+      
         "
       ></div>
 
@@ -209,7 +204,6 @@
 
       <div
         class="relative z-40 pl-18 pr-34.5 mt-30 animate-fadeFromRight animate-fadeFromRight main-text"
-        data-animate
         style="--leave: fadeToRight 1.4s ease both"
       >
         <h1 class="font-grotesk text-title-sm uppercase">
@@ -236,7 +230,7 @@
               Онлайн-конструктор
             </button>
 
-            <a href="#section-2" class="py-3 flex-1 bg-pink rounded-[10px]"
+            <a href="#section-9" class="py-3 flex-1 bg-pink rounded-[10px]"
               >Подобрать площадку</a
             >
           </div>
@@ -255,12 +249,12 @@
     class="secondary-shadow absolute inset-0 w-full h-full bg-black/70 z-10"
     data-animate
     style="
-      --enter: fadeInWithWidth 1.4s ease both;
+      --enter: fadeInWithWidth 1.4s ease both, bgOpacity 1.4s linear both;
       --enter-transform-origin: right;
       --enter-margin-left: auto;
+      
     "
   ></div>
-
   <img
     src="/video/banner-video-fallback.webp"
     class="absolute inset-0 w-full h-full object-cover"

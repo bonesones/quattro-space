@@ -1,5 +1,7 @@
-export const initFullPage = ({ onSectionChange } = {}) => {
-  const sections = document.querySelectorAll(".home section");
+export const initFullPage = ({ container, onSectionChange } = {}) => {
+  if (!container) throw new Error("Fullpage container is not defined");
+
+  const sections = container.querySelectorAll("section");
   if (!sections.length) return;
 
   let currentIndex = 0;
