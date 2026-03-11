@@ -16,7 +16,12 @@
     <div class="mt-10 lg:pb-32">
       <div class="flex flex-col lg:flex-row gap-10">
         <img
-          src="/images/about-us-main.webp"
+          src="/images/about-us-main-mobile.webp"
+          srcset="
+            /images/about-us-main-mobile.webp  800w,
+            /images/about-us-main.webp        1900w
+          "
+          sizes="(max-width: 1024px) 800px, 1900px"
           alt="О нас"
           class="w-full lg:w-1/2 h-full lg:h-158 object-cover rounded-main"
           data-animate

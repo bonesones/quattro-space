@@ -179,7 +179,7 @@ const mockServices = [
     ],
   },
   {
-    img: "/images/tech-support.jpg",
+    img: "/images/tech-support.webp",
     linkLabel: "Перейти в раздел",
     link: "#",
     title: "Техническое сопровождение",

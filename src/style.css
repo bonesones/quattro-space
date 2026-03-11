@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: "CyGrotesk";
-  src: url("./assets/fonts/CyGrotesk-WideRegular.otf") format("opentype");
+  src: url("./assets/fonts/CyGrotesk-WideRegular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -10,7 +10,7 @@
 
 @font-face {
   font-family: "CyGrotesk";
-  src: url("./assets/fonts/CyGrotesk-WideMedium.otf") format("opentype");
+  src: url("./assets/fonts/CyGrotesk-WideMedium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -18,7 +18,7 @@
 
 @font-face {
   font-family: "CyGrotesk";
-  src: url("./assets/fonts/CyGrotesk-WideBold.otf") format("opentype");
+  src: url("./assets/fonts/CyGrotesk-WideBold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -33,7 +33,7 @@
 
 @font-face {
   font-family: "Manrope Medium";
-  src: url("./assets/fonts/Manrope-Medium.ttf") format("truetype");
+  src: url("./assets/fonts/Manrope-Medium.woff2") format("woff2");
   font-style: normal;
   font-display: swap;
 }
