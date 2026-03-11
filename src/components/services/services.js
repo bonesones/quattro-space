@@ -80,6 +80,7 @@ const renderService = (service, index) => {
          ? `<img
            src="${service.img}"
            class="service-image w-full max-lg:h-62.5 lg:w-1/2 lg:shrink-0 lg:self-stretch object-cover object-center rounded-main transition-all duration-500"
+           loading="lazy"
            alt="${service.title}"
          />`
          : `<div class="service-image w-full max-lg:h-62.5 lg:w-1/2 lg:shrink-0 lg:self-stretch rounded-main transition-all duration-500 bg-[#C4C4C4]"></div>`

@@ -48,7 +48,7 @@ const renderVenue = (venue) => {
   return `
     <article class="w-full max-md:max-w-86.25 lg:max-w-lg xl:max-w-2xl flex flex-col h-full">
       <div class="w-full aspect-345/276 lg:aspect-627/538 overflow-hidden rounded-main">
-        <img src="${venue.image}" class="w-full h-full object-cover" alt="${venue.name}" />
+        <img src="${venue.image}" class="w-full h-full object-cover" loading="lazy" alt="${venue.name}" />
       </div>
 
       <div class="grid grid-cols-4 mt-main lg:mt-10 lg:px-main flex-1">

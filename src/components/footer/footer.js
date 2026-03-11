@@ -10,7 +10,7 @@ export const initFooter = () => {
   const video = footer?.querySelector("video");
 
   video?.play().catch(() => {
-    const img = video.querySelector("img");
+    const img = video.querySelector(".footer-fallback");
 
     if (img) {
       video.parentNode.replaceChild(img, video);
