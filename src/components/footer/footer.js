@@ -81,10 +81,10 @@ const mockFooter = [
   {
     title: "Главная страница",
     items: [
-      { title: "О нас", link: "#" },
-      { title: "Площадки", link: "#" },
-      { title: "Услуги", link: "#" },
-      { title: "Отзывы", link: "#" },
+      { title: "О нас", link: "#about-us" },
+      { title: "Площадки", link: "#venues" },
+      { title: "Услуги", link: "#services" },
+      { title: "Отзывы", link: "#reviews" },
       { title: "Контакты", link: "#" },
     ],
   },
