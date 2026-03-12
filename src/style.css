@@ -38,11 +38,6 @@
   font-display: swap;
 }
 
-:root {
-  --lg-bg-color: rgba(255, 255, 255, 0.15);
-  --lg-highlight: rgba(255, 255, 255, 0.75);
-}
-
 @theme {
   /* Breakpoints */
   --breakpoint-3xl: 1800px;
