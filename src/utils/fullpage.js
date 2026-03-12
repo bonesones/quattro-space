@@ -18,9 +18,12 @@ export const initFullPage = ({ container, onSectionChange } = {}) => {
 
   const updateBodyScroll = (index) => {
     const isLast = index === sections.length - 1;
+
     document.body.classList.toggle("lg:overflow-hidden", !isLast);
-    document.body.classList.toggle("lg:overflow-y-auto", isLast);
+    document.documentElement.classList.toggle("lg:overflow-hidden", !isLast);
   };
+
+  updateBodyScroll(currentIndex);
 
   const getMaxAnimationDuration = (el) => {
     const elements = [el, ...el.querySelectorAll("[data-animate]")];
@@ -52,8 +55,13 @@ export const initFullPage = ({ container, onSectionChange } = {}) => {
     const current = sections[currentIndex];
     const next = sections[nextIndex];
 
-    current.classList.add("is-leaving");
-    next.classList.add("active", "is-entering");
+    if (nextIndex < currentIndex) {
+      next.classList.add("active", "is-entering-back");
+      current.classList.add("is-leaving-back");
+    } else {
+      next.classList.add("active", "is-entering");
+      current.classList.add("is-leaving");
+    }
 
     const maxDuration = Math.max(
       getMaxAnimationDuration(current),
@@ -62,8 +70,15 @@ export const initFullPage = ({ container, onSectionChange } = {}) => {
     );
 
     setTimeout(() => {
-      current.classList.remove("active", "is-leaving");
-      next.classList.remove("is-entering");
+      if (nextIndex < currentIndex) {
+        current.classList.remove("active", "is-leaving-back");
+        next.classList.remove("is-entering-back");
+      } else {
+        current.classList.remove("active", "is-leaving");
+        next.classList.remove("is-entering");
+      }
+
+      sections[currentIndex].scrollTop = 0;
 
       currentIndex = nextIndex;
       isAnimating = false;
@@ -79,9 +94,32 @@ export const initFullPage = ({ container, onSectionChange } = {}) => {
       const targetIndex = Array.from(sections).findIndex(
         (s) => s.id === targetId,
       );
-      if (targetIndex === -1) return;
-      if (targetIndex === currentIndex) return;
+      if (targetIndex === -1 || targetIndex === currentIndex) return;
+
       e.preventDefault();
+
+      const isLast = targetIndex === sections.length - 1;
+
+      if (isLast) {
+        sections.forEach((s) => s.classList.remove("active"));
+        sections[targetIndex].classList.add("active");
+
+        document.body.classList.add("lg:overflow-y-auto");
+        document.body.classList.remove("lg:overflow-hidden");
+
+        sections[targetIndex].scrollTop = 0;
+        window.scrollTo({
+          top: sections[targetIndex].offsetTop,
+          behavior: "smooth",
+        });
+
+        currentIndex = targetIndex;
+        if (onSectionChange) onSectionChange(currentIndex, targetIndex);
+        return;
+      }
+
+      sections[targetIndex].scrollTop = 0;
+      window.scrollTo({ top: 0, behavior: "auto" });
       goTo(targetIndex);
     }),
   );
@@ -90,29 +128,62 @@ export const initFullPage = ({ container, onSectionChange } = {}) => {
     "wheel",
     (e) => {
       if (Math.abs(e.deltaY) < 30 || isAnimating) return;
+
       const now = Date.now();
       if (now - lastScrollTime < SCROLL_DELAY) return;
       lastScrollTime = now;
+
       const section = sections[currentIndex];
       const scrollTop = section.scrollTop;
+
+      const isLastSection = currentIndex === sections.length - 1;
+
       const atBottom =
         scrollTop + section.clientHeight >= section.scrollHeight - 1;
+
+      const atTop = scrollTop <= 0;
+
+      const rect = section.getBoundingClientRect();
+      const lastAtTop = rect.top >= -1;
+
       if (e.deltaY > 0 && (!section.scrollHeight || atBottom)) {
         goTo(currentIndex + 1);
+
+        return;
+      }
+
+      if (e.deltaY < 0 && isLastSection && lastAtTop) {
+        goTo(currentIndex - 1);
+
+        return;
+      }
+
+      if (e.deltaY < 0 && (!section.scrollHeight || atTop) && !isLastSection) {
+        goTo(currentIndex - 1);
+
+        return;
       }
     },
     { passive: true },
   );
-
   sections.forEach((section) =>
     section.addEventListener("click", (e) => {
       if (isAnimating) return;
+
       if (e.target.closest("a, button, input, label, select, textarea, form"))
         return;
+
       const now = Date.now();
       if (now - lastScrollTime < SCROLL_DELAY) return;
       lastScrollTime = now;
-      goTo(currentIndex + 1);
+
+      const half = window.innerWidth / 2;
+
+      if (e.clientX < half) {
+        goTo(currentIndex - 1);
+      } else {
+        goTo(currentIndex + 1);
+      }
     }),
   );
 };

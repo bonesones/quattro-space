@@ -237,6 +237,14 @@
     animation: fadeLeft 0.4s ease 2.2s both;
   }
 
+  .is-leaving-back {
+    animation: fadeOut 1.4s ease both;
+  }
+
+  .is-entering-back {
+    animation: fadeIn 1.4s ease both;
+  }
+
   @keyframes fadeToTop {
     0% {
       transform: translateY(0);
