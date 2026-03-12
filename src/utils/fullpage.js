@@ -11,7 +11,7 @@ export const initFullPage = ({ container, onSectionChange } = {}) => {
 
   sections.forEach((el, i) => {
     el.classList.add("fullpage-section");
-    if (i === 0) el.classList.add("active", "is-entering");
+    if (i === 0) el.classList.add("active");
   });
 
   if (onSectionChange) setTimeout(() => onSectionChange(0, 0), 0);
@@ -80,6 +80,7 @@ export const initFullPage = ({ container, onSectionChange } = {}) => {
         (s) => s.id === targetId,
       );
       if (targetIndex === -1) return;
+      if (targetIndex === currentIndex) return;
       e.preventDefault();
       goTo(targetIndex);
     }),
