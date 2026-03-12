@@ -11,10 +11,8 @@ export function initVenueViewingForm(nativeInput, display) {
     if (date) {
       const [year, month, day] = date.split("-");
       span.textContent = `${day}.${month}.${year}`;
-      span.classList.remove("text-gray-400");
     } else {
       span.textContent = "ДД.ММ.ГГГГ";
-      span.classList.add("text-gray-400");
     }
   });
 }
