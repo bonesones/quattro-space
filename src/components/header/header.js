@@ -22,27 +22,29 @@ export const initHeader = () => {
   };
   const pauseVideo = () => video?.pause();
 
-  burgerBtn?.addEventListener("click", () => {
+  const openMenu = () => {
     document.body.classList.add("overflow-hidden");
-
     menuModal.classList.remove("-translate-y-full");
     menuModal.classList.add("translate-y-0");
-
     burgerBtn.classList.add("hidden");
     closeModal.classList.remove("hidden");
-
     playVideo();
-  });
+  };
 
-  closeModal?.addEventListener("click", () => {
+  const closeMenu = () => {
     document.body.classList.remove("overflow-hidden");
-
     menuModal.classList.remove("translate-y-0");
     menuModal.classList.add("-translate-y-full");
-
     burgerBtn.classList.remove("hidden");
-
     closeModal.classList.add("hidden");
     pauseVideo();
-  });
+  };
+
+  burgerBtn?.addEventListener("click", openMenu);
+
+  closeModal?.addEventListener("click", closeMenu);
+
+  menuModal
+    ?.querySelectorAll("a")
+    .forEach((link) => link.addEventListener("click", closeMenu));
 };

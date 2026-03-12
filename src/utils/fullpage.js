@@ -14,8 +14,6 @@ export const initFullPage = ({ container, onSectionChange } = {}) => {
     if (i === 0) el.classList.add("active");
   });
 
-  if (onSectionChange) setTimeout(() => onSectionChange(0, 0), 0);
-
   const updateBodyScroll = (index) => {
     const isLast = index === sections.length - 1;
 
@@ -24,6 +22,10 @@ export const initFullPage = ({ container, onSectionChange } = {}) => {
   };
 
   updateBodyScroll(currentIndex);
+
+  if (typeof onSectionChange === "function") {
+    onSectionChange(currentIndex, currentIndex);
+  }
 
   const getMaxAnimationDuration = (el) => {
     const elements = [el, ...el.querySelectorAll("[data-animate]")];
@@ -91,35 +93,17 @@ export const initFullPage = ({ container, onSectionChange } = {}) => {
   document.querySelectorAll('a[href^="#"]').forEach((link) =>
     link.addEventListener("click", (e) => {
       const targetId = link.getAttribute("href").slice(1);
+
       const targetIndex = Array.from(sections).findIndex(
         (s) => s.id === targetId,
       );
+
       if (targetIndex === -1 || targetIndex === currentIndex) return;
 
       e.preventDefault();
 
-      const isLast = targetIndex === sections.length - 1;
-
-      if (isLast) {
-        sections.forEach((s) => s.classList.remove("active"));
-        sections[targetIndex].classList.add("active");
-
-        document.body.classList.add("lg:overflow-y-auto");
-        document.body.classList.remove("lg:overflow-hidden");
-
-        sections[targetIndex].scrollTop = 0;
-        window.scrollTo({
-          top: sections[targetIndex].offsetTop,
-          behavior: "smooth",
-        });
-
-        currentIndex = targetIndex;
-        if (onSectionChange) onSectionChange(currentIndex, targetIndex);
-        return;
-      }
-
       sections[targetIndex].scrollTop = 0;
-      window.scrollTo({ top: 0, behavior: "auto" });
+      window.scrollTo({ top: 0, behavior: "smooth" });
       goTo(targetIndex);
     }),
   );
