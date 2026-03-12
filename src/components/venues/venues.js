@@ -85,7 +85,7 @@ const mockVenues = [
     name: "Зал «Шале»",
     capacity: "до 400 чел",
     image: "/images/venues/shale_main.webp",
-    link: "#",
+    link: "/shale.html",
   },
   {
     name: "Зал «Мансарда»",

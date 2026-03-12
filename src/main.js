@@ -11,6 +11,8 @@ const page = document.body.dataset.page || "home";
 
 const current = PAGES[page] || PAGES.home;
 
+const content = current.content;
+
 if (current.title) {
   document.title = current.title;
 }
@@ -18,7 +20,7 @@ if (current.title) {
 BaseLayout({
   header: renderHeader(),
   footer: renderFooter(),
-  content: current.content,
+  content: content,
   initFns: [initHeader, initFooter],
 });
 
