@@ -6,6 +6,7 @@ import { BaseLayout } from "./layouts/base.js";
 
 import { PAGES } from "./pages/pagesConfig.js";
 import { initHomePage } from "./init/home.js";
+import { initVenuePage } from "./init/venue.js";
 
 const page = document.body.dataset.page || "home";
 
@@ -28,4 +29,5 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentPage = document.body.dataset.page || "home";
 
   if (currentPage === "home") initHomePage();
+  else if (currentPage === "shale") initVenuePage();
 });
