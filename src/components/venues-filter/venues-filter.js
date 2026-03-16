@@ -18,22 +18,7 @@ const renderCheckbox = (venue, groupName) => {
   `;
 };
 
-export function initVenueFilter(root = document) {
-  const eventTypesContainer = root.querySelector("#event-types-container");
-  const capacityContainer = root.querySelector("#venue-capacity-container");
-
-  if (eventTypesContainer) {
-    eventTypesContainer.innerHTML = mockEventTypes
-      .map((venue) => renderCheckbox(venue, "event_type"))
-      .join("");
-  }
-
-  if (capacityContainer) {
-    capacityContainer.innerHTML = mockCapacity
-      .map((venue) => renderCheckbox(venue, "venue_capacity"))
-      .join("");
-  }
-}
+export function initVenueFilter(root = document) {}
 
 const mockEventTypes = [
   { label: "Тимбилдинг", value: "teamBuilding" },

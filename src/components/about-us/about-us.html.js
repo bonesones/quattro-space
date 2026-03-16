@@ -1,3 +1,4 @@
+// src/components/about-us/about-us.html.js
 export const aboutUsTemplate = `
 <section
   class="px-main lg:px-9 lg:flex [@media(max-height:1000px)]:lg:items-start flex-col justify-center items-center"
@@ -95,11 +96,16 @@ export const aboutUsTemplate = `
         </div>
       </div>
 
+      <!-- Мобильная версия параграфов (уже заполнена) -->
       <div class="mt-25 lg:mt-50 space-y-10 max-w-3xl mx-auto lg:hidden">
-        <div class="flex flex-col lg:flex-row gap-6 md:gap-12">
+        <!-- Параграф 1: Стильное пространство -->
+        <div class="flex flex-col lg:flex-row gap-6 md:gap-12"
+          data-animate
+          style="--enter: fadeFromBottom 1s ease 0s both"
+        >
           <h3 class="text-subtitle-sm text-center lg:text-start basis-[30%]">
-            <span class="text-accent-pink text-subtitle-md">01/</span>Стильное
-            пространство
+            <span class="text-accent-pink text-subtitle-md">01/</span>
+            Стильное пространство
           </h3>
 
           <p class="text-body-base text-justify basis-[70%]">
@@ -110,10 +116,14 @@ export const aboutUsTemplate = `
           </p>
         </div>
 
-        <div class="flex flex-col lg:flex-row gap-6 md:gap-12">
+        <!-- Параграф 2: Комфортный сервис -->
+        <div class="flex flex-col lg:flex-row gap-6 md:gap-12"
+          data-animate
+          style="--enter: fadeFromBottom 1s ease 0.15s both"
+        >
           <h3 class="text-subtitle-sm text-center lg:text-start basis-[30%]">
-            <span class="text-accent-pink text-subtitle-md">02/</span>Комфортный
-            сервис
+            <span class="text-accent-pink text-subtitle-md">02/</span>
+            Комфортный сервис
           </h3>
 
           <p class="text-body-base text-justify basis-[70%]">
@@ -124,10 +134,14 @@ export const aboutUsTemplate = `
           </p>
         </div>
 
-        <div class="flex flex-col lg:flex-row gap-6 md:gap-12">
+        <!-- Параграф 3: Транспортная доступность -->
+        <div class="flex flex-col lg:flex-row gap-6 md:gap-12"
+          data-animate
+          style="--enter: fadeFromBottom 1s ease 0.3s both"
+        >
           <h3 class="text-subtitle-sm text-center lg:text-start basis-[30%]">
-            <span class="text-accent-pink text-subtitle-md">03/</span
-            >Транспортная доступность
+            <span class="text-accent-pink text-subtitle-md">03/</span>
+            Транспортная доступность
           </h3>
 
           <p class="text-body-base text-justify basis-[70%]">
@@ -142,6 +156,7 @@ export const aboutUsTemplate = `
   </div>
 </section>
 
+<!-- Десктопная секция с параграфами (теперь заполнена) -->
 <section
   class="hidden px-main lg:px-9 lg:flex flex-col justify-center items-center lg:overflow-y-hidden"
   id="section-9"
@@ -150,6 +165,60 @@ export const aboutUsTemplate = `
     --leave: fadeToTop 1.2s ease both;
   "
 >
-  <div class="space-y-10 max-w-3xl mx-auto advantages-container"></div>
+  <div class="space-y-10 max-w-3xl mx-auto advantages-container">
+    <!-- Параграф 1: Стильное пространство -->
+    <div class="flex flex-col lg:flex-row gap-6 md:gap-12"
+      data-animate
+      style="--enter: fadeFromBottom 1s ease 0s both"
+    >
+      <h3 class="text-subtitle-sm text-center lg:text-start basis-[30%]">
+        <span class="text-accent-pink text-subtitle-md">01/</span>
+        Стильное пространство
+      </h3>
+
+      <p class="text-body-base text-justify basis-[70%]">
+        Все 5 залов, расположенные в одном здании, интерьерно совмещают
+        аутентичные кирпичные стены и художественные дизайнерские решения
+        (многоуровневые потолки, разные сценарии освещения, стильную
+        мебель).
+      </p>
+    </div>
+
+    <!-- Параграф 2: Комфортный сервис -->
+    <div class="flex flex-col lg:flex-row gap-6 md:gap-12"
+      data-animate
+      style="--enter: fadeFromBottom 1s ease 0.15s both"
+    >
+      <h3 class="text-subtitle-sm text-center lg:text-start basis-[30%]">
+        <span class="text-accent-pink text-subtitle-md">02/</span>
+        Комфортный сервис
+      </h3>
+
+      <p class="text-body-base text-justify basis-[70%]">
+        Большие технические возможности, дополнительные услуги (собственная
+        кухня, охрана, ночной менеджер), клининг образуют единую экосистему,
+        в которой себя удобно чувствуют как опытные организаторы,
+        так и новички в ивент-сфере.
+      </p>
+    </div>
+
+    <!-- Параграф 3: Транспортная доступность -->
+    <div class="flex flex-col lg:flex-row gap-6 md:gap-12"
+      data-animate
+      style="--enter: fadeFromBottom 1s ease 0.3s both"
+    >
+      <h3 class="text-subtitle-sm text-center lg:text-start basis-[30%]">
+        <span class="text-accent-pink text-subtitle-md">03/</span>
+        Транспортная доступность
+      </h3>
+
+      <p class="text-body-base text-justify basis-[70%]">
+        Площадки для мероприятий находятся в центре Москвы, что позволяет
+        всем участникам без особых проблем добраться до места проведения:
+        станции метро «Лубянка», «Чистые пруды», «Тургеневская» находятся
+        в 5–7 мин. пешей доступности.
+      </p>
+    </div>
+  </div>
 </section>
 `;

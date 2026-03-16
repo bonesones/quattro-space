@@ -83,6 +83,52 @@ export const venues = [
       "Фуршет",
       "Банкет",
     ],
+    included: [
+      {
+        title: "Полное техническое сопровождение",
+        icon: "tech-support",
+      },
+      {
+        title: "Персональный ивент-менеджер",
+        icon: "manager",
+      },
+      {
+        title: "Большой экран 6 x 3.5 м",
+        icon: "screen",
+      },
+      {
+        title: "Банкетное меню",
+        icon: "menu",
+      },
+      {
+        title: "Звуковое оборудование",
+        icon: "sound",
+      },
+      {
+        title: "Сцена",
+        icon: "scene",
+      },
+      {
+        title: "Микрофон",
+        icon: "microphone",
+      },
+      {
+        title: "Оформление зала",
+        icon: "balls",
+      },
+      {
+        title: "Профессиональное освещение",
+        icon: "light",
+      },
+      {
+        title: "Бесплатный вайфай",
+        icon: "wifi",
+      },
+      {
+        title: "Уборка",
+        icon: "cleaning",
+      },
+    ],
     isSelected: false,
   },
 ];

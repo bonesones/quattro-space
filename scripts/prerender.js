@@ -11,7 +11,6 @@ const getAssetPaths = (distPath) => {
     const manifestPath = path.join(distPath, ".vite/manifest.json");
     const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf-8"));
 
-    // Находим главный entry (main.js)
     const mainEntry = Object.values(manifest).find(
       (entry) => entry.isEntry || entry.name === "main",
     );
@@ -32,8 +31,15 @@ const getAssetPaths = (distPath) => {
   };
 };
 
-// Функция для рендеринга layout с правильными путями (как в оригинальном HTML)
-const renderLayout = (page, assetPaths) => {
+// Функция для рендеринга layout с хедером и футером
+const renderLayout = async (page, assetPaths) => {
+  // Импортируем функции рендеринга хедера и футера
+  const { renderHeader } = await import("../src/components/header/header.js");
+  const { renderFooter } = await import("../src/components/footer/footer.js");
+
+  const header = renderHeader();
+  const footer = renderFooter();
+
   return `<!doctype html>
 <html lang="ru" class="scroll-smooth lg:h-full">
   <head>
@@ -53,7 +59,11 @@ const renderLayout = (page, assetPaths) => {
     class="font-roboto lg:bg-[url(/images/site-bg.webp)] bg-repeat-y lg:h-full"
   >
     <div id="app" class="${page.slug === "shale" ? "venue-page" : page.slug} lg:h-screen lg:relative">
-      ${page.content}
+      ${header}
+      <main class="lg:min-h-screen">
+        ${page.content}
+      </main>
+      ${footer}
     </div>
   </body>
 </html>`;
@@ -62,11 +72,8 @@ const renderLayout = (page, assetPaths) => {
 async function prerender() {
   try {
     const dist = path.resolve(__dirname, "../dist");
-
-    // Убеждаемся, что папка dist существует
     await fs.ensureDir(dist);
 
-    // Получаем правильные пути к ассетам из манифеста
     const assetPaths = getAssetPaths(dist);
     console.log("📦 Asset paths:", assetPaths);
 
@@ -78,10 +85,12 @@ async function prerender() {
     for (const [slug, page] of Object.entries(PAGES)) {
       console.log(`🔄 Рендеринг ${slug}...`);
 
-      // Вызываем функцию render для получения контента
-      const content = page.render();
+      // Вызываем функцию render для получения контента страницы
+      const content = page.render ? page.render() : page.content || "";
 
-      const html = renderLayout(
+      console.log(`📊 Content length: ${content.length}`);
+
+      const html = await renderLayout(
         {
           title: page.title,
           content: content,
@@ -90,7 +99,6 @@ async function prerender() {
         assetPaths,
       );
 
-      // Определяем имя файла
       const fileName = slug === "home" ? "index.html" : `${slug}.html`;
       const filePath = path.join(dist, fileName);
 

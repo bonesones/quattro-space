@@ -1,4 +1,5 @@
-<header class="fixed inset-0 z-50 h-fit">
+// src/components/header/header.html.js
+export const headerTemplate = `<header class="fixed inset-0 z-50 h-fit">
   <div
     class="flex lg:hidden items-center justify-between h-14 px-main bg-black"
   >
@@ -132,7 +133,7 @@
 
           <address class="not-italic">
             <a
-              href="https:
+              href="https://yandex.ru/maps/-/CPuUa-kt"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Открыть адрес Москва, ул. Мясницкая, 13, с. 20 на Яндекс.Картах"
@@ -156,4 +157,4 @@
       <span class="text-white text-body-sm mt-4"></span>
     </div>
   </div>
-</div>
+</div>`;

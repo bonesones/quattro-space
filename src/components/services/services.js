@@ -137,10 +137,6 @@ const renderService = (service, index) => {
 export function initServices(container) {
   if (!container) return;
 
-  container.innerHTML = mockServices
-    .map((service, index) => renderService(service, index))
-    .join("");
-
   if (typeof window !== "undefined") {
     initAccordion(container);
     updateAllServiceHeights(container);

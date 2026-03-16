@@ -28,19 +28,6 @@ export const initAboutParagraphs = (root = document) => {
 
   const paragraphsContainer = root.querySelector(".advantages-container");
   let duration = 0;
-
-  if (paragraphsContainer) {
-    paragraphsContainer.innerHTML = mockedParagraphs
-      .map((item, index) => {
-        duration += 0.15;
-        return renderAboutParagraph(
-          item,
-          index + 1,
-          index === 0 ? 0 : duration,
-        );
-      })
-      .join("");
-  }
 };
 
 export const initAbout = (root = document) => {

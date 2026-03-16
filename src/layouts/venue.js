@@ -7,8 +7,9 @@ export const VenueLayout = (venue) => {
   const sliderHeight = isDesktop ? "h-162.5" : "h-125";
 
   return `
-    <section class="mt-16.5 lg:mt-0 lg:pt-19 lg:items-start px-main">
-      <div class="min-h-full">
+    <section class="mt-16.5 lg:mt-0 lg:pt-19 lg:items-start px-main"
+      style="--leave: fadeToTop 1.6s ease both">
+      <div class="min-h-full pb-6">
         <svg class="w-7 h-5 lg:hidden">
           <use href="/sprite.svg#arrow-left"></use>
         </svg>
@@ -36,7 +37,10 @@ export const VenueLayout = (venue) => {
 
         <h1 class="text-[40px] leading-normal lg:text-title-md xl:text-title-lg uppercase font-grotesk text-center lg:text-left lg:mt-6">${venue.title}</h1>
 
-        <img src="${venue.shalePageImage}" fetchpriority="high" alt="Главное изображение площадки" class="w-full rounded-main mt-6 h-71.25 lg:h-107.5 object-cover lg:object-center main-image" style="object-position: center 70%" />
+        <div class="image-wrapper w-full overflow-hidden rounded-main mt-6">
+            <img src="${venue.shalePageImage}" fetchpriority="high" alt="Главное изображение площадки" class="w-full h-71.25 lg:h-107.5 object-cover lg:object-center main-image" style="object-position: center 70%" 
+            data-animate style="--leave: scaleUp 1.4s ease both" />
+        </div>
 
         <div class="
           venue-content
@@ -78,9 +82,9 @@ export const VenueLayout = (venue) => {
 
           <div class="lg:[grid-area:price]">
             <div class="flex flex-col lg:flex-row items-center justify-between lg:gap-4">
-              <div class="text-xl lg:text-2xl font-bold text-center mt-10 lg:mt-0 lg:basis-1/2">
+              <span class="text-xl lg:text-2xl font-bold text-center lg:text-left mt-10 lg:mt-0 lg:basis-1/2">
                 Стоимость от <span class="text-accent-pink">${venue.price} руб/час</span>
-              </div>
+              </span>
 
               <button type="button" class="w-full lg:basis-1/2 py-4 rounded-main border border-accent-pink ${venue.isSelected ? "bg-accent-pink text-white" : ""} text-base text-center mt-4 lg:mt-0">
                 ${venue.isSelected ? "Выбрано" : "Выбрать эту площадку"}
@@ -95,12 +99,31 @@ export const VenueLayout = (venue) => {
       </div>
     </section>
     
-    <section class="mt-25 px-main">
+    <section class="mt-25 lg:mt-0 px-main" style="--enter: fadeFromBottom 1.6s ease both">
       <div class="venue-swiper swiper ${sliderHeight} rounded-main 2xl:container">
         <div class="swiper-wrapper">
           ${isDesktop ? renderDesktopSlider(slider) : renderSlider(slider)}
         </div>
       </div>
+    </section>
+
+    <section class="mt-25 lg:mt-0 px-main">
+         <h2 class="text-center text-subtitle-md">В стоимость бронирования ${venue.title} входит:</h2>
+
+         <div class="grid grid-cols-1 gap-y-4 mt-10">
+            ${venue.included
+              .map(
+                (item) => `
+                    <div class="flex  items-center gap-4">
+                        <svg class="w-10 h-10 flex items-center justify-center text-accent-pink">
+                            <use href="/sprite.svg#${item.icon}"></use>
+                        </svg>
+                        <span class="text-base">${item.title}</span>
+                    </div>
+                `,
+              )
+              .join("")}
+         </div>
     </section>
   `;
 };

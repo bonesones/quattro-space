@@ -62,11 +62,6 @@ export const initKitchen = async (container) => {
     });
   }
 
-  const flexContainer = container.querySelector("#kitchen-container");
-  if (flexContainer) {
-    flexContainer.innerHTML = mockSlides.map(renderFlexItem).join("");
-  }
-
   const mobileLink = container.querySelector(".lg\\:hidden.bg-accent-pink");
   const desktopLink = container.querySelector(".hidden.lg\\:flex.gap-4");
 

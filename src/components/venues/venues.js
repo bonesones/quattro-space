@@ -70,8 +70,6 @@ const renderVenue = (venue) => {
 };
 
 export const initVenues = (container) => {
-  container.innerHTML = mockVenues.map(renderVenue).join("") + renderForm();
-
   const phoneInput = container.querySelector(".phone-input");
 
   if (phoneInput && IMask) {

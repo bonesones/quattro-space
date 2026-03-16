@@ -1,25 +1,32 @@
-import template from "./header.html?raw";
+// src/components/header/header.js
+import { headerTemplate } from "./header.html.js";
 
 export const renderHeader = () => {
-  const year = new Date().getFullYear();
-  return template.replace("{{year}}", String(year));
+  return headerTemplate;
 };
 
 export const initHeader = () => {
+  if (typeof window === "undefined") return;
+
   const burgerBtn = document.getElementById("burgerBtn");
   const menuModal = document.getElementById("menuModal");
   const closeModal = document.getElementById("closeModal");
   const video = menuModal?.querySelector("video");
 
+  if (!burgerBtn || !menuModal || !closeModal) {
+    console.warn("Header elements not found");
+    return;
+  }
+
   const playVideo = () => {
     video?.play().catch(() => {
-      const img = video.querySelector("img");
-
-      if (img) {
+      const img = video?.querySelector("img");
+      if (img && video) {
         video.parentNode.replaceChild(img, video);
       }
     });
   };
+
   const pauseVideo = () => video?.pause();
 
   const openMenu = () => {
@@ -40,11 +47,10 @@ export const initHeader = () => {
     pauseVideo();
   };
 
-  burgerBtn?.addEventListener("click", openMenu);
-
-  closeModal?.addEventListener("click", closeMenu);
+  burgerBtn.addEventListener("click", openMenu);
+  closeModal.addEventListener("click", closeMenu);
 
   menuModal
-    ?.querySelectorAll("a")
+    .querySelectorAll("a")
     .forEach((link) => link.addEventListener("click", closeMenu));
 };
