@@ -511,4 +511,16 @@
   .home section:not(#banner-container):not(#banner-container-desktop) {
     @apply max-lg:mt-25;
   }
+
+  .banner-pagination .swiper-pagination-bullet {
+    @apply bg-white/50! w-2.5 h-2.5 mx-1.5 opacity-100 transition-all duration-300;
+  }
+
+  .banner-pagination .swiper-pagination-bullet-active {
+    @apply bg-accent-pink scale-125! shadow-lg;
+  }
+
+  .banner-pagination .swiper-pagination-bullet:hover {
+    @apply bg-accent-pink/80!;
+  }
 }

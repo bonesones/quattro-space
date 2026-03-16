@@ -194,8 +194,6 @@ export const bannerTemplate = `<section
 
       <div
         class="absolute inset-0 top-0 left-0 w-full h-full bg-black/40 z-10 banner-shadow"
-      
-        "
       ></div>
 
       <div
@@ -241,21 +239,18 @@ export const bannerTemplate = `<section
 </section>
 
 <section
-  class="hidden lg:absolute lg:inset-0 lg:flex lg:items-center lg:justify-center overflow-hidden"
-  id="banner-container-desktop"
+  class="hidden lg:absolute lg:inset-0 lg:flex lg:items-center lg:justify-center overflow-hidden banner-swiper-section"
+  id="banner-swiper"
   style="--leave: fadeToTopWithOpacity 2s ease both"
 >
-  <div
-    class="secondary-shadow absolute inset-0 w-full h-full bg-black/70 z-10"
+ <div class="secondary-shadow absolute inset-0 w-full h-full bg-black/70 z-10"
     data-animate
     style="
       --enter: fadeInWithWidth 1.4s ease both, bgOpacity 1.4s linear both;
       --enter-transform-origin: right;
       --enter-margin-left: auto;
-      
-    "
-  ></div>
-  <img
+    "></div>
+    <img
     src="/video/banner-video-fallback.webp"
     class="absolute inset-0 w-full h-full object-cover"
     data-animate
@@ -264,14 +259,48 @@ export const bannerTemplate = `<section
       --enter-transform-origin: right;
       --enter-margin-left: auto;
     "
-    alt="партик"
+    alt="партик 1"
   />
+  <div class="swiper banner-swiper w-full h-full z-10!"  
+          data-animate
+          style="--enter: fadeFromBottomVH 1.4s ease 0.8s both">
+    <div class="swiper-wrapper">
 
-  <div
-    class="h-125 w-full z-20 rounded-main bg-[#D9D9D9] px-main container flex justify-center second-banner-content"
-    data-animate
-    style="--enter: fadeFromBottomVH 1.4s ease 0.8s both"
-  >
-    <div class="h-full basis-1/2 bg-[#B2B2B2]"></div>
+      <div class="swiper-slide flex! items-center! justify-center!">
+        <div
+          class="h-125 w-full z-20 rounded-main bg-[#D9D9D9] px-main container flex justify-center second-banner-content"
+        >
+          <div class="h-full basis-1/2 bg-[#B2B2B2] flex items-center justify-center text-2xl">
+            Слайд 1
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="swiper-slide flex! items-center! justify-center!">
+        <div
+          class="h-125 w-full z-20 rounded-main bg-[#D9D9D9] px-main container flex justify-center second-banner-content"
+        >
+          <div class="h-full basis-1/2 bg-[#B2B2B2] flex items-center justify-center text-2xl">
+            Слайд 2
+          </div>
+        </div>
+      </div>
+      
+ 
+      <div class="swiper-slide flex! items-center! justify-center!">
+        <div
+          class="h-125 w-full z-20 rounded-main bg-[#D9D9D9] px-main container flex justify-center second-banner-content"
+        >
+          <div class="h-full basis-1/2 bg-[#B2B2B2] flex items-center justify-center text-2xl">
+            Слайд 3
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="swiper-pagination banner-pagination"></div>
+    <div class="swiper-button-prev banner-prev text-accent-pink!"></div>
+    <div class="swiper-button-next banner-next text-accent-pink!"></div>
   </div>
 </section>`;
