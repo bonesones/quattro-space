@@ -1,4 +1,8 @@
-export const initFullPage = ({ container, onSectionChange } = {}) => {
+export const initFullPage = ({
+  container,
+  onSectionChange,
+  beforeSectionChange,
+} = {}) => {
   if (!container) throw new Error("Fullpage container is not defined");
 
   const sections = container.querySelectorAll("section");
@@ -51,6 +55,11 @@ export const initFullPage = ({ container, onSectionChange } = {}) => {
 
   const goTo = (nextIndex) => {
     if (isAnimating || nextIndex < 0 || nextIndex >= sections.length) return;
+
+    if (typeof beforeSectionChange === "function") {
+      const result = beforeSectionChange(currentIndex, nextIndex);
+      if (result === false) return;
+    }
 
     isAnimating = true;
 

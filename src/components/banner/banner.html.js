@@ -1,4 +1,4 @@
-<section
+export const bannerTemplate = `<section
   class="lg:absolute lg:inset-0 relative text-white lg:bg-black min-h-[90vh] w-full overflow-y-auto overflow-x-hidden lg:overflow-hidden"
   id="banner-container"
   style="--leave: fadeOut 1.4s ease both; --enter: fadeIn 1.4s ease both"
@@ -274,4 +274,4 @@
   >
     <div class="h-full basis-1/2 bg-[#B2B2B2]"></div>
   </div>
-</section>
+</section>`;

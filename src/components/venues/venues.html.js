@@ -1,4 +1,4 @@
-<section
+export const venuesTemplate = `<section
   class="px-main lg:px-9 [@media(max-height:1000px)]:lg:items-start"
   id="venues"
   style="--enter: fadeIn 1.4s ease both"
@@ -22,4 +22,4 @@
       style="--leave: fadeOut 1.4s ease both"
     ></div>
   </div>
-</section>
+</section>`;

@@ -1,4 +1,4 @@
-<section
+export const venueViewingFormTemplate = `<section
   class="lg:top-20 px-main mx-auto lg:flex flex-col [@media(max-height:1000px)]:lg:justify-start items-center justify-center"
   id="section-7"
   style="
@@ -173,4 +173,4 @@
       </label>
     </form>
   </div>
-</section>
+</section>`;

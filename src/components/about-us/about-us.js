@@ -1,39 +1,38 @@
-import template from "./about-us.html?raw";
+import { aboutUsTemplate } from "./about-us.html.js";
 
 export const renderAbout = () => {
-  return template;
+  return aboutUsTemplate;
 };
 
 const renderAboutParagraph = (item, order, delay) => {
   return `
-     <div class="flex flex-col lg:flex-row gap-6 md:gap-12"
+    <div class="flex flex-col lg:flex-row gap-6 md:gap-12"
       data-animate
       style="--enter: fadeFromBottom 1s ease ${delay}s both"
-     >
+    >
       <h3 class="text-subtitle-sm text-center lg:text-start basis-[30%]">
         <span class="text-accent-pink text-subtitle-md">
-         ${order < 10 ? `0${order}` : index}/
+          ${order < 10 ? `0${order}` : order}/
         </span>
-
         ${item.title}
       </h3>
 
       <p class="text-body-base text-justify basis-[70%]">
-          ${item.description}
+        ${item.description}
       </p>
     </div>`;
 };
 
-export const initAboutParagraphs = () => {
-  const paragraphsContainer = document.querySelector(".advantages-container");
+export const initAboutParagraphs = (root = document) => {
+  if (typeof window === "undefined") return;
 
+  const paragraphsContainer = root.querySelector(".advantages-container");
   let duration = 0;
 
   if (paragraphsContainer) {
     paragraphsContainer.innerHTML = mockedParagraphs
       .map((item, index) => {
         duration += 0.15;
-
         return renderAboutParagraph(
           item,
           index + 1,
@@ -44,7 +43,15 @@ export const initAboutParagraphs = () => {
   }
 };
 
-const mockedParagraphs = [
+export const initAbout = (root = document) => {
+  if (typeof window === "undefined") return;
+
+  initAboutParagraphs(root);
+
+  console.log("About component initialized");
+};
+
+export const mockedParagraphs = [
   {
     title: "Стильное пространство",
     description:

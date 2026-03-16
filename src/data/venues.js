@@ -1,7 +1,7 @@
 export const venues = [
   {
     id: "shale",
-    slug: "shale.html",
+    slug: "shale",
     title: "Зал «Шале»",
     capacity: "до 400 чел",
     price: 18750,

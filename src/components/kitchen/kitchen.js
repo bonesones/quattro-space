@@ -1,11 +1,7 @@
-import template from "./kitchen.html?raw";
-import Swiper from "swiper";
-import "swiper/css";
-import "swiper/css/pagination";
-import { Pagination } from "swiper/modules";
+import { kitchenTemplate } from "./kitchen.html.js";
 
 export function renderKitchen() {
-  return template;
+  return kitchenTemplate;
 }
 
 const renderSlide = (slide, index) => {
@@ -28,13 +24,32 @@ const renderFlexItem = (slide, index) => {
   `;
 };
 
-export const initKitchen = (container) => {
-  const swiperEl = container.querySelector(".kitchen-swiper .swiper-wrapper");
+export const initKitchen = async (container) => {
+  if (typeof window === "undefined") return;
 
-  if (swiperEl) {
-    swiperEl.innerHTML = mockSlides.map(renderSlide).join("");
+  if (!container) return;
 
-    new Swiper(".kitchen-swiper", {
+  const [{ default: Swiper }, { Pagination }] = await Promise.all([
+    import("swiper"),
+    import("swiper/modules"),
+  ]);
+
+  await import("swiper/css");
+  await import("swiper/css/pagination");
+
+  const swiperWrapper = container.querySelector(
+    ".kitchen-swiper .swiper-wrapper",
+  );
+  const swiperElement = container.querySelector(".kitchen-swiper");
+
+  if (swiperWrapper && swiperElement) {
+    swiperWrapper.innerHTML = mockSlides.map(renderSlide).join("");
+
+    if (swiperElement.swiper) {
+      swiperElement.swiper.destroy(true, true);
+    }
+
+    new Swiper(swiperElement, {
       modules: [Pagination],
       slidesPerView: 1,
       centeredSlides: true,
@@ -48,10 +63,29 @@ export const initKitchen = (container) => {
   }
 
   const flexContainer = container.querySelector("#kitchen-container");
-  flexContainer.innerHTML = mockSlides.map(renderFlexItem).join("");
+  if (flexContainer) {
+    flexContainer.innerHTML = mockSlides.map(renderFlexItem).join("");
+  }
+
+  const mobileLink = container.querySelector(".lg\\:hidden.bg-accent-pink");
+  const desktopLink = container.querySelector(".hidden.lg\\:flex.gap-4");
+
+  if (mobileLink) {
+    mobileLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      console.log("Mobile: Перейти в раздел");
+    });
+  }
+
+  if (desktopLink) {
+    desktopLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      console.log("Desktop: Собрать меню онлайн");
+    });
+  }
 };
 
-const mockSlides = [
+export const mockSlides = [
   {
     img: "/images/swiper/knife.webp",
     title: "Подача «из под ножа»",

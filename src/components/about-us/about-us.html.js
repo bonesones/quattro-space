@@ -1,3 +1,4 @@
+export const aboutUsTemplate = `
 <section
   class="px-main lg:px-9 lg:flex [@media(max-height:1000px)]:lg:items-start flex-col justify-center items-center"
   id="about-us"
@@ -151,3 +152,4 @@
 >
   <div class="space-y-10 max-w-3xl mx-auto advantages-container"></div>
 </section>
+`;

@@ -1,4 +1,4 @@
-<section
+export const onlineEventDesignerTemplate = `<section
   class="lg:top-20 w-full px-main lg:px-9"
   id="section-6"
   style="--enter: fadeFromBottom 1.7s ease 0.4s both"
@@ -92,4 +92,4 @@
       />
     </div>
   </div>
-</section>
+</section>`;

@@ -1,4 +1,4 @@
-<section
+export const servicesTemplate = `<section
   class="lg:top-20 px-main lg:px-9 [@media(max-height:1000px)]:lg:items-start lg:overflow-y-auto"
   id="services"
   style="--enter: fadeFromBottom 0.9s ease 0.6s both"
@@ -17,4 +17,4 @@
       id="services-list-container"
     ></div>
   </div>
-</section>
+</section>`;

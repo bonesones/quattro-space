@@ -1,4 +1,4 @@
-<section
+export const venueFilterTemplate = `<section
   class="lg:absoulute lg:inset-0 px-main lg:pt-16 w-full lg:flex lg:items-center lg:justify-center max-lg:scroll-mt-20 lg:overflow-y-hidden"
   id="section-2"
   style="--leave: fadeToTopWithOpacity 2s ease both"
@@ -47,4 +47,4 @@
       </button>
     </form>
   </div>
-</section>
+</section>`;

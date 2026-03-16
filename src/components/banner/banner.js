@@ -1,7 +1,7 @@
-import template from "./banner.html?raw";
+import { bannerTemplate } from "./banner.html.js";
 
 export function renderBanner() {
-  return template;
+  return bannerTemplate;
 }
 
 export const initBanner = (root = document) => {
@@ -10,7 +10,6 @@ export const initBanner = (root = document) => {
   const container = root.getElementById("banner-container");
 
   const mobileVideo = container?.querySelector(".mobile-video");
-
   const imageFallback = container?.querySelector(".mobile-fallback");
 
   if (mobileVideo) {

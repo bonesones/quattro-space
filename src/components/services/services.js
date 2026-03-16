@@ -1,7 +1,7 @@
-import template from "./services.html?raw";
+import { servicesTemplate } from "./services.html.js";
 
 export function renderServices() {
-  return template;
+  return servicesTemplate;
 }
 
 const updateServiceHeights = (article) => {
@@ -13,7 +13,8 @@ const updateServiceHeights = (article) => {
 
   if (!img || !button || !inner) return;
 
-  const isMobile = window.innerWidth < 1024;
+  const isMobile =
+    typeof window !== "undefined" ? window.innerWidth < 1024 : false;
 
   if (article.classList.contains("is-open")) {
     const contentHeight = inner.scrollHeight;
@@ -39,12 +40,16 @@ const updateServiceHeights = (article) => {
 };
 
 const updateAllServiceHeights = (root = document) => {
+  if (typeof window === "undefined") return;
+
   root.querySelectorAll(".service-item").forEach((article) => {
     updateServiceHeights(article);
   });
 };
 
 const initAccordion = (root) => {
+  if (typeof window === "undefined") return;
+
   root.querySelectorAll("[data-accordion-target]").forEach((btn) => {
     btn.addEventListener("click", () => {
       const article = btn.closest(".service-item");
@@ -136,11 +141,17 @@ export function initServices(container) {
     .map((service, index) => renderService(service, index))
     .join("");
 
-  initAccordion(container);
-  updateAllServiceHeights(container);
+  if (typeof window !== "undefined") {
+    initAccordion(container);
+    updateAllServiceHeights(container);
+
+    window.addEventListener("resize", () => {
+      updateAllServiceHeights(container);
+    });
+  }
 }
 
-const mockServices = [
+export const mockServices = [
   {
     linkLabel: "Открыть конструктор",
     link: "#",

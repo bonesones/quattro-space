@@ -1,4 +1,4 @@
-<section
+export const reviewsTemplate = `<section
   class="section mx-auto lg:flex flex-col justify-center [@media(max-height:1000px)]:lg:items-start items-center pb-10 lg:pb-30 lg:relative"
   id="reviews"
   style="
@@ -51,4 +51,4 @@
 
     <div class="bg-[#D9D9D9] w-full h-66.25 mt-10 mx-auto"></div>
   </div>
-</section>
+</section>`;

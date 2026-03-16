@@ -1,8 +1,8 @@
-import template from "./venues.html?raw";
+import { venuesTemplate } from "./venues.html.js";
 import IMask from "imask";
 
 export function renderVenues() {
-  return template;
+  return venuesTemplate;
 }
 
 const renderForm = () => {
@@ -56,7 +56,7 @@ const renderVenue = (venue) => {
 
         <span class="hidden xl:inline col-span-1 self-center text-2xl font-medium justify-self-end text-accent-pink">${venue.capacity}</span>
 
-        <a href="${venue.link}" class="flex gap-2 text-lg text-accent-pink hover:text-black col-span-2">
+        <a href="#" class="flex gap-2 text-lg text-accent-pink hover:text-black col-span-2">
           подробнее
           <svg class="h-7.5 w-10" aria-hidden="true">
             <use href="/sprite.svg#arrow-right"></use>
@@ -69,18 +69,20 @@ const renderVenue = (venue) => {
   `;
 };
 
-export function initVenues(container) {
+export const initVenues = (container) => {
   container.innerHTML = mockVenues.map(renderVenue).join("") + renderForm();
 
   const phoneInput = container.querySelector(".phone-input");
 
-  IMask(phoneInput, {
-    mask: "+{7} (000) 000-00-00",
-    lazy: false,
-  });
-}
+  if (phoneInput && IMask) {
+    IMask(phoneInput, {
+      mask: "+{7} (000) 000-00-00",
+      lazy: false,
+    });
+  }
+};
 
-const mockVenues = [
+export const mockVenues = [
   {
     name: "Зал «Шале»",
     capacity: "до 400 чел",

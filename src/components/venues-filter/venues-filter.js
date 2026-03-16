@@ -1,7 +1,7 @@
-import template from "./venues-filter.html?raw";
+import { venueFilterTemplate } from "./venues-filter.html.js";
 
 export function renderVenueFilter() {
-  return template;
+  return venueFilterTemplate;
 }
 
 const renderCheckbox = (venue, groupName) => {
