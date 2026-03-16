@@ -1,4 +1,3 @@
-// src/components/header/header.html.js
 export const headerTemplate = `<header class="fixed inset-0 z-50 h-fit">
   <div
     class="flex lg:hidden items-center justify-between h-14 px-main bg-black"

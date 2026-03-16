@@ -1,4 +1,3 @@
-// src/components/footer/footer.html.js
 export const footerTemplate = `<footer class="border-t border-slate-800 mt-10 lg:mt-0 relative px-main py-10">
   <img
     src="/video/bg-video-pink-fallback.webp"

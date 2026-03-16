@@ -1,4 +1,3 @@
-// src/components/footer/footer.js
 import { footerTemplate } from "./footer.html.js";
 
 export const renderFooter = () => {

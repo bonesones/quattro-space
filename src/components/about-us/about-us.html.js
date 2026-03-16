@@ -1,4 +1,3 @@
-// src/components/about-us/about-us.html.js
 export const aboutUsTemplate = `
 <section
   class="px-main lg:px-9 lg:flex [@media(max-height:1000px)]:lg:items-start flex-col justify-center items-center"

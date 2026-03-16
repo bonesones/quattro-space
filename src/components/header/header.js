@@ -1,4 +1,3 @@
-// src/components/header/header.js
 import { headerTemplate } from "./header.html.js";
 
 export const renderHeader = () => {

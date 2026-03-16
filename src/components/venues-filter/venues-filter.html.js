@@ -1,4 +1,3 @@
-// src/components/venues-filter/venues-filter.html.js
 export const venueFilterTemplate = `<section
   class="lg:absoulute lg:inset-0 px-main lg:pt-16 w-full lg:flex lg:items-center lg:justify-center max-lg:scroll-mt-20 lg:overflow-y-hidden"
   id="section-2"

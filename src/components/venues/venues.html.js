@@ -1,4 +1,3 @@
-// src/components/venues/venues.html.js
 export const venuesTemplate = `<section
   class="px-main lg:px-9 [@media(max-height:1000px)]:lg:items-start"
   id="venues"

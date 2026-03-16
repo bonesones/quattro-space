@@ -1,4 +1,3 @@
-// src/components/kitchen/kitchen.html.js
 export const kitchenTemplate = `<section
   class="lg:top-20 mx-auto w-full [@media(max-height:1000px)]:lg:items-start lg:px-0 lg:overflow-x-hidden"
   id="kitchen-container"
