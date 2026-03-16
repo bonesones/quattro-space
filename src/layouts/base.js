@@ -5,8 +5,6 @@ export function BaseLayout({ header, footer, content, initFns = [] }) {
 
   const hasContent = container.children.length > 0;
 
-  console.log(hasContent);
-
   if (!hasContent) {
     container.innerHTML = `
       ${header}
