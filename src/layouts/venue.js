@@ -6,10 +6,47 @@ export const VenueLayout = (venue) => {
 
   const sliderHeight = isDesktop ? "h-162.5" : "h-125";
 
+  const initPhoneMask = () => {
+    const phoneInput = document.querySelector(".venue-phone-input");
+
+    if (phoneInput) {
+      IMask(phoneInput, {
+        mask: "+{7} (000) 000-00-00",
+        lazy: false,
+        placeholderChar: "_",
+      });
+    }
+  };
+
+  const initDateMask = () => {
+    const dateInput = document.querySelector("#contact-date");
+    const dateDisplay = document.querySelector("#custom-date-display span");
+
+    if (dateInput && dateDisplay) {
+      dateInput.addEventListener("change", (e) => {
+        if (e.target.value) {
+          const [year, month, day] = e.target.value.split("-");
+          dateDisplay.textContent = `${day}.${month}.${year}`;
+        } else {
+          dateDisplay.textContent = "ДД.ММ.ГГГГ";
+        }
+      });
+    }
+  };
+
+  const initForm = () => {
+    initPhoneMask();
+    initDateMask();
+  };
+
+  if (typeof window !== "undefined") {
+    setTimeout(initForm, 100);
+  }
+
   return `
-    <section class="mt-16.5 lg:mt-0 lg:pt-19 lg:items-start px-main"
+    <section class="mt-16.5 lg:mt-0 lg:items-start px-main"
       style="--leave: fadeToTop 1.6s ease both">
-      <div class="min-h-full pb-6">
+      <div class="lg:min-h-screen 2xl:container lg:pb-40">
         <svg class="w-7 h-5 lg:hidden">
           <use href="/sprite.svg#arrow-left"></use>
         </svg>
@@ -99,23 +136,68 @@ export const VenueLayout = (venue) => {
       </div>
     </section>
     
-    <section class="mt-25 lg:mt-0 px-main" style="--enter: fadeFromBottom 1.6s ease both">
-      <div class="venue-swiper swiper ${sliderHeight} rounded-main 2xl:container">
+    <section class="mt-25 lg:mt-0 px-main lg:items-start" style="--enter: fadeFromBottom 1.6s ease both; --leave: fadeToTop 1.6s ease both">
+    <div class="w-full 2xl:container lg:pb-32">
+    <nav aria-label="Навигационная цепочка" class="hidden lg:block text-body-sm lg:mt-6">
+          <ol class="breadcrumbs flex gap-2">
+            <li>
+              <a href="/" class="flex items-center gap-2.5">
+                <svg class="w-3.25 h-3">
+                  <use href="/sprite.svg#breadcrumb"></use>
+                </svg>
+                Главная
+              </a>
+            </li>
+            /
+            <li>
+              <a href="/#venues">Площадки</a>
+            </li>
+            /
+            <li>
+              <a href="/${venue.slug}.html">${venue.title}</a>
+            </li>
+          </ol>
+        </nav>
+
+      <div class="venue-swiper swiper ${sliderHeight} rounded-main w-full lg:mt-20"> 
         <div class="swiper-wrapper">
           ${isDesktop ? renderDesktopSlider(slider) : renderSlider(slider)}
         </div>
       </div>
+    </div>
     </section>
 
-    <section class="mt-25 lg:mt-0 px-main items-start">
-      <div>
-         <h2 class="text-center text-subtitle-md uppercase">В стоимость бронирования ${venue.title} входит:</h2>
+    <section class="mt-25 lg:mt-20 px-main items-start lg:relative" style="--enter: fadeFromBottom 1.6s ease both; --leave: fadeToTop 1.6s ease both">
+      <div class="w-full h-full 2xl:container">
+        <nav aria-label="Навигационная цепочка" class="hidden lg:block text-body-sm lg:mt-6">
+            <ol class="breadcrumbs flex gap-2">
+              <li>
+                <a href="/" class="flex items-center gap-2.5">
+                  <svg class="w-3.25 h-3">
+                    <use href="/sprite.svg#breadcrumb"></use>
+                  </svg>
+                  Главная
+                </a>
+              </li>
+              /
+              <li>
+                <a href="/#venues">Площадки</a>
+              </li>
+              /
+              <li>
+                <a href="/${venue.slug}.html">${venue.title}</a>
+              </li>
+            </ol>
+          </nav>
 
-         <div class="grid grid-cols-1 gap-y-4 mt-10">
+          <div class="flex flex-col items-center h-full">
+           <h2 class="text-center text-subtitle-md lg:text-[40px] uppercase lg:mt-12">В стоимость бронирования ${venue.title} входит:</h2>
+
+         <div class="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr_1fr] gap-y-4 lg:gap-x-14 mt-10 max-w-252.5">
             ${venue.included
               .map(
                 (item) => `
-                    <div class="flex  items-center gap-4">
+                    <div class="flex items-center gap-4">
                         <svg class="w-10 h-10 flex items-center justify-center text-accent-pink">
                             <use href="/sprite.svg#${item.icon}"></use>
                         </svg>
@@ -135,7 +217,7 @@ export const VenueLayout = (venue) => {
             method="post"
             action="#"
             aria-label="Форма записи на просмотр"
-            class="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-y-4 lg:gap-x-6 lg:pb-40"
+            class="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-y-4 lg:gap-x-6"
           >
             <input
               type="text"
@@ -148,7 +230,7 @@ export const VenueLayout = (venue) => {
             <input
               type="tel"
               name="phone"
-              class="phone-input px-4 py-4.5 bg-gray rounded-[10px] outline-none placeholder-black lg:order-2"
+              class="venue-phone-input px-4 py-4.5 bg-gray rounded-[10px] outline-none placeholder-black lg:order-2"
               placeholder="Телефон"
               required
             />
@@ -293,10 +375,17 @@ export const VenueLayout = (venue) => {
             </label>
           </form>
 
-          <button type="button" class="mt-10 border border-accent-pink w-full py-4 rounded-main uppercase"> 
-              Добавить в конструктор
-          </button>
+          <div class="flex gap-6 lg:pb-40 mt-10">
+            <button type="button" class="border border-accent-pink w-full py-4 rounded-main uppercase basis-1/2"> 
+                Добавить в конструктор
+            </button>
+
+            <a class="border border-black text-accent-pink text-body-base py-4 rounded-main uppercase basis-1/2 text-center">
+             Продолжить выбор залов
+            </a>
+          </div>
         </div>
+          </div>
       </div>
     </section>
   `;

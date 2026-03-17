@@ -31,15 +31,12 @@ export const initBanner = async (root = document) => {
 
   if (typeof window !== "undefined") {
     try {
-      const [
-        { default: Swiper },
-        { Pagination, Navigation, EffectFade, Autoplay },
-      ] = await Promise.all([import("swiper"), import("swiper/modules")]);
+      const [{ default: Swiper }, { Pagination, Navigation, Autoplay }] =
+        await Promise.all([import("swiper"), import("swiper/modules")]);
 
       await import("swiper/css");
       await import("swiper/css/pagination");
       await import("swiper/css/navigation");
-      await import("swiper/css/effect-fade");
 
       const bannerSwiper = root.querySelector(".banner-swiper");
 
@@ -48,22 +45,25 @@ export const initBanner = async (root = document) => {
           bannerSwiper.swiper.destroy(true, true);
         }
 
+        const stop = (e) => e.stopPropagation();
+
+        bannerSwiper.addEventListener("click", stop);
+
         const swiper = new Swiper(bannerSwiper, {
-          modules: [Pagination, Navigation, EffectFade, Autoplay],
-          slidesPerView: 1,
-          spaceBetween: 0,
+          modules: [Pagination, Navigation, Autoplay],
+          slidesPerView: 1.7,
+          centeredSlides: true,
+
           loop: true,
+
           autoplay: {
-            delay: 2000,
-            disableOnInteraction: false,
+            delay: 1000,
+            disableOnInteraction: true,
           },
+
           pagination: {
             el: ".banner-pagination",
             clickable: true,
-          },
-          effect: "fade",
-          fadeEffect: {
-            crossFade: true,
           },
           speed: 1000,
 

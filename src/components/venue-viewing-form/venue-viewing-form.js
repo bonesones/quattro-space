@@ -44,11 +44,10 @@ export function initVenueViewingForm(root = document) {
   }
 
   const form = root.querySelector("form");
+
   if (form) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-
-      console.log("Form submitted");
 
       form.reset();
       if (dateDisplay) {
@@ -57,8 +56,6 @@ export function initVenueViewingForm(root = document) {
       if (fileLabel) {
         fileLabel.textContent = "Прикрепить файл";
       }
-
-      alert("Заявка успешно отправлена!");
     });
   }
 }

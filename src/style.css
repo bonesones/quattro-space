@@ -515,7 +515,7 @@
   }
 
   .banner-pagination .swiper-pagination-bullet-active {
-    @apply bg-accent-pink scale-125! shadow-lg;
+    @apply bg-accent-pink! scale-125! shadow-lg;
   }
 
   .banner-pagination .swiper-pagination-bullet:hover {
