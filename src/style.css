@@ -388,13 +388,11 @@
   @keyframes expandImageUpwards {
     0% {
       height: 26.875rem;
-      margin-top: 0;
       scale: 1;
     }
     100% {
       height: 34.375rem;
-      margin-top: -9.375rem;
-      scale: 1.1;
+      scale: 1.2;
     }
   }
 

@@ -261,14 +261,14 @@ export const bannerTemplate = `<section
     "
     alt="партик 1"
   />
-  <div class="swiper banner-swiper w-full h-full z-10!"  
+  <div class="swiper banner-swiper w-full h-full z-10! px-main! mt-20! 2xl:container!"  
           data-animate
           style="--enter: fadeFromBottomVH 1.4s ease 0.8s both">
     <div class="swiper-wrapper">
 
       <div class="swiper-slide flex! items-center! justify-center!">
         <div
-          class="h-125 w-full z-20 rounded-main bg-[#D9D9D9] px-main container flex justify-center second-banner-content"
+          class="h-125 w-full z-20 rounded-main bg-[#D9D9D9] flex justify-center second-banner-content"
         >
           <div class="h-full basis-1/2 bg-[#B2B2B2] flex items-center justify-center text-2xl">
             Слайд 1
@@ -279,7 +279,7 @@ export const bannerTemplate = `<section
 
       <div class="swiper-slide flex! items-center! justify-center!">
         <div
-          class="h-125 w-full z-20 rounded-main bg-[#D9D9D9] px-main container flex justify-center second-banner-content"
+          class="h-125 w-full z-20 rounded-main bg-[#D9D9D9] flex justify-center second-banner-content"
         >
           <div class="h-full basis-1/2 bg-[#B2B2B2] flex items-center justify-center text-2xl">
             Слайд 2
@@ -290,7 +290,7 @@ export const bannerTemplate = `<section
  
       <div class="swiper-slide flex! items-center! justify-center!">
         <div
-          class="h-125 w-full z-20 rounded-main bg-[#D9D9D9] px-main container flex justify-center second-banner-content"
+          class="h-125 w-full z-20 rounded-main bg-[#D9D9D9] flex justify-center second-banner-content"
         >
           <div class="h-full basis-1/2 bg-[#B2B2B2] flex items-center justify-center text-2xl">
             Слайд 3
@@ -300,7 +300,5 @@ export const bannerTemplate = `<section
     </div>
     
     <div class="swiper-pagination banner-pagination"></div>
-    <div class="swiper-button-prev banner-prev text-accent-pink!"></div>
-    <div class="swiper-button-next banner-next text-accent-pink!"></div>
   </div>
 </section>`;

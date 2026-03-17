@@ -107,8 +107,9 @@ export const VenueLayout = (venue) => {
       </div>
     </section>
 
-    <section class="mt-25 lg:mt-0 px-main">
-         <h2 class="text-center text-subtitle-md">В стоимость бронирования ${venue.title} входит:</h2>
+    <section class="mt-25 lg:mt-0 px-main items-start">
+      <div>
+         <h2 class="text-center text-subtitle-md uppercase">В стоимость бронирования ${venue.title} входит:</h2>
 
          <div class="grid grid-cols-1 gap-y-4 mt-10">
             ${venue.included
@@ -124,6 +125,179 @@ export const VenueLayout = (venue) => {
               )
               .join("")}
          </div>
+
+         <div class="h-full mt-25 max-w-260">
+          <h2 class="text-subtitle-md lg:text-subtitle-lg uppercase text-center">
+            Оставить заявку
+          </h2>
+
+          <form
+            method="post"
+            action="#"
+            aria-label="Форма записи на просмотр"
+            class="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-y-4 lg:gap-x-6 lg:pb-40"
+          >
+            <input
+              type="text"
+              name="name"
+              class="px-4 py-4.5 bg-gray rounded-[10px] outline-none placeholder-black lg:order-1"
+              placeholder="Имя"
+              required
+            />
+
+            <input
+              type="tel"
+              name="phone"
+              class="phone-input px-4 py-4.5 bg-gray rounded-[10px] outline-none placeholder-black lg:order-2"
+              placeholder="Телефон"
+              required
+            />
+
+            <textarea
+              name="comment"
+              rows="3"
+              class="px-4 py-4.5 bg-gray rounded-[10px] outline-none placeholder-black lg:order-3"
+              placeholder="Комментарий"
+            ></textarea>
+
+            <label
+              class="flex items-center lg:items-center lg:mb-auto gap-3.5 cursor-pointer lg:order-5"
+            >
+              <input type="file" id="file" class="hidden" />
+              <svg class="w-5 h-7">
+                <use href="/sprite.svg#paperclip"></use>
+              </svg>
+
+              <span
+                class="block w-3/5 lg:w-fit lg:px-2 bg-accent-pink hover:shadow-pink rounded-[10px] py-2 text-white text-center"
+                >Прикрепить файл</span
+              >
+            </label>
+
+            <fieldset class="space-y-4 mt-2 lg:order-4">
+              <legend class="text-sm">
+                Выберите наиболее удобный способ для связи с вами
+              </legend>
+
+              <div class="flex gap-6">
+                <label class="flex flex-col items-center gap-3 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="contact-method"
+                    value="max"
+                    class="hidden peer"
+                  />
+
+                  <svg class="w-10 h-10 bg-black rounded-lg">
+                    <use href="/sprite.svg#max"></use>
+                  </svg>
+
+                  <div
+                    class="w-10 h-10 rounded-full border border-accent-pink flex items-center justify-center peer-checked:[&_div]:block"
+                  >
+                    <div class="hidden w-1/2 h-1/2 rounded-full bg-accent-pink"></div>
+                  </div>
+                </label>
+
+                <label class="flex flex-col items-center gap-3 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="contact-method"
+                    value="telegram"
+                    class="hidden peer"
+                  />
+
+                  <svg class="w-10 h-10">
+                    <use href="/sprite.svg#telegram"></use>
+                  </svg>
+
+                  <div
+                    class="w-10 h-10 rounded-full border border-accent-pink flex items-center justify-center peer-checked:[&_div]:block"
+                  >
+                    <div class="hidden w-1/2 h-1/2 rounded-full bg-accent-pink"></div>
+                  </div>
+                </label>
+
+                <label class="flex flex-col items-center gap-3 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="contact-method"
+                    value="phone"
+                    class="hidden peer"
+                    required
+                    checked
+                  />
+
+                  <svg class="w-10 h-10">
+                    <use href="/sprite.svg#phone"></use>
+                  </svg>
+
+                  <div
+                    class="w-10 h-10 rounded-full border border-accent-pink flex items-center justify-center peer-checked:[&_div]:block"
+                  >
+                    <div class="hidden w-1/2 h-1/2 rounded-full bg-accent-pink"></div>
+                  </div>
+                </label>
+              </div>
+            </fieldset>
+
+            <div class="flex flex-col gap-2 mt-2 lg:order-6 w-full">
+              <label for="contact-date" class="text-sm cursor-pointer select-none">
+                Выберите подходящую дату для связи с вами
+              </label>
+
+              <div class="relative w-40">
+                <input
+                  type="date"
+                  id="contact-date"
+                  name="contact-date"
+                  class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                />
+
+                <div
+                  id="custom-date-display"
+                  class="w-full py-3 rounded-2xl text-base flex items-center justify-between pointer-events-none"
+                >
+                  <span>ДД.ММ.ГГГГ</span>
+                  <svg class="w-10 h-10 text-accent-pink" fill="currentColor">
+                    <use href="/sprite.svg#calendar"></use>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="bg-accent-pink text-white text-body-base py-4 rounded-main hover:shadow-pink focus:outline-none uppercase cursor-pointer mt-3.5 lg:mt-0 lg:order-7 lg:col-start-2 lg:w-full"
+            >
+              Отправить заявку
+            </button>
+
+            <label
+              class="flex items-center gap-2 cursor-pointer select-none text-xs self-start lg:order-7 lg:col-start-2 lg:w-2/3"
+            >
+              <input type="checkbox" class="peer hidden" required />
+
+              <div
+                class="w-6.5 h-6.5 shrink-0 border-2 border-accent-pink resize-none rounded-md flex items-center justify-center peer-checked:[&_svg]:block"
+              >
+                <svg class="w-4 h-3 hidden fill-current text-accent-pink">
+                  <use href="/sprite.svg#check"></use>
+                </svg>
+              </div>
+
+              <span>
+                Нажимая на кнопку, вы соглашаетесь на обработку
+                <a href="#" class="underline">персональных данных</a>
+              </span>
+            </label>
+          </form>
+
+          <button type="button" class="mt-10 border border-accent-pink w-full py-4 rounded-main uppercase"> 
+              Добавить в конструктор
+          </button>
+        </div>
+      </div>
     </section>
   `;
 };

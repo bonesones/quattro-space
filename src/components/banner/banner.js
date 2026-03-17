@@ -61,10 +61,6 @@ export const initBanner = async (root = document) => {
             el: ".banner-pagination",
             clickable: true,
           },
-          navigation: {
-            nextEl: ".banner-next",
-            prevEl: ".banner-prev",
-          },
           effect: "fade",
           fadeEffect: {
             crossFade: true,
