@@ -39,8 +39,30 @@ export const VenueLayout = (venue) => {
     initDateMask();
   };
 
+  const initTabs = () => {
+    const buttons = document.querySelectorAll(".tab-btn");
+    const contents = document.querySelectorAll(".tab-content");
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.target;
+
+        buttons.forEach((b) => (b.dataset.active = "false"));
+        btn.dataset.active = "true";
+
+        contents.forEach((img) => {
+          img.dataset.active =
+            img.dataset.content === target ? "true" : "false";
+        });
+      });
+    });
+  };
+
   if (typeof window !== "undefined") {
-    setTimeout(initForm, 100);
+    setTimeout(() => {
+      initForm();
+      initTabs();
+    }, 100);
   }
 
   return `
@@ -167,7 +189,7 @@ export const VenueLayout = (venue) => {
     </div>
     </section>
 
-    <section class="mt-25 lg:mt-20 px-main items-start lg:relative" style="--enter: fadeFromBottom 1.6s ease both; --leave: fadeToTop 1.6s ease both">
+    <section class="mt-25 lg:mt-20 px-main items-start" style="--enter: fadeFromBottom 1.6s ease both; --leave: fadeToTop 1.6s ease both">
       <div class="w-full h-full 2xl:container">
         <nav aria-label="Навигационная цепочка" class="hidden lg:block text-body-sm lg:mt-6">
             <ol class="breadcrumbs flex gap-2">
@@ -198,9 +220,13 @@ export const VenueLayout = (venue) => {
               .map(
                 (item) => `
                     <div class="flex items-center gap-4">
-                        <svg class="w-10 h-10 flex items-center justify-center text-accent-pink">
+                        ${
+                          item.icon
+                            ? `<svg class="w-10 h-10 flex items-center justify-center text-accent-pink">
                             <use href="/sprite.svg#${item.icon}"></use>
-                        </svg>
+                        </svg>`
+                            : `<img src='${item.img}' alt='${item.title}' class='w-10 h-10 flex text-accent-pink'>`
+                        }
                         <span class="text-base">${item.title}</span>
                     </div>
                 `,
@@ -209,7 +235,7 @@ export const VenueLayout = (venue) => {
          </div>
 
          <div class="h-full mt-25 max-w-260">
-          <h2 class="text-subtitle-md lg:text-subtitle-lg uppercase text-center">
+          <h2 class="text-subtitle-md lg:text-[40px] uppercase text-center">
             Оставить заявку
           </h2>
 
@@ -222,7 +248,7 @@ export const VenueLayout = (venue) => {
             <input
               type="text"
               name="name"
-              class="px-4 py-4.5 bg-gray rounded-[10px] outline-none placeholder-black lg:order-1"
+              class="px-4 py-4.5 bg-gray rounded-main outline-none placeholder-black lg:order-1"
               placeholder="Имя"
               required
             />
@@ -230,7 +256,7 @@ export const VenueLayout = (venue) => {
             <input
               type="tel"
               name="phone"
-              class="venue-phone-input px-4 py-4.5 bg-gray rounded-[10px] outline-none placeholder-black lg:order-2"
+              class="venue-phone-input px-4 py-4.5 bg-gray rounded-main outline-none placeholder-black lg:order-2"
               placeholder="Телефон"
               required
             />
@@ -238,7 +264,7 @@ export const VenueLayout = (venue) => {
             <textarea
               name="comment"
               rows="3"
-              class="px-4 py-4.5 bg-gray rounded-[10px] outline-none placeholder-black lg:order-3"
+              class="px-4 py-4.5 bg-gray rounded-main outline-none placeholder-black lg:order-3"
               placeholder="Комментарий"
             ></textarea>
 
@@ -376,17 +402,63 @@ export const VenueLayout = (venue) => {
           </form>
 
           <div class="flex gap-6 lg:pb-40 mt-10">
-            <button type="button" class="border border-accent-pink w-full py-4 rounded-main uppercase basis-1/2"> 
+            <button type="button" class="border border-accent-pink w-full py-4 rounded-main uppercase basis-full lg:basis-1/2"> 
                 Добавить в конструктор
             </button>
 
-            <a class="border border-black text-accent-pink text-body-base py-4 rounded-main uppercase basis-1/2 text-center">
+            <a class="max-lg:hidden border border-black text-accent-pink text-body-base py-4 rounded-main uppercase basis-1/2 text-center">
              Продолжить выбор залов
             </a>
           </div>
         </div>
-          </div>
+        </div>
       </div>
+    </section>
+
+    <section class="mt-25 lg:mt-0 px-main lg:relative">
+     <div>
+      <h2 class="uppercase text-subtitle-md text-center">Схема зала</h2>
+
+      <p class="text-body-lg text-center mt-6">
+        ${venue.schemeParagraph}
+      </p>
+
+      <div class="flex flex-col gap-4 items-center text-subtitle-md mt-10">
+         <button 
+    class="tab-btn data-[active=true]:text-accent-pink"
+    data-target="model"
+    data-active="true"
+  >
+    3D модель
+  </button>
+
+  <button 
+    class="tab-btn data-[active=true]:text-accent-pink"
+    data-target="plan"
+    data-active="false"
+  >
+    Технический план
+  </button>
+    <div class="mt-10 relative">
+      <img 
+        src="${venue.schemeImages.model}"
+        class="tab-content transition-opacity duration-300
+          data-[active=false]:opacity-0
+          data-[active=true]:opacity-100"
+        data-content="model"
+        data-active="true"
+      />
+
+      <img 
+        src="${venue.schemeImages.plan}"
+        class="tab-content absolute top-0 transition-opacity duration-300
+          data-[active=false]:opacity-0
+          data-[active=true]:opacity-100"
+        data-content="plan"
+        data-active="false"
+      />
+    </div>
+     </div>
     </section>
   `;
 };

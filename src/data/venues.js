@@ -98,15 +98,15 @@ export const venues = [
       },
       {
         title: "Банкетное меню",
-        icon: "menu",
+        img: "/images/icons/menu.svg",
       },
       {
         title: "Звуковое оборудование",
-        icon: "sound",
+        img: "/images/icons/sound.svg",
       },
       {
         title: "Сцена",
-        icon: "scene",
+        img: "/images/icons/scene.svg",
       },
       {
         title: "Микрофон",
@@ -118,17 +118,23 @@ export const venues = [
       },
       {
         title: "Профессиональное освещение",
-        icon: "light",
+        img: "/images/icons/lightning.svg",
       },
       {
         title: "Бесплатный вайфай",
-        icon: "wifi",
+        img: "/images/icons/wifi.svg",
       },
       {
         title: "Уборка",
-        icon: "cleaning",
+        img: "/images/icons/cleaning.svg",
       },
     ],
     isSelected: false,
+    schemeParagraph:
+      "Интерьер выполнен в стиле «шале» в белых тонах, что придаёт помещению особую изысканность и благородство. Этот зал станет идеальным местом для проведения конференций, семинаров, корпоративных мероприятий или торжественных церемоний, добавляя праздничности и торжественности вашему событию.",
+    schemeImages: {
+      model: "/images/venues/shale/3d-scheme.webp",
+      plan: "/images/venues/shale/tech-plan.webp",
+    },
   },
 ];
