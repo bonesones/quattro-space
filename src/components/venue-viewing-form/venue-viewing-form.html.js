@@ -40,18 +40,23 @@ export const venueViewingFormTemplate = `<section
         placeholder="Комментарий"
       ></textarea>
 
+    
       <label
-        class="flex items-center lg:items-center lg:mb-auto gap-3.5 cursor-pointer lg:order-5"
+        class="lg:mb-auto cursor-pointer lg:order-5"
       >
-        <input type="file" id="file" class="hidden" />
-        <svg class="w-5 h-7">
-          <use href="/sprite.svg#paperclip"></use>
-        </svg>
+        <div id="file-names" class="text-sm text-black mb-1"></div>
 
-        <span
-          class="block w-3/5 lg:w-fit lg:px-2 bg-accent-pink hover:shadow-pink rounded-[10px] py-2 text-white text-center"
-          >Прикрепить файл</span
-        >
+        <div class="flex items-center w-full gap-3.5">
+          <input type="file" id="file" class="hidden" />
+          <svg class="w-5 h-7">
+            <use href="/sprite.svg#paperclip"></use>
+          </svg>
+
+          <span
+            class="block w-3/5 lg:w-fit lg:px-2 bg-accent-pink hover:shadow-pink rounded-[10px] py-2 text-white text-center"
+            >Прикрепить файл</span
+          >
+        </div>
       </label>
 
       <fieldset class="space-y-4 mt-2 lg:order-4">

@@ -1,9 +1,9 @@
 export const servicesTemplate = `<section
-  class="lg:top-20 px-main lg:px-9 [@media(max-height:1000px)]:lg:items-start lg:overflow-y-auto"
+  class="lg:top-20 px-main lg:px-9 [@media(max-height:1000px)]:lg:items-start"
   id="services"
   style="--enter: fadeFromBottom 0.9s ease 0.6s both"
 >
-  <div class="2xl:container mx-auto">
+  <div class="2xl:container mx-auto h-full">
     <h2
       class="text-title-lg-sm lg:text-title-md xl:text-title-lg lg:text-left uppercase text-center font-grotesk"
       data-animate

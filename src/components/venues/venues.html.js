@@ -1,5 +1,5 @@
 export const venuesTemplate = `<section
-  class="px-main lg:px-9 [@media(max-height:1000px)]:lg:items-start"
+  class="px-main lg:px-main [@media(max-height:1000px)]:lg:items-start"
   id="venues"
   style="--enter: fadeIn 1.4s ease both"
 >

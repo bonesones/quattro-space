@@ -1,11 +1,9 @@
 import { initFullPage } from "../utils/fullpage.js";
-import { initVenueFilter } from "../components/venues-filter/venues-filter.js";
 import { initServices } from "../components/services/services.js";
 import { initVenues } from "../components/venues/venues.js";
 import { initKitchen } from "../components/kitchen/kitchen.js";
 import { initVenueViewingForm } from "../components/venue-viewing-form/venue-viewing-form.js";
 import { initBanner } from "../components/banner/banner.js";
-import { initAboutParagraphs } from "../components/about-us/about-us.js";
 
 export function initHomePage() {
   const isDesktop = window.innerWidth > 1024;
@@ -47,7 +45,4 @@ export function initHomePage() {
   const servicesContainer = document.getElementById("services-list-container");
 
   if (servicesContainer) initServices(servicesContainer);
-
-  initVenueFilter();
-  initAboutParagraphs();
 }

@@ -35,11 +35,11 @@ export const headerTemplate = `<header class="fixed inset-0 z-50 h-fit">
     </a>
 
     <nav class="flex items-center gap-6 text-base uppercase text-white">
-      <a href="#" class="hover:text-accent-pink">Форматы</a>
-      <a href="#venues" class="hover:text-accent-pink">Площадки</a>
-      <a href="#services" class="hover:text-accent-pink">Услуги</a>
-      <a href="#about-us" class="hover:text-accent-pink">О нас</a>
-      <a href="#reviews" class="hover:text-accent-pink">Отзывы</a>
+      <a href="/" class="hover:text-accent-pink">Форматы</a>
+      <a href="/#venues" class="hover:text-accent-pink">Площадки</a>
+      <a href="/#services" class="hover:text-accent-pink">Услуги</a>
+      <a href="/#about-us" class="hover:text-accent-pink">О нас</a>
+      <a href="/#reviews" class="hover:text-accent-pink">Отзывы</a>
       <a href="#" class="hover:text-accent-pink">Контакты</a>
     </nav>
 
@@ -85,10 +85,10 @@ export const headerTemplate = `<header class="fixed inset-0 z-50 h-fit">
     </svg>
 
     <nav class="flex flex-col items-center gap-6 mt-6 text-xl">
-      <a href="#about-us">О нас</a>
-      <a href="#venues">Площадки</a>
-      <a href="#services">Услуги</a>
-      <a href="#reviews">Отзывы</a>
+      <a href="/#about-us">О нас</a>
+      <a href="/#venues">Площадки</a>
+      <a href="/#services">Услуги</a>
+      <a href="/#reviews">Отзывы</a>
       <a href="#">Контакты</a>
     </nav>
 

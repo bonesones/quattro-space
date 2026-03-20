@@ -136,5 +136,10 @@ export const venues = [
       model: "/images/venues/shale/3d-scheme.webp",
       plan: "/images/venues/shale/tech-plan.webp",
     },
+    gallerySlides: [
+      "/images/venues/compas_main.webp",
+      "/images/venues/conf_main.webp",
+      "/images/venues/mansarda_main.webp",
+    ],
   },
 ];

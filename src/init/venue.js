@@ -6,6 +6,10 @@ export const initVenuePage = async () => {
   const isDesktop = window.innerWidth > 1024;
   const fullPageContainer = document.querySelector(".venue-page");
 
+  initTabs();
+  initForm();
+  initBackButton();
+
   if (isDesktop) {
     initFullPage({
       container: fullPageContainer,
@@ -57,10 +61,8 @@ export const initVenuePage = async () => {
   }
 
   try {
-    const [{ default: Swiper }, { Autoplay, EffectFade }] = await Promise.all([
-      import("swiper"),
-      import("swiper/modules"),
-    ]);
+    const [{ default: Swiper }, { Autoplay, EffectFade, Navigation }] =
+      await Promise.all([import("swiper"), import("swiper/modules")]);
 
     await import("swiper/css");
     await import("swiper/css/effect-fade");
@@ -88,7 +90,140 @@ export const initVenuePage = async () => {
         }),
       });
     }
+
+    initFullPageSwiper(Swiper, Navigation);
   } catch (error) {
     console.error("Failed to initialize Swiper:", error);
+  }
+};
+
+const initFullPageSwiper = (Swiper, Navigation) => {
+  const gallerySwiperWrapper = document.querySelector(
+    "#fullscreen-venue-swiper",
+  );
+
+  const gallerySwiper = gallerySwiperWrapper.querySelector(
+    ".gallery-fullpage-swiper",
+  );
+  const thumbnails = document.querySelectorAll(".thumbnails img");
+  const closeBtn = document.getElementById("close-swiper");
+
+  if (gallerySwiper) {
+    if (gallerySwiper.swiper) {
+      gallerySwiper.swiper.destroy(true, true);
+    }
+
+    const swiper = new Swiper(gallerySwiper, {
+      modules: [Navigation],
+      loop: true,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+
+    thumbnails.forEach((img, index) => {
+      img.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        document.body.classList.add("overflow-hidden");
+
+        gallerySwiperWrapper.classList.remove("hidden");
+        swiper.slideToLoop(index, 0);
+      });
+    });
+
+    closeBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      document.body.classList.remove("overflow-hidden");
+
+      gallerySwiperWrapper.classList.add("hidden");
+    });
+  }
+};
+
+const initTabs = () => {
+  const buttons = document.querySelectorAll(".tab-btn");
+  const contents = document.querySelectorAll(".tab-content");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const target = btn.dataset.target;
+
+      buttons.forEach((b) => (b.dataset.active = "false"));
+      btn.dataset.active = "true";
+
+      contents.forEach((img) => {
+        img.dataset.active = img.dataset.content === target ? "true" : "false";
+      });
+    });
+  });
+};
+
+const initForm = () => {
+  initPhoneMask();
+  initDateMask();
+  initFileInput();
+};
+
+const initPhoneMask = () => {
+  const phoneInput = document.querySelector(".venue-phone-input");
+
+  if (phoneInput) {
+    IMask(phoneInput, {
+      mask: "+{7} (000) 000-00-00",
+      lazy: false,
+      placeholderChar: "_",
+    });
+  }
+};
+
+const initDateMask = () => {
+  const dateInput = document.querySelector("#contact-date");
+  const dateDisplay = document.querySelector("#custom-date-display span");
+
+  if (dateInput && dateDisplay) {
+    dateInput.addEventListener("change", (e) => {
+      if (e.target.value) {
+        const [year, month, day] = e.target.value.split("-");
+        dateDisplay.textContent = `${day}.${month}.${year}`;
+      } else {
+        dateDisplay.textContent = "ДД.ММ.ГГГГ";
+      }
+    });
+  }
+};
+
+const initFileInput = () => {
+  const fileInput = document.getElementById("file");
+  const fileNamesContainer = document.getElementById("file-names");
+
+  fileInput.addEventListener("change", () => {
+    const files = Array.from(fileInput.files);
+    if (files.length === 0) {
+      fileNamesContainer.textContent = "";
+      return;
+    }
+
+    fileNamesContainer.innerHTML = files
+      .map((file) => `<div>${file.name}</div>`)
+      .join("");
+  });
+};
+
+const initBackButton = () => {
+  const backButton = document.querySelector(".back-button");
+
+  if (backButton) {
+    backButton.addEventListener("click", () => {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = "/";
+      }
+    });
   }
 };

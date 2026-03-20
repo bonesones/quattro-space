@@ -277,9 +277,7 @@ export const bannerTemplate = `<section
       
  
       <div class="swiper-slide flex! items-center! justify-center!">
-       
             <img src="/images/venues/mansarda_main.webp" class="w-full h-full">
-    
       </div>
 
       <div class="swiper-slide flex! items-center! justify-center!">

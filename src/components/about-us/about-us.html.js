@@ -1,13 +1,13 @@
 export const aboutUsTemplate = `
 <section
-  class="px-main lg:px-9 lg:flex [@media(max-height:1000px)]:lg:items-start flex-col justify-center items-center"
+  class="px-main lg:flex [@media(max-height:1000px)]:lg:items-start flex-col justify-center items-center"
   id="about-us"
   style="
     --enter: fadeFromBottom 1.2s ease both;
     --leave: fadeToTop 1.2s ease both;
   "
 >
-  <div class="h-full lg:mt-32 2xl:container">
+  <div class="h-full lg:mt-32 2xl:container mx-auto">
     <h2
       class="text-title-lg-sm lg:text-title-lg font-grotesk uppercase text-center lg:text-start"
     >

@@ -104,10 +104,10 @@ export const footerTemplate = `<footer class="border-t border-slate-800 mt-10 lg
           </button>
           <div class="overflow-hidden max-h-0 transition-all duration-300 accordion-content">
             <ul class="mt-4 flex flex-col items-center gap-4 text-lg">
-              <li class="text-center"><a href="#about-us">О нас</a></li>
-              <li class="text-center"><a href="#venues">Площадки</a></li>
-              <li class="text-center"><a href="#services">Услуги</a></li>
-              <li class="text-center"><a href="#reviews">Отзывы</a></li>
+              <li class="text-center"><a href="/#about-us">О нас</a></li>
+              <li class="text-center"><a href="/#venues">Площадки</a></li>
+              <li class="text-center"><a href="/#services">Услуги</a></li>
+              <li class="text-center"><a href="/#reviews">Отзывы</a></li>
               <li class="text-center"><a href="#">Контакты</a></li>
             </ul>
           </div>
@@ -123,7 +123,7 @@ export const footerTemplate = `<footer class="border-t border-slate-800 mt-10 lg
           </button>
           <div class="overflow-hidden max-h-0 transition-all duration-300 accordion-content">
             <ul class="mt-4 flex flex-col items-center gap-4 text-lg">
-              <li class="text-center"><a href="#">Зал «Шале»</a></li>
+              <li class="text-center"><a href="/shale.html">Зал «Шале»</a></li>
               <li class="text-center"><a href="#">Зал «Мансарда»</a></li>
               <li class="text-center"><a href="#">Зал «Компас»</a></li>
               <li class="text-center"><a href="#">Конференц-зал</a></li>
@@ -177,10 +177,10 @@ export const footerTemplate = `<footer class="border-t border-slate-800 mt-10 lg
         <div class="text-white flex flex-col items-start gap-6">
           <span class="font-extrabold text-2xl">Главная страница</span>
           <ul class="mt-4 flex flex-col items-start gap-4 text-white text-body-base">
-            <li><a href="#about-us">О нас</a></li>
-            <li><a href="#venues">Площадки</a></li>
-            <li><a href="#services">Услуги</a></li>
-            <li><a href="#reviews">Отзывы</a></li>
+            <li><a href="/#about-us">О нас</a></li>
+            <li><a href="/#venues">Площадки</a></li>
+            <li><a href="/#services">Услуги</a></li>
+            <li><a href="/#reviews">Отзывы</a></li>
             <li><a href="#">Контакты</a></li>
           </ul>
         </div>
@@ -189,7 +189,7 @@ export const footerTemplate = `<footer class="border-t border-slate-800 mt-10 lg
         <div class="text-white flex flex-col items-start gap-6">
           <span class="font-extrabold text-2xl">Залы</span>
           <ul class="mt-4 flex flex-col items-start gap-4 text-white text-body-base">
-            <li><a href="#">Зал «Шале»</a></li>
+            <li><a href="/shale.html">Зал «Шале»</a></li>
             <li><a href="#">Зал «Мансарда»</a></li>
             <li><a href="#">Зал «Компас»</a></li>
             <li><a href="#">Конференц-зал</a></li>

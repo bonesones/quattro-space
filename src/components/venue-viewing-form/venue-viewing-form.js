@@ -29,19 +29,20 @@ export function initVenueViewingForm(root = document) {
       }
     });
   }
+  const fileInput = document.getElementById("file");
+  const fileNamesContainer = document.getElementById("file-names");
 
-  const fileInput = root.querySelector("#file");
-  const fileLabel = root.querySelector("label[for='file'] span");
+  fileInput.addEventListener("change", () => {
+    const files = Array.from(fileInput.files);
+    if (files.length === 0) {
+      fileNamesContainer.textContent = "";
+      return;
+    }
 
-  if (fileInput && fileLabel) {
-    fileInput.addEventListener("change", (e) => {
-      if (e.target.files && e.target.files[0]) {
-        fileLabel.textContent = e.target.files[0].name;
-      } else {
-        fileLabel.textContent = "Прикрепить файл";
-      }
-    });
-  }
+    fileNamesContainer.innerHTML = files
+      .map((file) => `<div>${file.name}</div>`)
+      .join("");
+  });
 
   const form = root.querySelector("form");
 

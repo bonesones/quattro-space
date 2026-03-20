@@ -99,23 +99,41 @@ export const initFullPage = ({
     }, maxDuration);
   };
 
-  document.querySelectorAll('a[href^="#"]').forEach((link) =>
-    link.addEventListener("click", (e) => {
-      const targetId = link.getAttribute("href").slice(1);
+  const handleInitialHash = () => {
+    const hash = window.location.hash;
 
-      const targetIndex = Array.from(sections).findIndex(
-        (s) => s.id === targetId,
-      );
+    if (!hash) return;
 
-      if (targetIndex === -1 || targetIndex === currentIndex) return;
+    const targetId = hash.slice(1);
 
-      e.preventDefault();
+    const activeSection = container.querySelector("section.active");
 
-      sections[targetIndex].scrollTop = 0;
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    if (activeSection && activeSection.id === targetId) {
+      history.pushState(null, null, " ");
+      return;
+    }
+
+    const targetIndex = Array.from(sections).findIndex(
+      (s) => s.id === targetId,
+    );
+
+    if (targetIndex === -1) return;
+
+    setTimeout(() => {
       goTo(targetIndex);
-    }),
-  );
+
+      document.body.scrollTop = 0;
+      sections[targetIndex].scrollTop = 0;
+
+      window.scrollTo({ top: 0 });
+
+      history.pushState(null, null, " ");
+    }, 50);
+  };
+
+  handleInitialHash();
+
+  window.addEventListener("hashchange", handleInitialHash);
 
   window.addEventListener(
     "wheel",

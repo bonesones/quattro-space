@@ -6,72 +6,15 @@ export const VenueLayout = (venue) => {
 
   const sliderHeight = isDesktop ? "h-162.5" : "h-125";
 
-  const initPhoneMask = () => {
-    const phoneInput = document.querySelector(".venue-phone-input");
-
-    if (phoneInput) {
-      IMask(phoneInput, {
-        mask: "+{7} (000) 000-00-00",
-        lazy: false,
-        placeholderChar: "_",
-      });
-    }
-  };
-
-  const initDateMask = () => {
-    const dateInput = document.querySelector("#contact-date");
-    const dateDisplay = document.querySelector("#custom-date-display span");
-
-    if (dateInput && dateDisplay) {
-      dateInput.addEventListener("change", (e) => {
-        if (e.target.value) {
-          const [year, month, day] = e.target.value.split("-");
-          dateDisplay.textContent = `${day}.${month}.${year}`;
-        } else {
-          dateDisplay.textContent = "ДД.ММ.ГГГГ";
-        }
-      });
-    }
-  };
-
-  const initForm = () => {
-    initPhoneMask();
-    initDateMask();
-  };
-
-  const initTabs = () => {
-    const buttons = document.querySelectorAll(".tab-btn");
-    const contents = document.querySelectorAll(".tab-content");
-
-    buttons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const target = btn.dataset.target;
-
-        buttons.forEach((b) => (b.dataset.active = "false"));
-        btn.dataset.active = "true";
-
-        contents.forEach((img) => {
-          img.dataset.active =
-            img.dataset.content === target ? "true" : "false";
-        });
-      });
-    });
-  };
-
-  if (typeof window !== "undefined") {
-    setTimeout(() => {
-      initForm();
-      initTabs();
-    }, 100);
-  }
-
   return `
-    <section class="mt-16.5 lg:mt-0 lg:items-start px-main"
+    <section class="mt-16.5 lg:mt-20 lg:items-start px-main"
       style="--leave: fadeToTop 1.6s ease both">
       <div class="lg:min-h-screen 2xl:container lg:pb-40">
-        <svg class="w-7 h-5 lg:hidden">
+        <button type="button" class="lg:hidden back-button">
+         <svg class="w-7 h-5">
           <use href="/sprite.svg#arrow-left"></use>
         </svg>
+        </button>
 
         <nav aria-label="Навигационная цепочка" class="hidden lg:block text-body-sm lg:mt-6">
           <ol class="breadcrumbs flex gap-2">
@@ -158,7 +101,7 @@ export const VenueLayout = (venue) => {
       </div>
     </section>
     
-    <section class="mt-25 lg:mt-0 px-main lg:items-start" style="--enter: fadeFromBottom 1.6s ease both; --leave: fadeToTop 1.6s ease both">
+    <section class="mt-25 lg:mt-20 px-main lg:items-start" style="--enter: fadeFromBottom 1.6s ease both; --leave: fadeToTop 1.6s ease both">
     <div class="w-full 2xl:container lg:pb-32">
     <nav aria-label="Навигационная цепочка" class="hidden lg:block text-body-sm lg:mt-6">
           <ol class="breadcrumbs flex gap-2">
@@ -267,19 +210,22 @@ export const VenueLayout = (venue) => {
               class="px-4 py-4.5 bg-gray rounded-main outline-none placeholder-black lg:order-3"
               placeholder="Комментарий"
             ></textarea>
+                <label
+                class="lg:mb-auto cursor-pointer lg:order-5"
+                >
+                <div id="file-names" class="text-sm text-black mb-1"></div>
 
-            <label
-              class="flex items-center lg:items-center lg:mb-auto gap-3.5 cursor-pointer lg:order-5"
-            >
-              <input type="file" id="file" class="hidden" />
-              <svg class="w-5 h-7">
-                <use href="/sprite.svg#paperclip"></use>
-              </svg>
+                <div class="flex items-center w-full gap-3.5">
+                <input type="file" id="file" class="hidden" />
+                <svg class="w-5 h-7">
+                    <use href="/sprite.svg#paperclip"></use>
+                </svg>
 
-              <span
-                class="block w-3/5 lg:w-fit lg:px-2 bg-accent-pink hover:shadow-pink rounded-[10px] py-2 text-white text-center"
-                >Прикрепить файл</span
-              >
+                <span
+                    class="block w-3/5 lg:w-fit lg:px-2 bg-accent-pink hover:shadow-pink rounded-[10px] py-2 text-white text-center"
+                    >Прикрепить файл</span
+                >
+                </div>
             </label>
 
             <fieldset class="space-y-4 mt-2 lg:order-4">
@@ -406,7 +352,7 @@ export const VenueLayout = (venue) => {
                 Добавить в конструктор
             </button>
 
-            <a class="max-lg:hidden border border-black text-accent-pink text-body-base py-4 rounded-main uppercase basis-1/2 text-center">
+            <a href="/#venues" class="max-lg:hidden border border-black text-accent-pink text-body-base py-4 rounded-main uppercase basis-1/2 text-center">
              Продолжить выбор залов
             </a>
           </div>
@@ -415,51 +361,240 @@ export const VenueLayout = (venue) => {
       </div>
     </section>
 
-    <section class="mt-25 lg:mt-0 px-main lg:relative">
-     <div>
-      <h2 class="uppercase text-subtitle-md text-center">Схема зала</h2>
+    <section class="mt-25 lg:mt-20 px-main lg:items-start" style="--enter: fadeFromBottom 1.6s ease both; --leave: fadeToTop 1.6s ease both">
+     <div class="2xl:container w-full lg:pb-32">
+        <nav aria-label="Навигационная цепочка" class="hidden lg:block text-body-sm lg:mt-6">
+        <ol class="breadcrumbs flex gap-2">
+            <li>
+            <a href="/" class="flex items-center gap-2.5">
+                <svg class="w-3.25 h-3">
+                <use href="/sprite.svg#breadcrumb"></use>
+                </svg>
+                Главная
+            </a>
+            </li>
+            /
+            <li>
+            <a href="/#venues">Площадки</a>
+            </li>
+            /
+            <li>
+            <a href="/${venue.slug}.html">${venue.title}</a>
+            </li>
+        </ol>
+        </nav>
 
-      <p class="text-body-lg text-center mt-6">
+        <div class="flex flex-col items-center">
+         
+      <h2 class="uppercase text-subtitle-md lg:text-subtitle-lg lg:mt-12 text-center max-w-174">Схема зала</h2>
+
+      <p class="text-body-lg text-center mt-6 max-w-174">
         ${venue.schemeParagraph}
       </p>
 
-      <div class="flex flex-col gap-4 items-center text-subtitle-md mt-10">
-         <button 
-    class="tab-btn data-[active=true]:text-accent-pink"
-    data-target="model"
-    data-active="true"
-  >
-    3D модель
-  </button>
+      <div class="flex flex-col gap-4 items-center text-subtitle-md mt-10 max-w-174">
+         <div class="flex flex-col gap-4 items-center lg:flex-row lg:justify-center lg:gap-24">
+          <button 
+            class="tab-btn data-[active=true]:text-accent-pink cursor-pointer"
+            data-target="model"
+            data-active="true"
+            >
+            3D модель
+        </button>
 
-  <button 
-    class="tab-btn data-[active=true]:text-accent-pink"
-    data-target="plan"
-    data-active="false"
-  >
-    Технический план
-  </button>
-    <div class="mt-10 relative">
-      <img 
-        src="${venue.schemeImages.model}"
-        class="tab-content transition-opacity duration-300
-          data-[active=false]:opacity-0
-          data-[active=true]:opacity-100"
-        data-content="model"
-        data-active="true"
-      />
+        <button 
+            class="tab-btn data-[active=true]:text-accent-pink cursor-pointer"
+            data-target="plan"
+            data-active="false"
+        >
+            Технический план
+        </button>
+         </div>
+            <div class="mt-10 relative">
+            <img 
+                src="${venue.schemeImages.model}"
+                class="tab-content transition-opacity duration-300
+                data-[active=false]:opacity-0
+                data-[active=true]:opacity-100"
+                data-content="model"
+                data-active="true"
+            />
 
-      <img 
-        src="${venue.schemeImages.plan}"
-        class="tab-content absolute top-0 transition-opacity duration-300
-          data-[active=false]:opacity-0
-          data-[active=true]:opacity-100"
-        data-content="plan"
-        data-active="false"
-      />
-    </div>
+            <img 
+                src="${venue.schemeImages.plan}"
+                class="tab-content absolute top-0 transition-opacity duration-300
+                data-[active=false]:opacity-0
+                data-[active=true]:opacity-100"
+                data-content="plan"
+                data-active="false"
+            />
+            </div>
+        </div>
      </div>
     </section>
+
+    <section class="mt-25 lg:mt-0 lg:relative lg:items-start lg:flex-col" style="--enter: fadeFromBottom 1.6s ease both; --leave: fadeToTop 1.6s ease both">
+       <div class="mt-20 2xl:container mx-auto">
+            <nav aria-label="Навигационная цепочка" class="hidden lg:block text-body-sm lg:mt-6 px-main">
+                <ol class="breadcrumbs flex gap-2">
+                    <li>
+                    <a href="/" class="flex items-center gap-2.5">
+                        <svg class="w-3.25 h-3">
+                        <use href="/sprite.svg#breadcrumb"></use>
+                        </svg>
+                        Главная
+                    </a>
+                    </li>
+                    /
+                    <li>
+                    <a href="/#venues">Площадки</a>
+                    </li>
+                    /
+                    <li>
+                    <a href="/${venue.slug}.html">${venue.title}</a>
+                    </li>
+                </ol>
+            </nav>
+
+            <h2 class="uppercase text-subtitle-md lg:text-subtitle-lg text-center px-main lg:mt-12">Смотрите другие площадки</h2>
+
+            <div class="mt-10 grid grid-cols-1 place-items-center gap-y-6 lg:grid-cols-4 lg:gap-x-4 lg:gap-y-4 px-main">
+               <article class="w-full max-md:max-w-86.25 lg:max-w-lg xl:max-w-2xl flex flex-col h-full">
+                    <div class="w-full aspect-345/276 lg:aspect-627/538 overflow-hidden rounded-main">
+                        <img src="/images/venues/mansarda_main.webp" class="w-full h-full object-cover" loading="lazy" alt="Зал «Мансарда»" />
+                    </div>
+
+                    <div>
+                      <div class="flex lg:flex-col justify-between items-center lg:items-start mt-6">
+                        <h3 class="text-subtitle-md lg:text-subtitle-sm font-extrabold lg:font-medium">Зал «Компас»</h3>
+
+                        <span class="font-medium text-accent-pink lg:text-lg lg:font-normal whitespace-nowrap">до 60 чел</span>
+                      </div>
+
+                        <a href="#" class="flex gap-2 text-lg text-black hover:text-black col-span-2 mt-2 lg:mt-10">
+                        подробнее
+                        <svg class="h-7.5 w-10" aria-hidden="true">
+                        <use href="/sprite.svg#arrow-right"></use>
+                        </svg>
+                    </a>
+                    </div>
+                </article>
+
+                <!-- Малый Конференц-зал -->
+
+                <article class="w-full max-md:max-w-86.25 lg:max-w-lg xl:max-w-2xl flex flex-col h-full">
+                    <div class="w-full aspect-345/276 lg:aspect-627/538 overflow-hidden rounded-main">
+                         <img src="/images/venues/small_conf_main.webp" class="w-full h-full object-cover" loading="lazy" alt="Малый Конференц-зал" />
+                    </div>
+
+                    <div>
+                      <div class="flex lg:flex-col justify-between items-center lg:items-start mt-6">
+                        <h3 class="text-subtitle-md lg:text-subtitle-sm font-extrabold lg:font-medium">Малый Конференц-зал</h3>
+
+                        <span class="font-medium text-accent-pink lg:text-lg lg:font-normal whitespace-nowrap">до 150 чел</span>
+                      </div>
+
+                        <a href="#" class="flex gap-2 text-lg text-black hover:text-black col-span-2 mt-2 lg:mt-10">
+                        подробнее
+                        <svg class="h-7.5 w-10" aria-hidden="true">
+                        <use href="/sprite.svg#arrow-right"></use>
+                        </svg>
+                    </a>
+                    </div>
+                </article>
+
+                <!-- Конференц-зал -->
+                <article class="w-full max-md:max-w-86.25 lg:max-w-lg xl:max-w-2xl flex flex-col h-full">
+                    <div class="w-full aspect-345/276 lg:aspect-627/538 overflow-hidden rounded-main">
+                         <img src="/images/venues/conf_main.webp" class="w-full h-full object-cover" loading="lazy" alt="Конференц-зал" />
+                    </div>
+
+                    <div>
+                      <div class="flex lg:flex-col justify-between items-center lg:items-start mt-6">
+                        <h3 class="text-subtitle-md lg:text-subtitle-sm font-extrabold lg:font-medium">Конференц-зал</h3>
+
+                        <span class="font-medium text-accent-pink lg:text-lg lg:font-normal whitespace-nowrap">до 250 чел</span>
+                      </div>
+
+                        <a href="#" class="flex gap-2 text-lg text-black hover:text-black col-span-2 mt-2 lg:mt-10">
+                        подробнее
+                        <svg class="h-7.5 w-10" aria-hidden="true">
+                        <use href="/sprite.svg#arrow-right"></use>
+                        </svg>
+                    </a>
+                    </div>
+                </article>
+
+                <!-- Зал «Компас» -->
+
+                <article class="w-full max-md:max-w-86.25 lg:max-w-lg xl:max-w-2xl flex flex-col h-full">
+                    <div class="w-full aspect-345/276 lg:aspect-627/538 overflow-hidden rounded-main">
+                         <img src="/images/venues/compas_main.webp" class="w-full h-full object-cover" loading="lazy" alt="Зал «Компас»" />
+                    </div>
+
+                    <div>
+                      <div class="flex lg:flex-col justify-between items-center lg:items-start mt-6">
+                        <h3 class="text-subtitle-md lg:text-subtitle-sm font-extrabold lg:font-medium">Зал «Компас»</h3>
+
+                        <span class="font-medium text-accent-pink lg:text-lg lg:font-normal whitespace-nowrap">до 60 чел</span>
+                      </div>
+
+                        <a href="#" class="flex gap-2 text-lg text-black hover:text-black col-span-2 mt-2 lg:mt-10">
+                        подробнее
+                        <svg class="h-7.5 w-10" aria-hidden="true">
+                        <use href="/sprite.svg#arrow-right"></use>
+                        </svg>
+                    </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <div class="mt-25 lg:mt-50 w-full">
+         <h2 class="uppercase text-subtitle-md lg:text-subtitle-lg text-center px-main">Lorem ipsum dolor sit amet</h2>
+
+         <div class="grid grid-cols-1 lg:grid-cols-4 gap-y-6 mt-9.5 lg:mt-10 px-main mx-auto 2xl:container">
+              <div class="lg:col-span-2 lg:space-y-6">
+               <p class="text-xl font-bold lg:text-subtitle-md">Quisque convallis interdum nulla, quis tincidunt ex consectetur hendrerit.</p>
+               <p class="text-body-lg lg:text-body-base mt-6 lg:mt-0">Pellentesque sit amet leo lectus. Nulla molestie pretium diam eget bibendum. Suspendisse vel tristique tellus, at vestibulum ex. Proin id diam odio. Cras volutpat lectus est, vitae congue sapien rhoncus et.</p>
+              </div>
+
+              <div class="lg:hidden bg-gray rounded-main w-full h-64 mt-6 lg:mt-0"></div>
+              <p class="text-body-lg lg:self-center lg:text-body-base col-span-1 lg:col-start-4 mt-6 lg:mt-0">Vivamus vitae venenatis eros, ut accumsan nulla. Morbi sit amet tempus dui, et rutrum eros. Curabitur pretium mi in metus facilisis, sit amet porta urna euismod. Aenean rutrum, erat id ornare pellentesque, velit diam tempor ante, et convallis risus leo nec odio.</p>
+         </div>
+
+        <div class="thumbnails px-main 2xl:mx-auto mt-14 hidden 2xl:container lg:block">
+            <div class="w-full grid grid-cols-[0.5fr_0.5fr_1fr] overflow-hidden rounded-main">
+             ${venue.gallerySlides.map((image) => `<img src="${image}" class="w-full h-100 object-cover cursor-pointer">`).join("")}
+            </div>
+        </div>
+
+
+        <div class="mt-25 lg:mt-30 w-full">
+              <h2 class="uppercase text-xl font-bold text-center">Партнеры</h2>
+
+              <div class="grid grid-cols-4 lg:grid-cols-10 gap-6 lg:gap-7.5SS mt-4 px-main xl:px-0 max-w-319.75 mx-auto">
+                ${Array.from({ length: 20 }, (_) => {
+                  return `<div class="bg-gray w-full h-full aspect-square"></div>`;
+                }).join("")}
+              </div>
+
+              <div class="h-66.5 bg-gray my-10 ">
+              </div>
+        </div>
+    </section>
+    <div id="fullscreen-venue-swiper" class="fixed inset-0 z-60 bg-black/50 backdrop-blur hidden items-center justify-center">
+        <div class="swiper gallery-fullpage-swiper w-full h-screen">
+            <div class="swiper-wrapper">
+              ${venue.gallerySlides.map(renderFullscreenSwiperSlide).join("")}
+            </div>
+
+            <button class="swiper-button-next absolute z-2 top-1/2 -translate-y-1/2 right-9 text-white cursor-pointer"></button>
+            <button class="swiper-button-prev absolute z-2 top-1/2 rotate-180 -translate-y-1/2 left-9 text-white cursor-pointer"></button>
+        </div>
+
+        <button id="close-swiper" class="absolute top-4 right-4 z-2 text-white text-3xl cursor-pointer">✕</button>
+      </div>
   `;
 };
 
@@ -542,4 +677,14 @@ export const renderDesktopSlider = (slider) => {
   `,
     )
     .join("");
+};
+
+const renderFullscreenSwiperSlide = (image) => {
+  return `
+      <div class="swiper-slide">
+       <div class="flex h-full items-center justify-center">
+         <img src="${image}" class="object-contain rounded-main">
+       </div>
+      </div>
+    `;
 };

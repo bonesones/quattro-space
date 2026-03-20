@@ -521,4 +521,9 @@
   .banner-pagination .swiper-pagination-bullet:hover {
     @apply bg-accent-pink/80!;
   }
+
+  .gallery-fullpage-swiper .swiper-button-next .swiper-navigation-icon,
+  .gallery-fullpage-swiper .swiper-button-prev .swiper-navigation-icon {
+    @apply text-white h-12 w-6;
+  }
 }
