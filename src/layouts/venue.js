@@ -1,11 +1,4 @@
 export const VenueLayout = (venue) => {
-  const isDesktop =
-    typeof window !== "undefined" ? window.innerWidth > 1024 : false;
-
-  const slider = isDesktop ? venue.desktopSlider : venue.slider;
-
-  const sliderHeight = isDesktop ? "h-162.5" : "h-125";
-
   return `
     <section class="mt-16.5 lg:mt-20 lg:items-start px-main"
       style="--leave: fadeToTop 1.6s ease both">
@@ -124,9 +117,15 @@ export const VenueLayout = (venue) => {
           </ol>
         </nav>
 
-      <div class="venue-swiper swiper ${sliderHeight} rounded-main w-full lg:mt-20"> 
+      <div class="venue-swiper swiper h-125 rounded-main w-full lg:mt-20 lg:hidden!"> 
         <div class="swiper-wrapper">
-          ${isDesktop ? renderDesktopSlider(slider) : renderSlider(slider)}
+          ${renderSlider(venue.slider)}
+        </div>
+      </div>
+
+      <div class="venue-swiper swiper h-162.5 rounded-main w-full lg:mt-20 max-lg:hidden!"> 
+        <div class="swiper-wrapper">
+          ${renderDesktopSlider(venue.desktopSlider)}
         </div>
       </div>
     </div>

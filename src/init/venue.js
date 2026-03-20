@@ -67,27 +67,29 @@ export const initVenuePage = async () => {
     await import("swiper/css");
     await import("swiper/css/effect-fade");
 
-    const swiperElement = document.querySelector(".venue-swiper");
+    const swiperElements = document.querySelectorAll(".venue-swiper");
 
-    if (swiperElement) {
-      if (swiperElement.swiper) {
-        swiperElement.swiper.destroy(true, true);
-      }
+    if (swiperElements.length > 0) {
+      swiperElements.forEach((swiperElement) => {
+        if (swiperElement.swiper) {
+          swiperElement.swiper.destroy(true, true);
+        }
 
-      new Swiper(swiperElement, {
-        modules: [Autoplay, EffectFade],
-        effect: "fade",
-        spaceBetween: 30,
-        centeredSlides: true,
-        autoplay: {
-          delay: 800,
-          disableOnInteraction: false,
-        },
-        loop: true,
+        new Swiper(swiperElement, {
+          modules: [Autoplay, EffectFade],
+          effect: "fade",
+          spaceBetween: 30,
+          centeredSlides: true,
+          autoplay: {
+            delay: 800,
+            disableOnInteraction: false,
+          },
+          loop: true,
 
-        ...(isDesktop && {
-          allowTouchMove: false,
-        }),
+          ...(isDesktop && {
+            allowTouchMove: false,
+          }),
+        });
       });
     }
 
