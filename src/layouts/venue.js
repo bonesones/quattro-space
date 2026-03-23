@@ -87,7 +87,7 @@ export const VenueLayout = venue => {
                 } руб/час</span>
               </span>
 
-              <button type="button" class="w-full lg:basis-1/2 py-4 rounded-main border border-accent-pink ${
+              <button type="button" class="w-full lg:basis-1/2 py-4 rounded-main border cursor-pointer border-accent-pink ${
                 venue.isSelected ? "bg-accent-pink text-white" : ""
               } text-base text-center mt-4 lg:mt-0">
                 ${venue.isSelected ? "Выбрано" : "Выбрать эту площадку"}
@@ -357,7 +357,7 @@ export const VenueLayout = venue => {
           </form>
 
           <div class="flex gap-6 lg:pb-40 mt-10">
-            <button type="button" class="border border-accent-pink w-full py-4 rounded-main uppercase basis-full lg:basis-1/2"> 
+            <button type="button" class="border border-accent-pink w-full py-4 rounded-main uppercase basis-full lg:basis-1/2 cursor-pointer"> 
                 Добавить в конструктор
             </button>
 
@@ -368,7 +368,7 @@ export const VenueLayout = venue => {
         </div>
         </div>
       </div>
-    </section>
+    </section>  
 
     <section class="mt-25 lg:mt-20 px-main lg:items-start" style="--enter: fadeFromBottom 1.6s ease both; --leave: fadeToTop 1.6s ease both">
      <div class="2xl:container w-full lg:pb-32">

@@ -223,7 +223,7 @@ export const bannerTemplate = `<section
           >
             <button
               type="button"
-              class="py-3 flex-1 bg-accent-pink uppercase rounded-[10px]"
+              class="py-3 flex-1 bg-accent-pink uppercase rounded-[10px] cursor-pointer"
             >
               Онлайн-конструктор
             </button>
