@@ -1,4 +1,4 @@
-export const VenueLayout = (venue) => {
+export const VenueLayout = venue => {
   return `
     <section class="mt-16.5 lg:mt-20 lg:items-start px-main"
       style="--leave: fadeToTop 1.6s ease both">
@@ -30,11 +30,15 @@ export const VenueLayout = (venue) => {
           </ol>
         </nav>
 
-        <h1 class="text-[40px] leading-normal lg:text-title-md xl:text-title-lg uppercase font-grotesk text-center lg:text-left lg:mt-6">${venue.title}</h1>
+        <h1 class="text-[40px] leading-normal lg:text-title-md xl:text-title-lg uppercase font-grotesk text-center lg:text-left lg:mt-6">${
+          venue.title
+        }</h1>
 
         <div class="image-wrapper w-full overflow-hidden rounded-main mt-6">
-            <img src="${venue.shalePageImage}" fetchpriority="high" alt="Главное изображение площадки" class="w-full h-71.25 lg:h-107.5 object-cover lg:object-center main-image" style="object-position: center 70%" 
-            data-animate style="--leave: scaleUp 1.4s ease both" />
+            <img src="${
+              venue.shalePageImage
+            }" fetchpriority="high" alt="Главное изображение площадки" class="w-full h-71.25 lg:h-107.5 object-cover lg:object-center main-image" style="object-position: center 70%; --leave: scaleUp 1.4s ease both" 
+            data-animate />
         </div>
 
         <div class="
@@ -48,7 +52,7 @@ export const VenueLayout = (venue) => {
           <div class="grid grid-cols-5 lg:grid-cols-6 gap-4 mt-6 lg:mt-0 lg:[grid-area:amenities]">
             ${venue.amenities
               .map(
-                (el) => `
+                el => `
               <div class="flex flex-col items-center gap-2">
                 <svg class="w-12.5 h-12.5 text-accent-pink">
                   <use href="/sprite.svg#${el.icon}"></use>
@@ -56,7 +60,7 @@ export const VenueLayout = (venue) => {
                 <span class="text-base font-extrabold">${el.title}</span>
                 <span class="text-xs">${el.description || ""}</span>
               </div>
-            `,
+            `
               )
               .join("")}
           </div>
@@ -64,9 +68,9 @@ export const VenueLayout = (venue) => {
           <div class="flex flex-wrap gap-2 mt-10 lg:mt-4 lg:[grid-area:events] h-fit">
             ${venue.events
               .map(
-                (event) => `
+                event => `
               <span class="text-base p-2.5 bg-gray rounded-[10px]">${event}</span>
-            `,
+            `
               )
               .join("")}
           </div>
@@ -78,10 +82,14 @@ export const VenueLayout = (venue) => {
           <div class="lg:[grid-area:price]">
             <div class="flex flex-col lg:flex-row items-center justify-between lg:gap-4">
               <span class="text-xl lg:text-2xl font-bold text-center lg:text-left mt-10 lg:mt-0 lg:basis-1/2">
-                Стоимость от <span class="text-accent-pink">${venue.price} руб/час</span>
+                Стоимость от <span class="text-accent-pink">${
+                  venue.price
+                } руб/час</span>
               </span>
 
-              <button type="button" class="w-full lg:basis-1/2 py-4 rounded-main border border-accent-pink ${venue.isSelected ? "bg-accent-pink text-white" : ""} text-base text-center mt-4 lg:mt-0">
+              <button type="button" class="w-full lg:basis-1/2 py-4 rounded-main border border-accent-pink ${
+                venue.isSelected ? "bg-accent-pink text-white" : ""
+              } text-base text-center mt-4 lg:mt-0">
                 ${venue.isSelected ? "Выбрано" : "Выбрать эту площадку"}
               </button>
             </div>
@@ -155,12 +163,14 @@ export const VenueLayout = (venue) => {
           </nav>
 
           <div class="flex flex-col items-center h-full">
-           <h2 class="text-center text-subtitle-md lg:text-[40px] uppercase lg:mt-12">В стоимость бронирования ${venue.title} входит:</h2>
+           <h2 class="text-center text-subtitle-md lg:text-[40px] uppercase lg:mt-12">В стоимость бронирования ${
+             venue.title
+           } входит:</h2>
 
          <div class="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr_1fr] gap-y-4 lg:gap-x-14 mt-10 max-w-252.5">
             ${venue.included
               .map(
-                (item) => `
+                item => `
                     <div class="flex items-center gap-4">
                         ${
                           item.icon
@@ -171,7 +181,7 @@ export const VenueLayout = (venue) => {
                         }
                         <span class="text-base">${item.title}</span>
                     </div>
-                `,
+                `
               )
               .join("")}
          </div>
@@ -563,17 +573,30 @@ export const VenueLayout = (venue) => {
          </div>
 
         <div class="thumbnails px-main 2xl:mx-auto mt-14 hidden 2xl:container lg:block">
-            <div class="w-full grid grid-cols-[0.5fr_0.5fr_1fr] overflow-hidden rounded-main">
-             ${venue.gallerySlides.map((image) => `<img src="${image}" class="w-full h-100 object-cover cursor-pointer">`).join("")}
+            <div class="swiper swiper-gallery-thumbs rounded-main">
+                <div class="swiper-wrapper">
+                  ${venue.gallerySlides
+                    .map(
+                      image => `
+                      <div class="swiper-slide h-100! w-1/2! shrink-0! cursor-pointer transition-[margin-right]! duration-300!">
+                          <img src="${image}" class="w-full h-full object-cover">
+                      </div>
+                    `
+                    )
+                    .join("")}
+                  </div>
+                  <button class="swiper-button-prev absolute z-5 w-10 h-10 flex items-center justify-center rounded-full bg-black/50 top-1/2 rotate-180 -translate-y-1/2 left-9 text-white cursor-pointer"></button>
+                  <button class="swiper-button-next absolute z-5 w-10 h-10 flex items-center justify-center rounded-full bg-black/50 top-1/2 -translate-y-1/2 right-9 text-white cursor-pointer"></button>
             </div>
         </div>
+      </div>
 
 
         <div class="mt-25 lg:mt-30 w-full">
               <h2 class="uppercase text-xl font-bold text-center">Партнеры</h2>
 
               <div class="grid grid-cols-4 lg:grid-cols-10 gap-6 lg:gap-7.5SS mt-4 px-main xl:px-0 max-w-319.75 mx-auto">
-                ${Array.from({ length: 20 }, (_) => {
+                ${Array.from({ length: 20 }, _ => {
                   return `<div class="bg-gray w-full h-full aspect-square"></div>`;
                 }).join("")}
               </div>
@@ -593,19 +616,19 @@ export const VenueLayout = (venue) => {
         </div>
 
         <button id="close-swiper" class="absolute top-4 right-4 z-2 text-white text-3xl cursor-pointer">✕</button>
-      </div>
+    </div>
   `;
 };
 
-const renderSlider = (slider) => {
+const renderSlider = slider => {
   return slider
-    .map((slide) => {
+    .map(slide => {
       return `
       <div class="swiper-slide">
         <div class="flex flex-col h-full divide-y-16 divide-transparent">
           ${slide
             .map(
-              (image) => `
+              image => `
             <div class="h-full relative bg-gray-100 overflow-hidden">
               <img 
                 src="${image}" 
@@ -614,7 +637,7 @@ const renderSlider = (slider) => {
                 alt="Площадка для мероприятий в Москве" 
               />
             </div>
-          `,
+          `
             )
             .join("")}
         </div>
@@ -624,10 +647,10 @@ const renderSlider = (slider) => {
     .join("");
 };
 
-export const renderDesktopSlider = (slider) => {
+export const renderDesktopSlider = slider => {
   return slider
     .map(
-      (slide) => `
+      slide => `
     <div class="swiper-slide h-full">
       <div class="flex gap-4 h-full items-center">
         ${slide
@@ -645,7 +668,7 @@ export const renderDesktopSlider = (slider) => {
                   ? `<div class="flex flex-col gap-4 h-full w-full">
                       ${el
                         .map(
-                          (img) => `
+                          img => `
                         <div class="relative overflow-hidden rounded-main h-1/2">
                           <img 
                             src="${img}" 
@@ -654,7 +677,7 @@ export const renderDesktopSlider = (slider) => {
                             alt="Площадка для мероприятий в Москве"
                           />
                         </div>
-                      `,
+                      `
                         )
                         .join("")}
                     </div>`
@@ -673,12 +696,12 @@ export const renderDesktopSlider = (slider) => {
           .join("")}
       </div>
     </div>
-  `,
+  `
     )
     .join("");
 };
 
-const renderFullscreenSwiperSlide = (image) => {
+const renderFullscreenSwiperSlide = image => {
   return `
       <div class="swiper-slide">
        <div class="flex h-full items-center justify-center">

@@ -23,8 +23,9 @@ export const initVenuePage = async () => {
         if (index == 0) {
           const title = fullPageContainer.querySelector("h1");
           const mainImage = fullPageContainer.querySelector(".main-image");
-          const imageWrapper =
-            fullPageContainer.querySelector(".image-wrapper");
+          const imageWrapper = fullPageContainer.querySelector(
+            ".image-wrapper"
+          );
 
           title?.classList.remove("venue-title-animated");
           mainImage?.classList.remove("venue-image-animated");
@@ -56,21 +57,24 @@ export const initVenuePage = async () => {
         }
 
         return true;
-      },
+      }
     });
   }
 
   try {
-    const [{ default: Swiper }, { Autoplay, EffectFade, Navigation }] =
-      await Promise.all([import("swiper"), import("swiper/modules")]);
+    const [
+      { default: Swiper },
+      { Autoplay, EffectFade, Navigation, EffectCoverflow }
+    ] = await Promise.all([import("swiper"), import("swiper/modules")]);
 
     await import("swiper/css");
     await import("swiper/css/effect-fade");
+    await import("swiper/css/effect-coverflow");
 
     const swiperElements = document.querySelectorAll(".venue-swiper");
 
     if (swiperElements.length > 0) {
-      swiperElements.forEach((swiperElement) => {
+      swiperElements.forEach(swiperElement => {
         if (swiperElement.swiper) {
           swiperElement.swiper.destroy(true, true);
         }
@@ -82,18 +86,19 @@ export const initVenuePage = async () => {
           centeredSlides: true,
           autoplay: {
             delay: 800,
-            disableOnInteraction: false,
+            disableOnInteraction: false
           },
           loop: true,
 
           ...(isDesktop && {
-            allowTouchMove: false,
-          }),
+            allowTouchMove: false
+          })
         });
       });
     }
 
     initFullPageSwiper(Swiper, Navigation);
+    initSwiperGallery(Swiper, Navigation);
   } catch (error) {
     console.error("Failed to initialize Swiper:", error);
   }
@@ -101,11 +106,11 @@ export const initVenuePage = async () => {
 
 const initFullPageSwiper = (Swiper, Navigation) => {
   const gallerySwiperWrapper = document.querySelector(
-    "#fullscreen-venue-swiper",
+    "#fullscreen-venue-swiper"
   );
 
   const gallerySwiper = gallerySwiperWrapper.querySelector(
-    ".gallery-fullpage-swiper",
+    ".gallery-fullpage-swiper"
   );
   const thumbnails = document.querySelectorAll(".thumbnails img");
   const closeBtn = document.getElementById("close-swiper");
@@ -120,12 +125,12 @@ const initFullPageSwiper = (Swiper, Navigation) => {
       loop: true,
       navigation: {
         nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
+        prevEl: ".swiper-button-prev"
+      }
     });
 
     thumbnails.forEach((img, index) => {
-      img.addEventListener("click", (e) => {
+      img.addEventListener("click", e => {
         e.preventDefault();
         e.stopPropagation();
 
@@ -136,7 +141,7 @@ const initFullPageSwiper = (Swiper, Navigation) => {
       });
     });
 
-    closeBtn.addEventListener("click", (e) => {
+    closeBtn.addEventListener("click", e => {
       e.preventDefault();
       e.stopPropagation();
 
@@ -147,18 +152,60 @@ const initFullPageSwiper = (Swiper, Navigation) => {
   }
 };
 
+const updateSlideMargins = swiper => {
+  const activeIndex = swiper.activeIndex;
+  const slides = swiper.slides;
+
+  slides.forEach((slide, index) => {
+    const relativeIndex = (index - activeIndex + slides.length) % slides.length;
+
+    if (relativeIndex === 2) {
+      slide.style.marginRight = "0";
+    } else {
+      slide.style.marginRight = "-25%";
+    }
+  });
+};
+
+const initSwiperGallery = (Swiper, Navigation) => {
+  const swiper = document.querySelector(".swiper-gallery-thumbs");
+
+  if (!swiper) return;
+  if (swiper.swiper) swiper.swiper.destroy(true, true);
+
+  new Swiper(swiper, {
+    modules: [Navigation],
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev"
+    },
+    slidesPerView: "auto",
+    loop: true,
+    centeredSlides: false,
+    allowTouchMove: false,
+    on: {
+      init: swiper => {
+        updateSlideMargins(swiper);
+      },
+      slideChange: swiper => {
+        updateSlideMargins(swiper);
+      }
+    }
+  });
+};
+
 const initTabs = () => {
   const buttons = document.querySelectorAll(".tab-btn");
   const contents = document.querySelectorAll(".tab-content");
 
-  buttons.forEach((btn) => {
+  buttons.forEach(btn => {
     btn.addEventListener("click", () => {
       const target = btn.dataset.target;
 
-      buttons.forEach((b) => (b.dataset.active = "false"));
+      buttons.forEach(b => (b.dataset.active = "false"));
       btn.dataset.active = "true";
 
-      contents.forEach((img) => {
+      contents.forEach(img => {
         img.dataset.active = img.dataset.content === target ? "true" : "false";
       });
     });
@@ -178,7 +225,7 @@ const initPhoneMask = () => {
     IMask(phoneInput, {
       mask: "+{7} (000) 000-00-00",
       lazy: false,
-      placeholderChar: "_",
+      placeholderChar: "_"
     });
   }
 };
@@ -188,7 +235,7 @@ const initDateMask = () => {
   const dateDisplay = document.querySelector("#custom-date-display span");
 
   if (dateInput && dateDisplay) {
-    dateInput.addEventListener("change", (e) => {
+    dateInput.addEventListener("change", e => {
       if (e.target.value) {
         const [year, month, day] = e.target.value.split("-");
         dateDisplay.textContent = `${day}.${month}.${year}`;
@@ -211,7 +258,7 @@ const initFileInput = () => {
     }
 
     fileNamesContainer.innerHTML = files
-      .map((file) => `<div>${file.name}</div>`)
+      .map(file => `<div>${file.name}</div>`)
       .join("");
   });
 };

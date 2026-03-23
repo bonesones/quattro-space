@@ -13,66 +13,66 @@ export const venues = [
       {
         icon: "square",
         title: "500м2",
-        description: "Площадь",
+        description: "Площадь"
       },
       {
         icon: "bonquet",
         title: "200",
-        description: "Банкет",
+        description: "Банкет"
       },
       {
         icon: "buffet",
         title: "400",
-        description: "Фуршет",
+        description: "Фуршет"
       },
       {
         icon: "conference",
         title: "300",
-        description: "Конференция",
+        description: "Конференция"
       },
       {
         icon: "ladder",
         title: "2",
-        description: "Этаж",
+        description: "Этаж"
       },
       {
         icon: "veranda",
-        title: "Веранда",
-      },
+        title: "Веранда"
+      }
     ],
     desktopSlider: [
       [
         [
           "/images/venues/shale/slider/2.webp",
-          "/images/venues/shale/slider/3.webp",
+          "/images/venues/shale/slider/3.webp"
         ],
         ["/images/venues/shale/slider/1.webp"],
-        ["/images/venues/shale/slider/4.webp"],
+        ["/images/venues/shale/slider/4.webp"]
       ],
       [
         [
           "/images/venues/shale/slider/6.webp",
-          "/images/venues/shale/slider/7.webp",
+          "/images/venues/shale/slider/7.webp"
         ],
         ["/images/venues/shale/slider/19.webp"],
-        ["/images/venues/shale/slider/5.webp"],
+        ["/images/venues/shale/slider/5.webp"]
       ],
       [
         [
           "/images/venues/shale/slider/main.webp",
-          "/images/venues/shale/slider/8.webp",
+          "/images/venues/shale/slider/8.webp"
         ],
         ["/images/venues/shale/slider/online-decorator.webp"],
-        ["/images/venues/shale/slider/25.webp"],
-      ],
+        ["/images/venues/shale/slider/25.webp"]
+      ]
     ],
     slider: [
       ["/images/venues/shale/slider/1.webp"],
       [
         "/images/venues/shale/slider/2.webp",
-        "/images/venues/shale/slider/3.webp",
+        "/images/venues/shale/slider/3.webp"
       ],
-      ["/images/venues/shale/slider/4.webp"],
+      ["/images/venues/shale/slider/4.webp"]
     ],
     events: [
       "Конференция",
@@ -81,65 +81,68 @@ export const venues = [
       "Корпоратив",
       "Семинар",
       "Фуршет",
-      "Банкет",
+      "Банкет"
     ],
     included: [
       {
         title: "Полное техническое сопровождение",
-        icon: "tech-support",
+        icon: "tech-support"
       },
       {
         title: "Персональный ивент-менеджер",
-        icon: "manager",
+        icon: "manager"
       },
       {
         title: "Большой экран 6 x 3.5 м",
-        icon: "screen",
+        icon: "screen"
       },
       {
         title: "Банкетное меню",
-        img: "/images/icons/menu.svg",
+        img: "/images/icons/menu.svg"
       },
       {
         title: "Звуковое оборудование",
-        img: "/images/icons/sound.svg",
+        img: "/images/icons/sound.svg"
       },
       {
         title: "Сцена",
-        img: "/images/icons/scene.svg",
+        img: "/images/icons/scene.svg"
       },
       {
         title: "Микрофон",
-        icon: "microphone",
+        icon: "microphone"
       },
       {
         title: "Оформление зала",
-        icon: "balls",
+        icon: "balls"
       },
       {
         title: "Профессиональное освещение",
-        img: "/images/icons/lightning.svg",
+        img: "/images/icons/lightning.svg"
       },
       {
         title: "Бесплатный вайфай",
-        img: "/images/icons/wifi.svg",
+        img: "/images/icons/wifi.svg"
       },
       {
         title: "Уборка",
-        img: "/images/icons/cleaning.svg",
-      },
+        img: "/images/icons/cleaning.svg"
+      }
     ],
     isSelected: false,
     schemeParagraph:
       "Интерьер выполнен в стиле «шале» в белых тонах, что придаёт помещению особую изысканность и благородство. Этот зал станет идеальным местом для проведения конференций, семинаров, корпоративных мероприятий или торжественных церемоний, добавляя праздничности и торжественности вашему событию.",
     schemeImages: {
       model: "/images/venues/shale/3d-scheme.webp",
-      plan: "/images/venues/shale/tech-plan.webp",
+      plan: "/images/venues/shale/tech-plan.webp"
     },
     gallerySlides: [
       "/images/venues/compas_main.webp",
       "/images/venues/conf_main.webp",
       "/images/venues/mansarda_main.webp",
-    ],
-  },
+      "/images/venues/small_conf_main.webp",
+      "/images/venues/compas_main.webp",
+      "/images/venues/conf_main.webp"
+    ]
+  }
 ];
