@@ -705,7 +705,7 @@ const renderFullscreenSwiperSlide = image => {
   return `
       <div class="swiper-slide">
        <div class="flex h-full items-center justify-center">
-         <img src="${image}" class="object-contain rounded-main">
+         <img src="${image}" class="object-contain container h-full">
        </div>
       </div>
     `;
