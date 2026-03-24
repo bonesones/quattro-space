@@ -8,6 +8,7 @@ import { PAGES } from "./pages/pagesConfig.js";
 import { initHomePage } from "./init/home.js";
 import { initVenuePage } from "./init/venue.js";
 import { initCategoryPage } from "./init/category.js";
+import { init404Page } from "./init/404.js";
 
 const page = document.body.dataset.page || "home";
 
@@ -32,4 +33,5 @@ document.addEventListener("DOMContentLoaded", () => {
   if (currentPage === "home") initHomePage();
   else if (currentPage === "shale") initVenuePage();
   else if (currentPage === "business") initCategoryPage();
+  else if (currentPage === "404") init404Page();
 });

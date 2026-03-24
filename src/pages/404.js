@@ -22,14 +22,3 @@ export const render404Page = () => {
     </div>
   `;
 };
-
-document.addEventListener("DOMContentLoaded", () => {
-  const video = document.querySelector("video");
-  video?.play().catch(() => {
-    const img = document.querySelector(".video-fallback");
-
-    if (img && video) {
-      video.parentNode.replaceChild(img, video);
-    }
-  });
-});
