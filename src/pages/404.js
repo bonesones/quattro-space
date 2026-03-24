@@ -3,11 +3,11 @@ export const render404Page = () => {
     <div class="min-h-[90vh] lg:h-screen">
         <img
   src="/video/bg-video-pink-fallback.webp"
-  class="absolute top-14 left-0 w-full h-full object-cover error-video-fallback"
+  class="absolute top-14 lg:top-0 left-0 w-full h-full object-cover error-video-fallback"
   alt="fallback"
   loading="lazy"
 />
-<video autoplay loop muted playsinline class='absolute top-14 left-0 w-full h-full object-cover error-page-video mt-14'>
+<video autoplay loop muted playsinline class='absolute top-14 lg:top-0 left-0 w-full h-full object-cover error-page-video mt-14'>
   <source src="/video/bg-video-pink.mp4" type="video/mp4" />
 </video>
     <div class="mt-22 relative z-2 w-fit mx-auto lg:hidden">
