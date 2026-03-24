@@ -7,6 +7,7 @@ import { BaseLayout } from "./layouts/base.js";
 import { PAGES } from "./pages/pagesConfig.js";
 import { initHomePage } from "./init/home.js";
 import { initVenuePage } from "./init/venue.js";
+import { initCategoryPage } from "./init/category.js";
 
 const page = document.body.dataset.page || "home";
 
@@ -22,7 +23,7 @@ BaseLayout({
   header: renderHeader(),
   footer: renderFooter(),
   content: content,
-  initFns: [initHeader, initFooter],
+  initFns: [initHeader, initFooter]
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -30,4 +31,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (currentPage === "home") initHomePage();
   else if (currentPage === "shale") initVenuePage();
+  else if (currentPage === "business") initCategoryPage();
 });

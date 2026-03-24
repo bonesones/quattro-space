@@ -6,19 +6,19 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Функция для получения путей к ассетам из манифеста
-const getAssetPaths = (distPath) => {
+const getAssetPaths = distPath => {
   try {
     const manifestPath = path.join(distPath, ".vite/manifest.json");
     const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf-8"));
 
     const mainEntry = Object.values(manifest).find(
-      (entry) => entry.isEntry || entry.name === "main",
+      entry => entry.isEntry || entry.name === "main"
     );
 
     if (mainEntry) {
       return {
         js: `/${mainEntry.file}`,
-        css: mainEntry.css ? `/${mainEntry.css[0]}` : "/css/main.css",
+        css: mainEntry.css ? `/${mainEntry.css[0]}` : "/css/main.css"
       };
     }
   } catch (error) {
@@ -27,11 +27,10 @@ const getAssetPaths = (distPath) => {
 
   return {
     js: "/js/main.js",
-    css: "/css/main.css",
+    css: "/css/main.css"
   };
 };
 
-// Функция для рендеринга layout с хедером и футером
 const renderLayout = async (page, assetPaths) => {
   // Импортируем функции рендеринга хедера и футера
   const { renderHeader } = await import("../src/components/header/header.js");
@@ -58,7 +57,7 @@ const renderLayout = async (page, assetPaths) => {
     data-page="${page.slug}"
     class="font-roboto lg:bg-[url(/images/site-bg.webp)] bg-repeat-y lg:h-full"
   >
-    <div id="app" class="${page.slug === "shale" ? "venue-page" : page.slug} lg:h-screen lg:relative">
+    <div id="app" class="${page.slug} lg:h-screen lg:relative">
       ${header}
       <main class="lg:min-h-screen">
         ${page.content}
@@ -94,9 +93,9 @@ async function prerender() {
         {
           title: page.title,
           content: content,
-          slug: slug,
+          slug: slug
         },
-        assetPaths,
+        assetPaths
       );
 
       const fileName = slug === "home" ? "index.html" : `${slug}.html`;

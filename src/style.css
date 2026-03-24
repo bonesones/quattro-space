@@ -385,7 +385,7 @@
     }
   }
 
-  @keyframes expandImageUpwards {
+  @keyframes expandCategoryImageUpwards {
     0% {
       height: 26.875rem;
       scale: 1;
@@ -396,7 +396,7 @@
     }
   }
 
-  @keyframes expandImageWrapper {
+  @keyframes expandCategoryImageWrapper {
     0% {
       height: 26.875rem;
       margin-top: 0;
@@ -408,7 +408,7 @@
   }
 
   @media (min-width: 1280px) {
-    @keyframes expandImageUpwards {
+    @keyframes expandCategoryImageUpwards {
       0% {
         height: 26.875rem;
         scale: 1;
@@ -419,7 +419,7 @@
       }
     }
 
-    @keyframes expandImageWrapper {
+    @keyframes expandCategoryImageWrapper {
       0% {
         height: 26.875rem;
         margin-top: 0;
@@ -431,15 +431,48 @@
     }
   }
 
+  @keyframes expandVenueImageUpwards {
+    0% {
+      height: 26.875rem;
+      scale: 1;
+    }
+    100% {
+      height: 34.375rem;
+      scale: 1.2;
+    }
+  }
+
+  @keyframes expandVenueImageWrapper {
+    0% {
+      height: 26.875rem;
+      margin-top: 0;
+    }
+    100% {
+      height: 34.375rem;
+      margin-top: -9.375rem;
+    }
+  }
+
   .venue-image-animated {
-    animation: expandImageUpwards 1.6s ease both;
+    animation: expandVenueImageUpwards 1.6s ease both;
   }
 
   .venue-image-wrapper-animated {
-    animation: expandImageWrapper 1.6s ease both;
+    animation: expandVenueImageWrapper 1.6s ease both;
   }
 
   .venue-title-animated {
+    animation: fadeToTopWithOpacity 2.3s ease both;
+  }
+
+  .category-image-animated {
+    animation: expandCategoryImageUpwards 1.6s ease both;
+  }
+  .category-image-wrapper-animated {
+    animation: expandCategoryImageWrapper 1.6s ease both;
+  }
+
+  .category-title-animated {
     animation: fadeToTopWithOpacity 2.3s ease both;
   }
 }

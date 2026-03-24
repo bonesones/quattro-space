@@ -1,10 +1,10 @@
 import { initFullPage } from "../utils/fullpage.js";
 
-export const initVenuePage = async () => {
+export const initCategoryPage = async () => {
   if (typeof window === "undefined") return;
 
   const isDesktop = window.innerWidth > 1024;
-  const fullPageContainer = document.querySelector(".shale");
+  const fullPageContainer = document.querySelector(".business");
 
   initTabs();
   initForm();
@@ -27,80 +27,66 @@ export const initVenuePage = async () => {
             ".image-wrapper"
           );
 
-          title?.classList.remove("venue-title-animated");
-          mainImage?.classList.remove("venue-image-animated");
-          imageWrapper?.classList.remove("venue-image-wrapper-animated");
+          title?.classList.remove("category-title-animated");
+          mainImage?.classList.remove("category-image-animated");
+          imageWrapper?.classList.remove("category-image-wrapper-animated");
         }
       },
       beforeSectionChange: (currentIndex, nextIndex) => {
-        const mainImage = fullPageContainer.querySelector(".main-image");
+        const mainImages = Array.from(
+          fullPageContainer.querySelectorAll(".main-image")
+        );
         const imageWrapper = fullPageContainer.querySelector(".image-wrapper");
         const title = fullPageContainer.querySelector("h1");
 
         const isFirstSectionAnimated =
-          mainImage?.classList.contains("venue-image-animated") &&
-          title?.classList.contains("venue-title-animated");
-        imageWrapper?.classList.contains("venue-image-wrapper-animated");
+          mainImages.every(mainImage =>
+            mainImage.classList.contains("category-image-animated")
+          ) &&
+          title?.classList.contains("category-title-animated") &&
+          imageWrapper?.classList.contains("category-image-wrapper-animated");
 
         if (currentIndex === 0 && !isFirstSectionAnimated) {
-          title?.classList.add("venue-title-animated");
-          mainImage?.classList.add("venue-image-animated");
-          imageWrapper?.classList.add("venue-image-wrapper-animated");
+          mainImages.forEach(mainImage =>
+            mainImage.classList.add("category-image-animated")
+          );
+
+          title?.classList.add("category-title-animated");
+          imageWrapper?.classList.add("category-image-wrapper-animated");
 
           return false;
+        } else if (currentIndex === 0 && isFirstSectionAnimated) {
+          title?.classList.remove("category-title-animated");
+          mainImages.forEach(mainImage =>
+            mainImage.classList.remove("category-image-animated")
+          );
+          imageWrapper?.classList.remove("category-image-wrapper-animated");
         }
 
         if (nextIndex === 0) {
-          title?.classList.remove("venue-title-animated");
-          mainImage?.classList.remove("venue-image-animated");
-          imageWrapper?.classList.remove("venue-image-wrapper-animated");
+          title?.classList.remove("category-title-animated");
+          mainImages.forEach(mainImage =>
+            mainImage.classList.remove("category-image-animated")
+          );
+          imageWrapper?.classList.remove("category-image-wrapper-animated");
         }
 
         return true;
       }
     });
-  }
 
-  try {
-    const [
-      { default: Swiper },
-      { Autoplay, EffectFade, Navigation, EffectCoverflow }
-    ] = await Promise.all([import("swiper"), import("swiper/modules")]);
+    try {
+      const [{ default: Swiper }, { Navigation }] = await Promise.all([
+        import("swiper"),
+        import("swiper/modules")
+      ]);
 
-    await import("swiper/css");
-    await import("swiper/css/effect-fade");
-    await import("swiper/css/effect-coverflow");
-
-    const swiperElements = document.querySelectorAll(".venue-swiper");
-
-    if (swiperElements.length > 0) {
-      swiperElements.forEach(swiperElement => {
-        if (swiperElement.swiper) {
-          swiperElement.swiper.destroy(true, true);
-        }
-
-        new Swiper(swiperElement, {
-          modules: [Autoplay, EffectFade],
-          effect: "fade",
-          spaceBetween: 30,
-          centeredSlides: true,
-          autoplay: {
-            delay: 800,
-            disableOnInteraction: false
-          },
-          loop: true,
-
-          ...(isDesktop && {
-            allowTouchMove: false
-          })
-        });
-      });
+      await import("swiper/css");
+      initFullPageSwiper(Swiper, Navigation);
+      initSwiperGallery(Swiper, Navigation);
+    } catch (error) {
+      console.error("Failed to initialize Swiper:", error);
     }
-
-    initFullPageSwiper(Swiper, Navigation);
-    initSwiperGallery(Swiper, Navigation);
-  } catch (error) {
-    console.error("Failed to initialize Swiper:", error);
   }
 };
 

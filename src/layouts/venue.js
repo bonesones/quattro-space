@@ -30,7 +30,7 @@ export const VenueLayout = venue => {
           </ol>
         </nav>
 
-        <h1 class="text-[40px] leading-normal lg:text-title-md xl:text-title-lg uppercase font-grotesk text-center lg:text-left lg:mt-6">${
+        <h1 class="text-[40px] leading-normal lg:text-title-md uppercase font-grotesk text-center lg:text-left lg:mt-6">${
           venue.title
         }</h1>
 
@@ -579,7 +579,7 @@ export const VenueLayout = venue => {
                     .map(
                       image => `
                       <div class="swiper-slide h-100! w-1/2! shrink-0! cursor-pointer transition-[margin-right]! duration-300!">
-                          <img src="${image}" class="w-full h-full object-cover">
+                          <img src="${image}" class="w-full h-full object-cover" loading="lazy" alt="Площадка для мероприятий в Москве">
                       </div>
                     `
                     )
@@ -601,7 +601,7 @@ export const VenueLayout = venue => {
                 }).join("")}
               </div>
 
-              <div class="h-66.5 bg-gray my-10 ">
+              <div class="h-66.5 lg:h-102.5 bg-gray my-10 lg:my-30">
               </div>
         </div>
     </section>
@@ -705,7 +705,7 @@ const renderFullscreenSwiperSlide = image => {
   return `
       <div class="swiper-slide">
        <div class="flex h-full items-center justify-center">
-         <img src="${image}" class="object-contain container h-full">
+         <img src="${image}" class="object-contain container h-full" loading="lazy" alt="Площадка для мероприятий в Москве">
        </div>
       </div>
     `;

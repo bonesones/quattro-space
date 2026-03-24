@@ -1,4 +1,4 @@
-export const footerTemplate = `<footer class="border-t border-slate-800 mt-10 lg:mt-0 relative px-main py-10">
+export const footerTemplate = `<footer class="border-t border-slate-800 relative px-main py-10">
   <img
     src="/video/bg-video-pink-fallback.webp"
     class="absolute top-0 left-0 w-full h-full object-cover footer-fallback"
