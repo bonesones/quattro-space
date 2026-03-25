@@ -33,7 +33,7 @@ export const renderKitchenPage = () => {
 
             <h1 class="text-title-lg-sm leading-normal lg:text-title-md xl:text-title-lg uppercase font-grotesk text-center lg:text-left lg:mt-6 2xl:container mx-auto lg:px-main">Кухня</h1>
 
-            <img src="/images/kitchen-rotated.webp" fetchpriority="high" class="w-full h-255 mt-6 lg:hidden" />
+            <img src="/images/kitchen-rotated.webp" fetchpriority="high" class="w-full max-w-100 mx-auto h-255 mt-6 lg:hidden" />
 
             <img src="/images/kitchen-main.webp" fetchpriority="high" class="w-full mt-6 hidden lg:block" data-animate style="--leave: scaleUp 1.4s ease both" />
         </div>
