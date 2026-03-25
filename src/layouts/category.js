@@ -547,7 +547,7 @@ export const CategoryLayout = category => {
               <p class="text-body-lg lg:self-center lg:text-body-base col-span-1 lg:col-start-4 mt-6 lg:mt-0">Vivamus vitae venenatis eros, ut accumsan nulla. Morbi sit amet tempus dui, et rutrum eros. Curabitur pretium mi in metus facilisis, sit amet porta urna euismod. Aenean rutrum, erat id ornare pellentesque, velit diam tempor ante, et convallis risus leo nec odio.</p>
          </div>
 
-        <div class="thumbnails px-main 2xl:mx-auto mt-14 hidden 2xl:container lg:block">
+        <div class="thumbnails 2xl:mx-auto mt-14 hidden 2xl:container lg:block">
             <div class="swiper swiper-gallery-thumbs rounded-main">
                 <div class="swiper-wrapper">
                   ${category.gallerySlides

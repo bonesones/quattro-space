@@ -14,12 +14,12 @@ export default defineConfig({
           {
             name: "cleanupIds",
             params: {
-              prefix: "icon-",
-            },
-          },
-        ],
-      },
-    }),
+              prefix: "icon-"
+            }
+          }
+        ]
+      }
+    })
   ],
 
   build: {
@@ -32,11 +32,14 @@ export default defineConfig({
       input: {
         home: resolve(__dirname, "index.html"),
         shale: resolve(__dirname, "shale.html"),
+        business: resolve(__dirname, "business.html"),
+        404: resolve(__dirname, "404.html"),
+        kitchen: resolve(__dirname, "kitchen.html")
       },
       output: {
         entryFileNames: "js/[name].[hash].js",
         chunkFileNames: "js/[name].[hash].js",
-        assetFileNames: (assetInfo) => {
+        assetFileNames: assetInfo => {
           if (assetInfo.name.endsWith(".css")) {
             return "css/[name].[hash][extname]";
           }
@@ -44,12 +47,12 @@ export default defineConfig({
             return "images/[name].[hash][extname]";
           }
           return "assets/[name].[hash][extname]";
-        },
-      },
-    },
+        }
+      }
+    }
   },
 
   server: {
-    open: true,
-  },
+    open: true
+  }
 });
