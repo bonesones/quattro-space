@@ -1,3 +1,5 @@
+import { renderPartnersMarquee } from "@/shared/ui/partners/renderPartnersMarquee.js";
+
 export const renderKitchenPage = () => {
   return `
        <section class="mt-16.5 lg:mt-20 lg:items-start lg:overflow-x-hidden"
@@ -579,10 +581,8 @@ export const renderKitchenPage = () => {
           <div class="mt-25 lg:mt-30 w-full">
                 <h2 class="uppercase text-xl font-bold text-center px-main">Партнеры</h2>
 
-                <div class="grid grid-cols-4 lg:grid-cols-10 gap-6 lg:gap-7.5SS mt-4 px-main xl:px-0 max-w-319.75 mx-auto">
-                  ${Array.from({ length: 20 }, _ => {
-                    return `<div class="bg-gray w-full h-full aspect-square"></div>`;
-                  }).join("")}
+                <div class="mt-4 px-main xl:px-0 max-w-319.75 mx-auto">
+                  ${renderPartnersMarquee()}
                 </div>
 
                 <div class="h-66.5 lg:h-102.5 bg-gray my-10 lg:my-30">

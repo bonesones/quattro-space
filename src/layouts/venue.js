@@ -1,3 +1,6 @@
+import { renderBreadcrumbs } from "@/shared/ui/breadcrumbs/breadcrumbs.js";
+import { renderPartnersMarquee } from "@/shared/ui/partners/renderPartnersMarquee.js";
+
 export const VenueLayout = venue => {
   return `
     <section class="mt-16.5 lg:mt-20 lg:items-start px-main"
@@ -9,26 +12,11 @@ export const VenueLayout = venue => {
         </svg>
         </button>
 
-        <nav aria-label="Навигационная цепочка" class="hidden lg:block text-body-sm lg:mt-6">
-          <ol class="breadcrumbs flex gap-2">
-            <li>
-              <a href="/" class="flex items-center gap-2.5">
-                <svg class="w-3.25 h-3">
-                  <use href="/sprite.svg#breadcrumb"></use>
-                </svg>
-                Главная
-              </a>
-            </li>
-            /
-            <li>
-              <a href="/#venues">Площадки</a>
-            </li>
-            /
-            <li>
-              <a href="/${venue.slug}.html">${venue.title}</a>
-            </li>
-          </ol>
-        </nav>
+        ${renderBreadcrumbs([
+          { href: "/", label: "Главная", isHome: true },
+          { href: "/#venues", label: "Площадки" },
+          { href: `/${venue.slug}.html`, label: venue.title },
+        ])}
 
         <h1 class="text-[40px] leading-normal lg:text-title-md uppercase font-grotesk text-center lg:text-left lg:mt-6">${
           venue.title
@@ -104,26 +92,11 @@ export const VenueLayout = venue => {
     
     <section class="mt-25 lg:mt-20 px-main lg:items-start" style="--enter: fadeFromBottom 1.6s ease both; --leave: fadeToTop 1.6s ease both">
     <div class="w-full 2xl:container lg:pb-32">
-    <nav aria-label="Навигационная цепочка" class="hidden lg:block text-body-sm lg:mt-6">
-          <ol class="breadcrumbs flex gap-2">
-            <li>
-              <a href="/" class="flex items-center gap-2.5">
-                <svg class="w-3.25 h-3">
-                  <use href="/sprite.svg#breadcrumb"></use>
-                </svg>
-                Главная
-              </a>
-            </li>
-            /
-            <li>
-              <a href="/#venues">Площадки</a>
-            </li>
-            /
-            <li>
-              <a href="/${venue.slug}.html">${venue.title}</a>
-            </li>
-          </ol>
-        </nav>
+      ${renderBreadcrumbs([
+        { href: "/", label: "Главная", isHome: true },
+        { href: "/#venues", label: "Площадки" },
+        { href: `/${venue.slug}.html`, label: venue.title },
+      ])}
 
       <div class="venue-swiper swiper h-125 rounded-main w-full lg:mt-20 lg:hidden!"> 
         <div class="swiper-wrapper">
@@ -141,26 +114,11 @@ export const VenueLayout = venue => {
 
     <section class="mt-25 lg:mt-20 px-main items-start" style="--enter: fadeFromBottom 1.6s ease both; --leave: fadeToTop 1.6s ease both">
       <div class="w-full h-full 2xl:container">
-        <nav aria-label="Навигационная цепочка" class="hidden lg:block text-body-sm lg:mt-6">
-            <ol class="breadcrumbs flex gap-2">
-              <li>
-                <a href="/" class="flex items-center gap-2.5">
-                  <svg class="w-3.25 h-3">
-                    <use href="/sprite.svg#breadcrumb"></use>
-                  </svg>
-                  Главная
-                </a>
-              </li>
-              /
-              <li>
-                <a href="/#venues">Площадки</a>
-              </li>
-              /
-              <li>
-                <a href="/${venue.slug}.html">${venue.title}</a>
-              </li>
-            </ol>
-          </nav>
+        ${renderBreadcrumbs([
+          { href: "/", label: "Главная", isHome: true },
+          { href: "/#venues", label: "Площадки" },
+          { href: `/${venue.slug}.html`, label: venue.title },
+        ])}
 
           <div class="flex flex-col items-center h-full">
            <h2 class="text-center text-subtitle-md lg:text-[40px] uppercase lg:mt-12">В стоимость бронирования ${
@@ -372,26 +330,11 @@ export const VenueLayout = venue => {
 
     <section class="mt-25 lg:mt-20 px-main lg:items-start" style="--enter: fadeFromBottom 1.6s ease both; --leave: fadeToTop 1.6s ease both">
      <div class="2xl:container w-full lg:pb-32">
-        <nav aria-label="Навигационная цепочка" class="hidden lg:block text-body-sm lg:mt-6">
-        <ol class="breadcrumbs flex gap-2">
-            <li>
-            <a href="/" class="flex items-center gap-2.5">
-                <svg class="w-3.25 h-3">
-                <use href="/sprite.svg#breadcrumb"></use>
-                </svg>
-                Главная
-            </a>
-            </li>
-            /
-            <li>
-            <a href="/#venues">Площадки</a>
-            </li>
-            /
-            <li>
-            <a href="/${venue.slug}.html">${venue.title}</a>
-            </li>
-        </ol>
-        </nav>
+        ${renderBreadcrumbs([
+          { href: "/", label: "Главная", isHome: true },
+          { href: "/#venues", label: "Площадки" },
+          { href: `/${venue.slug}.html`, label: venue.title },
+        ])}
 
         <div class="flex flex-col items-center">
          
@@ -444,26 +387,11 @@ export const VenueLayout = venue => {
 
     <section class="mt-25 lg:mt-0 lg:relative lg:items-start lg:flex-col" style="--enter: fadeFromBottom 1.6s ease both; --leave: fadeToTop 1.6s ease both">
        <div class="mt-20 2xl:container mx-auto">
-            <nav aria-label="Навигационная цепочка" class="hidden lg:block text-body-sm lg:mt-6 px-main">
-                <ol class="breadcrumbs flex gap-2">
-                    <li>
-                    <a href="/" class="flex items-center gap-2.5">
-                        <svg class="w-3.25 h-3">
-                        <use href="/sprite.svg#breadcrumb"></use>
-                        </svg>
-                        Главная
-                    </a>
-                    </li>
-                    /
-                    <li>
-                    <a href="/#venues">Площадки</a>
-                    </li>
-                    /
-                    <li>
-                    <a href="/${venue.slug}.html">${venue.title}</a>
-                    </li>
-                </ol>
-            </nav>
+            ${renderBreadcrumbs([
+              { href: "/", label: "Главная", isHome: true },
+              { href: "/#venues", label: "Площадки" },
+              { href: `/${venue.slug}.html`, label: venue.title },
+            ]).replace('class="hidden lg:block text-body-sm lg:mt-6"', 'class="hidden lg:block text-body-sm lg:mt-6 px-main"')}
 
             <h2 class="uppercase text-subtitle-md lg:text-subtitle-lg text-center px-main lg:mt-12">Смотрите другие площадки</h2>
 
@@ -595,10 +523,8 @@ export const VenueLayout = venue => {
         <div class="mt-25 lg:mt-30 w-full">
               <h2 class="uppercase text-xl font-bold text-center">Партнеры</h2>
 
-              <div class="grid grid-cols-4 lg:grid-cols-10 gap-6 lg:gap-7.5SS mt-4 px-main xl:px-0 max-w-319.75 mx-auto">
-                ${Array.from({ length: 20 }, _ => {
-                  return `<div class="bg-gray w-full h-full aspect-square"></div>`;
-                }).join("")}
+              <div class="mt-4 px-main xl:px-0 max-w-319.75 mx-auto">
+                ${renderPartnersMarquee()}
               </div>
 
               <div class="h-66.5 lg:h-102.5 bg-gray my-10 lg:my-30">

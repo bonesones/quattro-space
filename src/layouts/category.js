@@ -1,3 +1,6 @@
+import { renderBreadcrumbs } from "@/shared/ui/breadcrumbs/breadcrumbs.js";
+import { renderPartnersMarquee } from "@/shared/ui/partners/renderPartnersMarquee.js";
+
 export const CategoryLayout = category => {
   return `
     <section class="mt-16.5 lg:mt-20 lg:items-start px-main"
@@ -9,26 +12,11 @@ export const CategoryLayout = category => {
         </svg>
         </button>
 
-        <nav aria-label="Навигационная цепочка" class="hidden lg:block text-body-sm lg:mt-6">
-          <ol class="breadcrumbs flex gap-2">
-            <li>
-              <a href="/" class="flex items-center gap-2.5">
-                <svg class="w-3.25 h-3">
-                  <use href="/sprite.svg#breadcrumb"></use>
-                </svg>
-                Главная
-              </a>
-            </li>
-            /
-            <li>
-              <a href="/#venues">Форматы</a>
-            </li>
-            /
-            <li>
-              <a href="/${category.slug}.html">${category.title}</a>
-            </li>
-          </ol>
-        </nav>
+        ${renderBreadcrumbs([
+          { href: "/", label: "Главная", isHome: true },
+          { href: "/#venues", label: "Форматы" },
+          { href: `/${category.slug}.html`, label: category.title },
+        ])}
 
         <h1 class="text-title-lg-sm leading-normal lg:text-title-md xl:text-title-lg uppercase font-grotesk text-center lg:text-left lg:mt-6">${
           category.title
@@ -235,26 +223,11 @@ export const CategoryLayout = category => {
 
     <section class="mt-25 lg:mt-20 px-main lg:items-start" style="--enter: fadeFromBottom 1.6s ease both; --leave: fadeToTop 1.6s ease both">
      <div class="2xl:container w-full lg:pb-32">
-          <nav aria-label="Навигационная цепочка" class="hidden lg:block text-body-sm lg:mt-6">
-          <ol class="breadcrumbs flex gap-2">
-            <li>
-              <a href="/" class="flex items-center gap-2.5">
-                <svg class="w-3.25 h-3">
-                  <use href="/sprite.svg#breadcrumb"></use>
-                </svg>
-                Главная
-              </a>
-            </li>
-            /
-            <li>
-              <a href="/#venues">Форматы</a>
-            </li>
-            /
-            <li>
-              <a href="/${category.slug}.html">${category.title}</a>
-            </li>
-          </ol>
-        </nav>
+        ${renderBreadcrumbs([
+          { href: "/", label: "Главная", isHome: true },
+          { href: "/#venues", label: "Форматы" },
+          { href: `/${category.slug}.html`, label: category.title },
+        ])}
 
         <h2 class="uppercase text-subtitle-md lg:text-subtitle-lg text-center lg:mt-12">Подходящие площадки</h2>
 
@@ -329,26 +302,11 @@ export const CategoryLayout = category => {
 
      <section class="mt-25 lg:mt-0 lg:relative lg:items-start lg:flex-col" style="--enter: fadeFromBottom 1.6s ease both; --leave: fadeToTop 1.6s ease both">
        <div class="mt-20 w-full mx-auto">
-            <nav aria-label="Навигационная цепочка" class="hidden lg:block text-body-sm lg:mt-6 px-main 2xl:container mx-auto">
-                <ol class="breadcrumbs flex gap-2">
-                    <li>
-                    <a href="/" class="flex items-center gap-2.5">
-                        <svg class="w-3.25 h-3">
-                        <use href="/sprite.svg#breadcrumb"></use>
-                        </svg>
-                        Главная
-                    </a>
-                    </li>
-                    /
-                    <li>
-                    <a href="/">Форматы</a>
-                    </li>
-                    /
-                    <li>
-                    <a href="/${category.slug}.html">${category.title}</a>
-                    </li>
-                </ol>
-            </nav>
+            ${renderBreadcrumbs([
+              { href: "/", label: "Главная", isHome: true },
+              { href: "/", label: "Форматы" },
+              { href: `/${category.slug}.html`, label: category.title },
+            ]).replace('class="hidden lg:block text-body-sm lg:mt-6"', 'class="hidden lg:block text-body-sm lg:mt-6 px-main 2xl:container mx-auto"')}
 
 
             <div class="h-full mt-25 lg:mt-12 max-w-260 mx-auto px-main">
@@ -570,10 +528,8 @@ export const CategoryLayout = category => {
         <div class="mt-25 lg:mt-30 w-full">
               <h2 class="uppercase text-xl font-bold text-center px-main">Партнеры</h2>
 
-              <div class="grid grid-cols-4 lg:grid-cols-10 gap-6 lg:gap-7.5SS mt-4 px-main xl:px-0 max-w-319.75 mx-auto">
-                ${Array.from({ length: 20 }, _ => {
-                  return `<div class="bg-gray w-full h-full aspect-square"></div>`;
-                }).join("")}
+              <div class="mt-4 px-main xl:px-0 max-w-319.75 mx-auto">
+                ${renderPartnersMarquee()}
               </div>
 
               <div class="h-66.5 lg:h-102.5 bg-gray my-10 lg:my-30">
