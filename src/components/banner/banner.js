@@ -1,4 +1,3 @@
-import { Autoplay, EffectFade } from "swiper/modules";
 import { bannerTemplate } from "./banner.html.js";
 
 export function renderBanner() {
@@ -29,107 +28,107 @@ export const initBanner = async (root = document) => {
     atSpan.style.setProperty("--move-distance", moveDistance + "px");
   }
 
-  if (typeof window !== "undefined") {
-    try {
-      const [{ default: Swiper }, { Pagination, Navigation, Autoplay }] =
-        await Promise.all([import("swiper"), import("swiper/modules")]);
+  try {
+    const [
+      { default: Swiper },
+      { Pagination, Navigation, Autoplay }
+    ] = await Promise.all([import("swiper"), import("swiper/modules")]);
 
-      await import("swiper/css");
-      await import("swiper/css/pagination");
-      await import("swiper/css/navigation");
+    await import("swiper/css");
+    await import("swiper/css/pagination");
+    await import("swiper/css/navigation");
 
-      const bannerSwiper = root.querySelector(".banner-swiper");
+    const bannerSwiper = root.querySelector(".banner-swiper");
 
-      if (bannerSwiper) {
-        if (bannerSwiper.swiper) {
-          bannerSwiper.swiper.destroy(true, true);
-        }
-
-        const stop = (e) => e.stopPropagation();
-
-        bannerSwiper.addEventListener("click", stop);
-
-        const swiper = new Swiper(bannerSwiper, {
-          modules: [Pagination, Navigation, Autoplay],
-          slidesPerView: 1.7,
-          centeredSlides: true,
-
-          loop: true,
-
-          autoplay: {
-            delay: 1000,
-            disableOnInteraction: true,
-          },
-
-          pagination: {
-            el: ".banner-pagination",
-            clickable: true,
-          },
-          speed: 1000,
-
-          on: {
-            init: function () {
-              const paginationEl = document.querySelector(".banner-pagination");
-              if (paginationEl) {
-                paginationEl.addEventListener("click", (e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                });
-
-                paginationEl.addEventListener("mousedown", (e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                });
-
-                paginationEl.addEventListener("touchstart", (e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                });
-              }
-
-              const prevBtn = document.querySelector(".banner-prev");
-              const nextBtn = document.querySelector(".banner-next");
-
-              if (prevBtn) {
-                prevBtn.addEventListener("click", (e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                });
-
-                prevBtn.addEventListener("mousedown", (e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                });
-              }
-
-              if (nextBtn) {
-                nextBtn.addEventListener("click", (e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                });
-
-                nextBtn.addEventListener("mousedown", (e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                });
-              }
-            },
-
-            touchStart: function () {
-              if (window.fullpageScrollDisabled) return;
-              window.fullpageScrollDisabled = true;
-            },
-
-            touchEnd: function () {
-              setTimeout(() => {
-                window.fullpageScrollDisabled = false;
-              }, 100);
-            },
-          },
-        });
+    if (bannerSwiper) {
+      if (bannerSwiper.swiper) {
+        bannerSwiper.swiper.destroy(true, true);
       }
-    } catch (error) {
-      console.error("Failed to initialize banner swiper:", error);
+
+      const stop = e => e.stopPropagation();
+
+      bannerSwiper.addEventListener("click", stop);
+
+      const swiper = new Swiper(bannerSwiper, {
+        modules: [Pagination, Navigation, Autoplay],
+        slidesPerView: 1.7,
+        centeredSlides: true,
+
+        loop: true,
+
+        autoplay: {
+          delay: 1000,
+          disableOnInteraction: true
+        },
+
+        pagination: {
+          el: ".banner-pagination",
+          clickable: true
+        },
+        speed: 1000,
+
+        on: {
+          init: function() {
+            const paginationEl = document.querySelector(".banner-pagination");
+            if (paginationEl) {
+              paginationEl.addEventListener("click", e => {
+                e.stopPropagation();
+                e.preventDefault();
+              });
+
+              paginationEl.addEventListener("mousedown", e => {
+                e.stopPropagation();
+                e.preventDefault();
+              });
+
+              paginationEl.addEventListener("touchstart", e => {
+                e.stopPropagation();
+                e.preventDefault();
+              });
+            }
+
+            const prevBtn = document.querySelector(".banner-prev");
+            const nextBtn = document.querySelector(".banner-next");
+
+            if (prevBtn) {
+              prevBtn.addEventListener("click", e => {
+                e.stopPropagation();
+                e.preventDefault();
+              });
+
+              prevBtn.addEventListener("mousedown", e => {
+                e.stopPropagation();
+                e.preventDefault();
+              });
+            }
+
+            if (nextBtn) {
+              nextBtn.addEventListener("click", e => {
+                e.stopPropagation();
+                e.preventDefault();
+              });
+
+              nextBtn.addEventListener("mousedown", e => {
+                e.stopPropagation();
+                e.preventDefault();
+              });
+            }
+          },
+
+          touchStart: function() {
+            if (window.fullpageScrollDisabled) return;
+            window.fullpageScrollDisabled = true;
+          },
+
+          touchEnd: function() {
+            setTimeout(() => {
+              window.fullpageScrollDisabled = false;
+            }, 100);
+          }
+        }
+      });
     }
+  } catch (error) {
+    console.error("Failed to initialize banner swiper:", error);
   }
 };

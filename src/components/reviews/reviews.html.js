@@ -24,28 +24,64 @@ export const reviewsTemplate = `<section
         Партнеры
       </h3>
 
+      <div class="flex flex-col gap-4 overflow-hidden">
       <div
-        class="grid grid-cols-4 lg:grid-cols-10 gap-x-6 gap-y-6 mt-4 lg:mt-8 justify-items-center"
+        class="partners-swiper row-1"
       >
-        <div class="bg-[#D9D9D9] w-17 h-17"></div>
-        <div class="bg-[#D9D9D9] w-17 h-17"></div>
-        <div class="bg-[#D9D9D9] w-17 h-17"></div>
-        <div class="bg-[#D9D9D9] w-17 h-17"></div>
-        <div class="bg-[#D9D9D9] w-17 h-17"></div>
-        <div class="bg-[#D9D9D9] w-17 h-17"></div>
-        <div class="bg-[#D9D9D9] w-17 h-17"></div>
-        <div class="bg-[#D9D9D9] w-17 h-17"></div>
-        <div class="bg-[#D9D9D9] w-17 h-17"></div>
-        <div class="bg-[#D9D9D9] w-17 h-17"></div>
-        <div class="bg-[#D9D9D9] w-17 h-17"></div>
-        <div class="bg-[#D9D9D9] w-17 h-17"></div>
-        <div class="bg-[#D9D9D9] w-17 h-17"></div>
-        <div class="bg-[#D9D9D9] w-17 h-17"></div>
-        <div class="bg-[#D9D9D9] w-17 h-17"></div>
-        <div class="bg-[#D9D9D9] w-17 h-17"></div>
-        <div class="bg-[#D9D9D9] w-17 h-17"></div>
-        <div class="bg-[#D9D9D9] w-17 h-17"></div>
-        <div class="bg-[#D9D9D9] w-17 h-17"></div>
+          <img src="/images/partners/1.png"   alt="Партнер" />
+
+          <img src="/images/partners/2.jpg"   alt="Партнер" />
+
+          <img src="/images/partners/3.jpg"   alt="Партнер" />
+
+          <img src="/images/partners/4.png"   alt="Партнер" />
+
+          <img src="/images/partners/5.png"   alt="Партнер" />
+
+          <img src="/images/partners/6.png"   alt="Партнер" />
+
+          <img src="/images/partners/7.png"   alt="Партнер" />
+
+          <img src="/images/partners/8.png"   alt="Партнер" />
+   
+          <img src="/images/partners/9.png"   alt="Партнер" />
+
+          <img src="/images/partners/10.png"   alt="Партнер" />
+  
+          <img src="/images/partners/11.png"   alt="Партнер" />
+          
+          <img src="/images/partners/12.png"   alt="Партнер" />
+
+          <img src="/images/partners/13.png"   alt="Партнер" />
+      </div>
+
+      <div class="partners-swiper row-2">
+        <img src="/images/partners/14.png"   alt="Партнер" />
+
+        <img src="/images/partners/15.png"   alt="Партнер" /> 
+
+        <img src="/images/partners/16.png"   alt="Партнер" /> 
+        
+        <img src="/images/partners/17.png"   alt="Партнер" /> 
+
+        <img src="/images/partners/18.jpg"   alt="Партнер" />
+        
+        <img src="/images/partners/19.jpg"   alt="Партнер" />
+
+        <img src="/images/partners/20.jpg"   alt="Партнер" />
+
+        <img src="/images/partners/21.png"   alt="Партнер" />
+      
+        <img src="/images/partners/22.png"   alt="Партнер" />
+
+        <img src="/images/partners/23.png"   alt="Партнер" />
+
+        <img src="/images/partners/24.svg"   alt="Партнер" />
+      
+        <img src="/images/partners/25.jpg"   alt="Партнер" />
+    
+        <img src="/images/partners/26.png"   alt="Партнер" />
+      </div>
       </div>
     </div>
 

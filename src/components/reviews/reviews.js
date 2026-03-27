@@ -4,30 +4,80 @@ export function renderReviews() {
   return reviewsTemplate.replace("{{year}}", String(new Date().getFullYear()));
 }
 
-export function initReviews(root = document) {
-  if (typeof window === "undefined") return;
+function waitForImages(container) {
+  if (!container) return Promise.resolve();
 
-  console.log("Reviews component initialized");
+  const images = [...container.querySelectorAll("img")];
+
+  if (!images.length) return Promise.resolve();
+
+  return Promise.all(
+    images.map(img => {
+      if (img.complete) return Promise.resolve();
+
+      return new Promise(resolve => {
+        const onDone = () => {
+          img.removeEventListener("load", onDone);
+          img.removeEventListener("error", onDone);
+          resolve();
+        };
+
+        img.addEventListener("load", onDone);
+        img.addEventListener("error", onDone);
+      });
+    })
+  )
+    .then(
+      () =>
+        new Promise(resolve => {
+          requestAnimationFrame(() => resolve());
+        })
+    )
+    .then(
+      () =>
+        new Promise(resolve => {
+          requestAnimationFrame(() => resolve());
+        })
+    );
 }
 
-export async function loadReviews() {
-  if (typeof window === "undefined") return [];
+export const initReviews = async () => {
+  const row1Container = document.querySelector(".partners-swiper.row-1");
+  const row2Container = document.querySelector(".partners-swiper.row-2");
+
+  const isDesktop = window.innerWidth > 768;
 
   try {
-    return [];
-  } catch (error) {
-    console.error("Failed to load reviews:", error);
-    return [];
-  }
-}
+    const [{ default: Marquee }] = await Promise.all([
+      import("vanilla-marquee")
+    ]);
 
-export async function loadPartners() {
-  if (typeof window === "undefined") return [];
 
-  try {
-    return [];
+    await Promise.all([
+      waitForImages(row1Container),
+      waitForImages(row2Container)
+    ]);
+
+    if (row1Container) {
+      new Marquee(row1Container, {
+        delayBeforeStart: 0,
+        direction: "left",
+        duplicated: true,
+        startVisible: true,
+        speed: isDesktop ? 130 : 50,
+      });
+    }
+
+    if (row2Container) {
+      new Marquee(row2Container, {
+        delayBeforeStart: 0,
+        direction: "left",
+        speed: isDesktop ? 130 : 50,
+        duplicated: true,
+        startVisible: true,
+      });
+    }
   } catch (error) {
-    console.error("Failed to load partners:", error);
-    return [];
+    console.error("Failed to initialize banner swiper:", error);
   }
-}
+};

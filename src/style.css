@@ -585,4 +585,8 @@
   .kitchen-page-swiper .swiper-slide-active img {
     @apply opacity-100;
   }
+
+  .partners-swiper img {
+    @apply inline-block mx-4;
+  }
 }

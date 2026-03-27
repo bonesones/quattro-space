@@ -4,8 +4,11 @@ import { initVenues } from "../components/venues/venues.js";
 import { initKitchen } from "../components/kitchen/kitchen.js";
 import { initVenueViewingForm } from "../components/venue-viewing-form/venue-viewing-form.js";
 import { initBanner } from "../components/banner/banner.js";
+import { initReviews } from "../components/reviews/reviews.js";
 
 export function initHomePage() {
+  if (typeof window === "undefined") return;
+
   const isDesktop = window.innerWidth > 1024;
   const fullPageContainer = document.querySelector(".home");
 
@@ -23,11 +26,12 @@ export function initHomePage() {
           header.classList.add("lg:bg-black", "pt-6", "px-main");
           header.classList.remove("pt-12.5", "px-12");
         }
-      },
+      }
     });
   }
 
   initBanner();
+  initReviews();
 
   const venuesContainer = document.getElementById("venues-list-container");
   if (venuesContainer) initVenues(venuesContainer);
