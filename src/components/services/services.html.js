@@ -3,7 +3,7 @@ export const servicesTemplate = `<section
   id="services"
   style="--enter: fadeFromBottom 0.9s ease 0.6s both"
 >
-  <div class="2xl:container mx-auto h-full">
+  <div class="2xl:container mx-auto">
     <h2
       class="text-title-lg-sm lg:text-title-md xl:text-title-lg lg:text-left uppercase text-center font-grotesk"
       data-animate
