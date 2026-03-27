@@ -20,8 +20,6 @@ export async function initVenueSwipers({ isDesktop }) {
 function initVenueFaders({ Swiper, Autoplay, EffectFade, isDesktop }) {
   const swiperElements = document.querySelectorAll(".venue-swiper");
 
-  console.log("workd");
-
   if (swiperElements.length > 0) {
     swiperElements.forEach(swiperElement => {
       createSwiper(swiperElement, Swiper, {
