@@ -1,10 +1,13 @@
-import { loadSwiper, createSwiper } from "@/shared/ui/slider/swiperController.js";
+import {
+  loadSwiper,
+  createSwiper
+} from "@/shared/ui/slider/swiperController.js";
 import { initFullscreenVenueSwiper } from "@/shared/ui/slider/fullscreenVenueSwiper/initFullscreenVenueSwiper.js";
 
 export async function initVenueSwipers({ isDesktop }) {
   const { Swiper, modules } = await loadSwiper([
     () => import("swiper/css/effect-fade"),
-    () => import("swiper/css/effect-coverflow"),
+    () => import("swiper/css/effect-coverflow")
   ]);
 
   const { Autoplay, EffectFade, Navigation } = modules;
@@ -17,8 +20,10 @@ export async function initVenueSwipers({ isDesktop }) {
 function initVenueFaders({ Swiper, Autoplay, EffectFade, isDesktop }) {
   const swiperElements = document.querySelectorAll(".venue-swiper");
 
+  console.log("workd");
+
   if (swiperElements.length > 0) {
-    swiperElements.forEach((swiperElement) => {
+    swiperElements.forEach(swiperElement => {
       createSwiper(swiperElement, Swiper, {
         modules: [Autoplay, EffectFade],
         effect: "fade",
@@ -26,12 +31,12 @@ function initVenueFaders({ Swiper, Autoplay, EffectFade, isDesktop }) {
         centeredSlides: true,
         autoplay: {
           delay: 800,
-          disableOnInteraction: false,
+          disableOnInteraction: false
         },
         loop: true,
         ...(isDesktop && {
-          allowTouchMove: false,
-        }),
+          allowTouchMove: false
+        })
       });
     });
   }
@@ -60,20 +65,19 @@ function initThumbsGallery({ Swiper, Navigation }) {
     modules: [Navigation],
     navigation: {
       nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
+      prevEl: ".swiper-button-prev"
     },
     slidesPerView: "auto",
     loop: true,
     centeredSlides: false,
     allowTouchMove: false,
     on: {
-      init: (swiper) => {
+      init: swiper => {
         updateSlideMargins(swiper);
       },
-      slideChange: (swiper) => {
+      slideChange: swiper => {
         updateSlideMargins(swiper);
-      },
-    },
+      }
+    }
   });
 }
-

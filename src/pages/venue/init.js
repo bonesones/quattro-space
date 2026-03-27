@@ -15,10 +15,10 @@ export const initVenuePage = async () => {
   if (isDesktop) {
     setupVenueFullpage({
       container: nodes.pageRoot,
-      header: nodes.desktopHeader,
+      header: nodes.desktopHeader
     });
   }
 
   initReviews();
+  initVenueSwipers({ isDesktop });
 };
-

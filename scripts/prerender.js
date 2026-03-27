@@ -1,11 +1,9 @@
-// scripts/prerender.js
 import fs from "fs-extra";
 import path from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Функция для получения путей к ассетам из манифеста
 const getAssetPaths = distPath => {
   try {
     const manifestPath = path.join(distPath, ".vite/manifest.json");
@@ -32,7 +30,6 @@ const getAssetPaths = distPath => {
 };
 
 const renderLayout = async (page, assetPaths) => {
-  // Импортируем функции рендеринга хедера и футера
   const { renderHeader } = await import("../src/components/header/header.js");
   const { renderFooter } = await import("../src/components/footer/footer.js");
 
@@ -76,7 +73,6 @@ async function prerender() {
     const assetPaths = getAssetPaths(dist);
     console.log("📦 Asset paths:", assetPaths);
 
-    // Динамический импорт конфигурации страниц
     const { PAGES } = await import("../src/pages/pagesConfig.js");
 
     console.log("📄 Найдены страницы:", Object.keys(PAGES));
@@ -84,7 +80,6 @@ async function prerender() {
     for (const [slug, page] of Object.entries(PAGES)) {
       console.log(`🔄 Рендеринг ${slug}...`);
 
-      // Вызываем функцию render для получения контента страницы
       const content = page.render ? page.render() : page.content || "";
 
       console.log(`📊 Content length: ${content.length}`);
