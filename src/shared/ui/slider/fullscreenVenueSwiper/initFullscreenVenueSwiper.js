@@ -13,18 +13,26 @@ export function initFullscreenVenueSwiper({ Swiper, Navigation, selectors } = {}
 
   const gallerySwiper = gallerySwiperWrapper.querySelector(swiperSelector);
   const thumbnails = document.querySelectorAll(thumbnailsSelector);
-  const closeBtn = document.querySelector(closeSelector);
+  const closeBtn =
+    gallerySwiperWrapper.querySelector(closeSelector) ??
+    document.querySelector(closeSelector);
+  const nextEl =
+    gallerySwiperWrapper.querySelector(nextElSelector) ??
+    document.querySelector(nextElSelector);
+  const prevEl =
+    gallerySwiperWrapper.querySelector(prevElSelector) ??
+    document.querySelector(prevElSelector);
   let backgroundSwiper = null;
 
-  if (!gallerySwiper || !closeBtn) return;
+  if (!gallerySwiper || !closeBtn || !nextEl || !prevEl) return;
 
   const swiper = createSwiper(gallerySwiper, Swiper, {
     modules: [Navigation],
     loop: true,
     navigation: {
-      nextEl: nextElSelector,
-      prevEl: prevElSelector,
-    },
+      nextEl,
+      prevEl
+    }
   });
 
   thumbnails.forEach((img, index) => {

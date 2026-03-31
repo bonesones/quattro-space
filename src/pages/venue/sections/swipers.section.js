@@ -13,6 +13,7 @@ export async function initVenueSwipers({ isDesktop }) {
   const { Autoplay, EffectFade, Navigation } = modules;
 
   initVenueFaders({ Swiper, Autoplay, EffectFade, isDesktop });
+  initFullscreenVenueSwiper({ Swiper, Navigation });
   initFullscreenVenueSwiper({
     Swiper,
     Navigation,

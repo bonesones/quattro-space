@@ -508,9 +508,9 @@ export const VenueLayout = venue => {
                 <div class="swiper-wrapper">
                   ${venue.gallerySlides
                     .map(
-                      image => `
+                      (image, index) => `
                       <div class="swiper-slide h-100! w-1/2! shrink-0! cursor-pointer transition-[margin-right]! duration-300!">
-                          <img src="${image}" class="w-full h-full object-cover" loading="lazy" alt="Площадка для мероприятий в Москве">
+                          <img src="${image}" data-fullscreen-index="${index}" class="w-full h-full object-cover" loading="lazy" alt="Площадка для мероприятий в Москве">
                       </div>
                     `
                     )
@@ -534,6 +534,19 @@ export const VenueLayout = venue => {
               </div>
         </div>
     </section>
+    <div id="fullscreen-venue-swiper" class="fullscreen-venue-swiper fullscreen fixed inset-0 z-60 bg-black/50 backdrop-blur hidden items-center justify-center">
+        <div class="swiper gallery-fullpage-swiper w-full h-screen">
+            <div class="swiper-wrapper">
+              ${venue.gallerySlides.map(renderFullscreenSwiperSlide).join("")}
+            </div>
+
+            <button class="swiper-button-next absolute z-2 top-1/2 -translate-y-1/2 right-9 text-white cursor-pointer"></button>
+            <button class="swiper-button-prev absolute z-2 top-1/2 rotate-180 -translate-y-1/2 left-9 text-white cursor-pointer"></button>
+        </div>
+
+        <button id="close-swiper" class="close-swiper absolute top-4 right-4 z-2 text-white text-3xl cursor-pointer">✕</button>
+    </div>
+
     <div class="fullscreen-venue-swiper-mobile fixed inset-0 z-60 bg-black/50 backdrop-blur hidden items-center justify-center">
         <div class="swiper gallery-fullpage-swiper-mobile w-full h-screen">
             <div class="swiper-wrapper">
@@ -547,7 +560,7 @@ export const VenueLayout = venue => {
         <button class="close-swiper-mobile absolute top-4 right-4 z-2 text-white text-3xl cursor-pointer">✕</button>
     </div>
 
-    <div class="fullscreen-venue-swiper-desktop fixed inset-0 z-60 bg-black/50 backdrop-blur hidden items-center justify-center">
+    <div class="fullscreen-venue-swiper-desktop fullscreen fixed inset-0 z-60 bg-black/50 backdrop-blur hidden items-center justify-center">
         <div class="swiper gallery-fullpage-swiper-desktop w-full h-screen">
             <div class="swiper-wrapper">
               ${renderFullscreenDesktopSwiperSlides(venue.desktopSlider)}
