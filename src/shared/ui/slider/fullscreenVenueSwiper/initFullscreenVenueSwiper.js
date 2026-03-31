@@ -1,10 +1,10 @@
 import { createSwiper } from "../swiperController.js";
 
 export function initFullscreenVenueSwiper({ Swiper, Navigation, selectors } = {}) {
-  const wrapperSelector = selectors?.wrapper ?? "#fullscreen-venue-swiper";
+  const wrapperSelector = selectors?.wrapper ?? ".fullscreen-venue-swiper";
   const swiperSelector = selectors?.swiper ?? ".gallery-fullpage-swiper";
   const thumbnailsSelector = selectors?.thumbnails ?? ".thumbnails img";
-  const closeSelector = selectors?.close ?? "#close-swiper";
+  const closeSelector = selectors?.close ?? ".close-swiper";
   const nextElSelector = selectors?.nextEl ?? ".swiper-button-next";
   const prevElSelector = selectors?.prevEl ?? ".swiper-button-prev";
 
@@ -14,6 +14,7 @@ export function initFullscreenVenueSwiper({ Swiper, Navigation, selectors } = {}
   const gallerySwiper = gallerySwiperWrapper.querySelector(swiperSelector);
   const thumbnails = document.querySelectorAll(thumbnailsSelector);
   const closeBtn = document.querySelector(closeSelector);
+  let backgroundSwiper = null;
 
   if (!gallerySwiper || !closeBtn) return;
 
@@ -31,16 +32,29 @@ export function initFullscreenVenueSwiper({ Swiper, Navigation, selectors } = {}
       e.preventDefault();
       e.stopPropagation();
 
+      const clickedImage = e.currentTarget;
+      const sourceSwiperElement = clickedImage?.closest(".venue-swiper");
+      backgroundSwiper = sourceSwiperElement?.swiper ?? null;
+      backgroundSwiper?.autoplay?.stop?.();
+
       document.body.classList.add("overflow-hidden");
       gallerySwiperWrapper.classList.remove("hidden");
 
-      swiper?.slideToLoop(index, 0);
+      const targetImage = clickedImage;
+      const imageIndex = Number(
+        targetImage?.getAttribute("data-fullscreen-index") ?? index
+      );
+
+      swiper?.slideToLoop(imageIndex, 0);
     });
   });
 
   closeBtn.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
+
+    backgroundSwiper?.autoplay?.start?.();
+    backgroundSwiper = null;
 
     document.body.classList.remove("overflow-hidden");
     gallerySwiperWrapper.classList.add("hidden");
