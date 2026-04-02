@@ -14,6 +14,30 @@ export async function initVenueSwipers({ isDesktop }) {
 
   initVenueFaders({ Swiper, Autoplay, EffectFade, isDesktop });
   initFullscreenVenueSwiper({ Swiper, Navigation });
+  initFullscreenVenueSwiper({
+    Swiper,
+    Navigation,
+    selectors: {
+      wrapper: ".fullscreen-venue-swiper-mobile",
+      swiper: ".gallery-fullpage-swiper-mobile",
+      thumbnails: ".venue-swiper-mobile img",
+      close: ".close-swiper-mobile",
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+  initFullscreenVenueSwiper({
+    Swiper,
+    Navigation,
+    selectors: {
+      wrapper: ".fullscreen-venue-swiper-desktop",
+      swiper: ".gallery-fullpage-swiper-desktop",
+      thumbnails: ".venue-swiper-desktop img",
+      close: ".close-swiper-desktop",
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
   initThumbsGallery({ Swiper, Navigation });
 }
 

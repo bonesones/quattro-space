@@ -15,7 +15,7 @@ export const VenueLayout = venue => {
         ${renderBreadcrumbs([
           { href: "/", label: "Главная", isHome: true },
           { href: "/#venues", label: "Площадки" },
-          { href: `/${venue.slug}.html`, label: venue.title },
+          { href: `/${venue.slug}.html`, label: venue.title }
         ])}
 
         <h1 class="text-[40px] leading-normal lg:text-title-md uppercase font-grotesk text-center lg:text-left lg:mt-6">${
@@ -95,16 +95,16 @@ export const VenueLayout = venue => {
       ${renderBreadcrumbs([
         { href: "/", label: "Главная", isHome: true },
         { href: "/#venues", label: "Площадки" },
-        { href: `/${venue.slug}.html`, label: venue.title },
+        { href: `/${venue.slug}.html`, label: venue.title }
       ])}
 
-      <div class="venue-swiper swiper h-125 rounded-main w-full lg:mt-20 lg:hidden!"> 
+      <div class="venue-swiper venue-swiper-mobile swiper h-125 rounded-main w-full lg:mt-20 lg:hidden!"> 
         <div class="swiper-wrapper">
           ${renderSlider(venue.slider)}
         </div>
       </div>
 
-      <div class="venue-swiper swiper h-162.5 rounded-main w-full lg:mt-20 max-lg:hidden!"> 
+      <div class="venue-swiper venue-swiper-desktop swiper h-162.5 rounded-main w-full lg:mt-20 max-lg:hidden!"> 
         <div class="swiper-wrapper">
           ${renderDesktopSlider(venue.desktopSlider)}
         </div>
@@ -117,7 +117,7 @@ export const VenueLayout = venue => {
         ${renderBreadcrumbs([
           { href: "/", label: "Главная", isHome: true },
           { href: "/#venues", label: "Площадки" },
-          { href: `/${venue.slug}.html`, label: venue.title },
+          { href: `/${venue.slug}.html`, label: venue.title }
         ])}
 
           <div class="flex flex-col items-center h-full">
@@ -333,7 +333,7 @@ export const VenueLayout = venue => {
         ${renderBreadcrumbs([
           { href: "/", label: "Главная", isHome: true },
           { href: "/#venues", label: "Площадки" },
-          { href: `/${venue.slug}.html`, label: venue.title },
+          { href: `/${venue.slug}.html`, label: venue.title }
         ])}
 
         <div class="flex flex-col items-center">
@@ -390,8 +390,11 @@ export const VenueLayout = venue => {
             ${renderBreadcrumbs([
               { href: "/", label: "Главная", isHome: true },
               { href: "/#venues", label: "Площадки" },
-              { href: `/${venue.slug}.html`, label: venue.title },
-            ]).replace('class="hidden lg:block text-body-sm lg:mt-6"', 'class="hidden lg:block text-body-sm lg:mt-6 px-main"')}
+              { href: `/${venue.slug}.html`, label: venue.title }
+            ]).replace(
+              'class="hidden lg:block text-body-sm lg:mt-6"',
+              'class="hidden lg:block text-body-sm lg:mt-6 px-main"'
+            )}
 
             <h2 class="uppercase text-subtitle-md lg:text-subtitle-lg text-center px-main lg:mt-12">Смотрите другие площадки</h2>
 
@@ -505,9 +508,9 @@ export const VenueLayout = venue => {
                 <div class="swiper-wrapper">
                   ${venue.gallerySlides
                     .map(
-                      image => `
+                      (image, index) => `
                       <div class="swiper-slide h-100! w-1/2! shrink-0! cursor-pointer transition-[margin-right]! duration-300!">
-                          <img src="${image}" class="w-full h-full object-cover" loading="lazy" alt="Площадка для мероприятий в Москве">
+                          <img src="${image}" data-fullscreen-index="${index}" class="w-full h-full object-cover" loading="lazy" alt="Площадка для мероприятий в Москве">
                       </div>
                     `
                     )
@@ -531,7 +534,7 @@ export const VenueLayout = venue => {
               </div>
         </div>
     </section>
-    <div id="fullscreen-venue-swiper" class="fixed inset-0 z-60 bg-black/50 backdrop-blur hidden items-center justify-center">
+    <div id="fullscreen-venue-swiper" class="fullscreen-venue-swiper fullscreen fixed inset-0 z-60 bg-black/50 backdrop-blur hidden items-center justify-center">
         <div class="swiper gallery-fullpage-swiper w-full h-screen">
             <div class="swiper-wrapper">
               ${venue.gallerySlides.map(renderFullscreenSwiperSlide).join("")}
@@ -541,30 +544,61 @@ export const VenueLayout = venue => {
             <button class="swiper-button-prev absolute z-2 top-1/2 rotate-180 -translate-y-1/2 left-9 text-white cursor-pointer"></button>
         </div>
 
-        <button id="close-swiper" class="absolute top-4 right-4 z-2 text-white text-3xl cursor-pointer">✕</button>
+        <button id="close-swiper" class="close-swiper absolute top-4 right-4 z-2 text-white text-3xl cursor-pointer">✕</button>
+    </div>
+
+    <div class="fullscreen-venue-swiper-mobile fixed inset-0 z-60 bg-black/50 backdrop-blur hidden items-center justify-center">
+        <div class="swiper gallery-fullpage-swiper-mobile w-full h-screen">
+            <div class="swiper-wrapper">
+              ${renderFullscreenMobileSwiperSlides(venue.slider)}
+            </div>
+
+            <button class="swiper-button-next w-10 h-10 flex items-center justify-center rounded-full bg-black/60 absolute z-2 top-1/2 -translate-y-1/2 right-4 text-white cursor-pointer"></button>
+            <button class="swiper-button-prev w-10 h-10 flex items-center justify-center rounded-full bg-black/60 absolute z-2 top-1/2 rotate-180 -translate-y-1/2 left-4 text-white cursor-pointer"></button>
+        </div>
+
+        <button class="close-swiper-mobile absolute top-4 right-4 z-2 text-white text-3xl cursor-pointer">✕</button>
+    </div>
+
+    <div class="fullscreen-venue-swiper-desktop fullscreen fixed inset-0 z-60 bg-black/50 backdrop-blur hidden items-center justify-center">
+        <div class="swiper gallery-fullpage-swiper-desktop w-full h-screen">
+            <div class="swiper-wrapper">
+              ${renderFullscreenDesktopSwiperSlides(venue.desktopSlider)}
+            </div>
+
+            <button class="swiper-button-next absolute z-2 top-1/2 -translate-y-1/2 right-9 text-white cursor-pointer"></button>
+            <button class="swiper-button-prev absolute z-2 top-1/2 rotate-180 -translate-y-1/2 left-9 text-white cursor-pointer"></button>
+        </div>
+
+        <button class="close-swiper-desktop absolute top-4 right-4 z-2 text-white text-3xl cursor-pointer">✕</button>
     </div>
   `;
 };
 
 const renderSlider = slider => {
+  let imageIndex = 0;
+
   return slider
     .map(slide => {
       return `
       <div class="swiper-slide">
         <div class="flex flex-col h-full divide-y-16 divide-transparent">
           ${slide
-            .map(
-              image => `
+            .map(image => {
+              const currentImageIndex = imageIndex++;
+
+              return `
             <div class="h-full relative bg-gray-100 overflow-hidden">
               <img 
                 src="${image}" 
+                data-fullscreen-index="${currentImageIndex}"
                 class="w-full h-full object-cover rounded-main"
                 loading="lazy" 
                 alt="Площадка для мероприятий в Москве" 
               />
             </div>
-          `
-            )
+          `;
+            })
             .join("")}
         </div>
       </div>
@@ -574,6 +608,8 @@ const renderSlider = slider => {
 };
 
 export const renderDesktopSlider = slider => {
+  let imageIndex = 0;
+
   return slider
     .map(
       slide => `
@@ -593,28 +629,36 @@ export const renderDesktopSlider = slider => {
                 el.length === 2
                   ? `<div class="flex flex-col gap-4 h-full w-full">
                       ${el
-                        .map(
-                          img => `
+                        .map(img => {
+                          const currentImageIndex = imageIndex++;
+
+                          return `
                         <div class="relative overflow-hidden rounded-main h-1/2">
                           <img 
                             src="${img}" 
-                            class="w-full h-full object-cover"
+                            data-fullscreen-index="${currentImageIndex}"
+                            class="w-full h-full object-cover cursor-pointer"
                             loading="lazy"
                             alt="Площадка для мероприятий в Москве"
                           />
                         </div>
-                      `
-                        )
+                      `;
+                        })
                         .join("")}
                     </div>`
-                  : `<div class="h-full relative overflow-hidden rounded-main w-full">
+                  : (() => {
+                      const currentImageIndex = imageIndex++;
+
+                      return `<div class="h-full relative overflow-hidden rounded-main w-full">
                       <img 
                         src="${el[0]}" 
-                        class="w-full h-full object-cover"
+                        data-fullscreen-index="${currentImageIndex}"
+                        class="w-full h-full object-cover cursor-pointer"
                         loading="lazy"
                         alt="Площадка для мероприятий в Москве"
                       />
-                    </div>`
+                    </div>`;
+                    })()
               }
             </div>
           `;
@@ -635,4 +679,16 @@ const renderFullscreenSwiperSlide = image => {
        </div>
       </div>
     `;
+};
+
+const renderFullscreenDesktopSwiperSlides = slider => {
+  const images = slider.flatMap(slide => slide.flat());
+
+  return images.map(image => renderFullscreenSwiperSlide(image)).join("");
+};
+
+const renderFullscreenMobileSwiperSlides = slider => {
+  const images = slider.flat();
+
+  return images.map(image => renderFullscreenSwiperSlide(image)).join("");
 };
