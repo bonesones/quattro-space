@@ -7,6 +7,7 @@ import { initHomeVenuesSection } from "./sections/venues.section.js";
 import { initHomeKitchenSection } from "./sections/kitchen.section.js";
 import { initHomeVenueViewingFormSection } from "./sections/venueViewingForm.section.js";
 import { initHomeServicesSection } from "./sections/services.section.js";
+import { initFormFilterSection } from "./sections/form-filter.section.js";
 
 export function initHomePage() {
   if (typeof window === "undefined") return;
@@ -17,7 +18,7 @@ export function initHomePage() {
   if (isDesktop) {
     setupHomeFullpage({
       container: nodes.homeRoot,
-      header: nodes.desktopHeader,
+      header: nodes.desktopHeader
     });
   }
 
@@ -27,5 +28,5 @@ export function initHomePage() {
   initHomeKitchenSection(nodes);
   initHomeVenueViewingFormSection(nodes);
   initHomeServicesSection(nodes);
+  initFormFilterSection();
 }
-

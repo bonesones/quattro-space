@@ -11,7 +11,8 @@ export const venueFilterTemplate = `<section
     </h2>
 
     <form
-      class="mt-10 grid grid-cols-1 lg:grid-cols-[2fr_1fr] lg:justify-items-center gap-y-10 md:max-w-247 mx-auto"
+      action="/#venues"
+      class="venue-filter-form mt-10 grid grid-cols-1 lg:grid-cols-[2fr_1fr] lg:justify-items-center gap-y-10 md:max-w-247 mx-auto"
     >
       <fieldset class="flex flex-col gap-6">
         <legend
