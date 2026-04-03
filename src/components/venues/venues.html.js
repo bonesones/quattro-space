@@ -22,7 +22,7 @@ export const venuesTemplate = `<section
       style="--leave: fadeOut 1.4s ease both"
     >
       <!-- Зал «Шале» -->
-      <article class="w-full max-md:max-w-86.25 lg:max-w-lg xl:max-w-2xl flex flex-col h-full">
+      <article class="w-full max-md:max-w-86.25 flex flex-col h-full">
         <div class="w-full aspect-345/276 lg:aspect-627/538 overflow-hidden rounded-main">
           <img src="/images/venues/shale_main.webp" class="w-full h-full object-cover" loading="lazy" alt="Зал «Шале»" />
         </div>
@@ -44,7 +44,7 @@ export const venuesTemplate = `<section
       </article>
 
       <!-- Зал «Мансарда» -->
-      <article class="w-full max-md:max-w-86.25 lg:max-w-lg xl:max-w-2xl flex flex-col h-full">
+      <article class="w-full max-md:max-w-86.25 flex flex-col h-full">
         <div class="w-full aspect-345/276 lg:aspect-627/538 overflow-hidden rounded-main">
           <img src="/images/venues/mansarda_main.webp" class="w-full h-full object-cover" loading="lazy" alt="Зал «Мансарда»" />
         </div>
@@ -66,7 +66,7 @@ export const venuesTemplate = `<section
       </article>
 
       <!-- Малый Конференц-зал -->
-      <article class="w-full max-md:max-w-86.25 lg:max-w-lg xl:max-w-2xl flex flex-col h-full">
+      <article class="w-full max-md:max-w-86.25 flex flex-col h-full">
         <div class="w-full aspect-345/276 lg:aspect-627/538 overflow-hidden rounded-main">
           <img src="/images/venues/small_conf_main.webp" class="w-full h-full object-cover" loading="lazy" alt="Малый Конференц-зал" />
         </div>
@@ -88,7 +88,7 @@ export const venuesTemplate = `<section
       </article>
 
       <!-- Конференц-зал -->
-      <article class="w-full max-md:max-w-86.25 lg:max-w-lg xl:max-w-2xl flex flex-col h-full">
+      <article class="w-full max-md:max-w-86.25 flex flex-col h-full">
         <div class="w-full aspect-345/276 lg:aspect-627/538 overflow-hidden rounded-main">
           <img src="/images/venues/conf_main.webp" class="w-full h-full object-cover" loading="lazy" alt="Конференц-зал" />
         </div>
@@ -110,7 +110,7 @@ export const venuesTemplate = `<section
       </article>
 
       <!-- Зал «Компас» -->
-      <article class="w-full max-md:max-w-86.25 lg:max-w-lg xl:max-w-2xl flex flex-col h-full">
+      <article class="w-full max-md:max-w-86.25 flex flex-col h-full">
         <div class="w-full aspect-345/276 lg:aspect-627/538 overflow-hidden rounded-main">
           <img src="/images/venues/compas_main.webp" class="w-full h-full object-cover" loading="lazy" alt="Зал «Компас»" />
         </div>
