@@ -1,6 +1,6 @@
-export const headerTemplate = `<header class="fixed inset-0 z-50 h-fit">
+export const headerTemplate = `<header class="fixed inset-0 z-50 h-fit bg-black">
   <div
-    class="flex lg:hidden items-center justify-between h-14 px-main bg-black"
+    class="flex lg:hidden items-center justify-between h-14 px-main"
   >
     <button id="burgerBtn" aria-label="Открыть меню">
       <svg class="h-10 w-10">
@@ -26,7 +26,7 @@ export const headerTemplate = `<header class="fixed inset-0 z-50 h-fit">
   </div>
 
   <div
-    class="desktop-header hidden lg:flex justify-between pt-12.5 pb-6 w-full px-main"
+    class="desktop-header hidden lg:flex justify-between py-6 w-full px-main"
   >
     <a href="#banner-container">
       <svg class="w-69 h-7 text-accent-pink">

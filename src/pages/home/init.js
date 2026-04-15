@@ -18,7 +18,7 @@ export function initHomePage() {
   if (isDesktop) {
     setupHomeFullpage({
       container: nodes.homeRoot,
-      header: nodes.desktopHeader
+      header: nodes.header
     });
   }
 

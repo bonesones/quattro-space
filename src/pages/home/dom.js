@@ -1,6 +1,6 @@
 export function getHomeNodes(root = document) {
   const homeRoot = root.querySelector(".home");
-  const desktopHeader = root.querySelector(".desktop-header");
+  const header = root.querySelector("header");
 
   const venuesListContainer = root.getElementById("venues-list-container");
   const kitchenContainer = root.getElementById("kitchen-container");
@@ -11,12 +11,11 @@ export function getHomeNodes(root = document) {
 
   return {
     homeRoot,
-    desktopHeader,
+    header,
     venuesListContainer,
     kitchenContainer,
     servicesListContainer,
     contactDateInput,
-    customDateDisplay,
+    customDateDisplay
   };
 }
-
