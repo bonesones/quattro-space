@@ -30,13 +30,13 @@ export const renderBlogsPage = () => {
             </div>
 
             <div class="flex justify-between items-center">
-                <a href="#" class="bg-accent-pink px-8 py-3 text-center text-white rounded-2xl">Подробнее</a>
+                <a href="/blog.html" class="bg-accent-pink px-8 py-3 text-center text-white rounded-2xl">Подробнее</a>
 
                 <span class="text-body-lg lg:text-subtitle-md-sm font-medium">09.10.2025</span>
             </div>
         </article>
 
-             <article class="bg-[#EBE9EA] rounded-main w-full p-6 space-y-8 lg:space-y-10">
+        <article class="bg-[#EBE9EA] rounded-main w-full p-6 space-y-8 lg:space-y-10">
             <img src="/images/about-us-main.webp" class="w-full h-62.5 rounded-main object-cover" alt="Изображение блога" />
 
             <div class="space-y-4 lg:space-y-6">
@@ -45,14 +45,14 @@ export const renderBlogsPage = () => {
             </div>
 
             <div class="flex justify-between items-center">
-                <a href="#" class="bg-accent-pink px-8 py-3 text-center text-white rounded-2xl">Подробнее</a>
+                <a href="/blog.html" class="bg-accent-pink px-8 py-3 text-center text-white rounded-2xl">Подробнее</a>
 
                 <span class="text-body-lg lg:text-subtitle-md-sm font-medium">09.10.2025</span>
             </div>
         </article>
 
 
-             <article class="bg-[#EBE9EA] rounded-main w-full p-6 space-y-8 lg:space-y-10">
+        <article class="bg-[#EBE9EA] rounded-main w-full p-6 space-y-8 lg:space-y-10">
             <img src="/images/about-us-main.webp" class="w-full h-62.5 rounded-main object-cover" alt="Изображение блога" />
 
             <div class="space-y-4 lg:space-y-6">
@@ -61,14 +61,14 @@ export const renderBlogsPage = () => {
             </div>
 
             <div class="flex justify-between items-center">
-                <a href="#" class="bg-accent-pink px-8 py-3 text-center text-white rounded-2xl">Подробнее</a>
+                <a href="/blog.html" class="bg-accent-pink px-8 py-3 text-center text-white rounded-2xl">Подробнее</a>
 
                 <span class="text-body-lg lg:text-subtitle-md-sm font-medium">09.10.2025</span>
             </div>
         </article>
 
 
-             <article class="bg-[#EBE9EA] rounded-main w-full p-6 space-y-8 lg:space-y-10">
+        <article class="bg-[#EBE9EA] rounded-main w-full p-6 space-y-8 lg:space-y-10">
             <img src="/images/about-us-main.webp" class="w-full h-62.5 rounded-main object-cover" alt="Изображение блога" />
 
             <div class="space-y-4 lg:space-y-6">
@@ -77,7 +77,7 @@ export const renderBlogsPage = () => {
             </div>
 
             <div class="flex justify-between items-center">
-                <a href="#" class="bg-accent-pink px-8 py-3 text-center text-white rounded-2xl">Подробнее</a>
+                <a href="/blog.html" class="bg-accent-pink px-8 py-3 text-center text-white rounded-2xl">Подробнее</a>
 
                 <span class="text-body-lg lg:text-subtitle-md-sm font-medium">09.10.2025</span>
             </div>
