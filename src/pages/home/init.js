@@ -5,7 +5,6 @@ import { initHomeBannerSection } from "./sections/banner.section.js";
 import { initHomeReviewsSection } from "./sections/reviews.section.js";
 import { initHomeVenuesSection } from "./sections/venues.section.js";
 import { initHomeKitchenSection } from "./sections/kitchen.section.js";
-import { initHomeVenueViewingFormSection } from "./sections/venueViewingForm.section.js";
 import { initHomeServicesSection } from "./sections/services.section.js";
 import { initFormFilterSection } from "./sections/form-filter.section.js";
 
@@ -26,7 +25,6 @@ export function initHomePage() {
   initHomeReviewsSection();
   initHomeVenuesSection(nodes);
   initHomeKitchenSection(nodes);
-  initHomeVenueViewingFormSection(nodes);
   initHomeServicesSection(nodes);
   initFormFilterSection();
 }

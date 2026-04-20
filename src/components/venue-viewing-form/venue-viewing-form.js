@@ -8,45 +8,55 @@ export function renderVenueViewingForm() {
 export function initVenueViewingForm(root = document) {
   if (typeof window === "undefined") return;
 
-  const phoneInput = root.querySelector(".phone-input");
-  if (phoneInput) {
-    IMask(phoneInput, {
-      mask: "+{7} (000) 000-00-00",
-      lazy: false,
-    });
-  }
+  const forms = Array.from(root.querySelectorAll("form")).filter(
+    (form) =>
+      form.querySelector(".phone-input") ||
+      form.querySelector('input[name="contact-date"]') ||
+      form.querySelector('input[type="file"]')
+  );
 
-  const dateInput = root.querySelector("#contact-date");
-  const dateDisplay = root.querySelector("#custom-date-display span");
+  forms.forEach((form) => {
+    if (form.dataset.venueViewingInitialized === "true") return;
 
-  if (dateInput && dateDisplay) {
-    dateInput.addEventListener("change", (e) => {
-      if (e.target.value) {
-        const [year, month, day] = e.target.value.split("-");
-        dateDisplay.textContent = `${day}.${month}.${year}`;
-      } else {
-        dateDisplay.textContent = "ДД.ММ.ГГГГ";
-      }
-    });
-  }
-  const fileInput = document.getElementById("file");
-  const fileNamesContainer = document.getElementById("file-names");
-
-  fileInput.addEventListener("change", () => {
-    const files = Array.from(fileInput.files);
-    if (files.length === 0) {
-      fileNamesContainer.textContent = "";
-      return;
+    const phoneInput = form.querySelector(".phone-input");
+    if (phoneInput) {
+      IMask(phoneInput, {
+        mask: "+{7} (000) 000-00-00",
+        lazy: false,
+      });
     }
 
-    fileNamesContainer.innerHTML = files
-      .map((file) => `<div>${file.name}</div>`)
-      .join("");
-  });
+    const dateInput = form.querySelector('input[name="contact-date"], #contact-date');
+    const dateDisplay = form.querySelector("#custom-date-display span");
 
-  const form = root.querySelector("form");
+    if (dateInput && dateDisplay) {
+      dateInput.addEventListener("change", (e) => {
+        if (e.target.value) {
+          const [year, month, day] = e.target.value.split("-");
+          dateDisplay.textContent = `${day}.${month}.${year}`;
+        } else {
+          dateDisplay.textContent = "ДД.ММ.ГГГГ";
+        }
+      });
+    }
 
-  if (form) {
+    const fileInput = form.querySelector('input[type="file"], #file');
+    const fileNamesContainer = form.querySelector("#file-names");
+
+    if (fileInput && fileNamesContainer) {
+      fileInput.addEventListener("change", () => {
+        const files = Array.from(fileInput.files);
+        if (files.length === 0) {
+          fileNamesContainer.textContent = "";
+          return;
+        }
+
+        fileNamesContainer.innerHTML = files
+          .map((file) => `<div>${file.name}</div>`)
+          .join("");
+      });
+    }
+
     form.addEventListener("submit", (e) => {
       e.preventDefault();
 
@@ -54,9 +64,11 @@ export function initVenueViewingForm(root = document) {
       if (dateDisplay) {
         dateDisplay.textContent = "ДД.ММ.ГГГГ";
       }
-      if (fileLabel) {
-        fileLabel.textContent = "Прикрепить файл";
+      if (fileNamesContainer) {
+        fileNamesContainer.textContent = "";
       }
     });
-  }
+
+    form.dataset.venueViewingInitialized = "true";
+  });
 }
