@@ -1,7 +1,7 @@
 export const initFullPage = ({
   container,
   onSectionChange,
-  beforeSectionChange,
+  beforeSectionChange
 } = {}) => {
   if (!container) throw new Error("Fullpage container is not defined");
 
@@ -18,7 +18,7 @@ export const initFullPage = ({
     if (i === 0) el.classList.add("active");
   });
 
-  const updateBodyScroll = (index) => {
+  const updateBodyScroll = index => {
     const isLast = index === sections.length - 1;
 
     document.body.classList.toggle("lg:overflow-hidden", !isLast);
@@ -31,18 +31,18 @@ export const initFullPage = ({
     onSectionChange(currentIndex, currentIndex);
   }
 
-  const getMaxAnimationDuration = (el) => {
+  const getMaxAnimationDuration = el => {
     const elements = [el, ...el.querySelectorAll("[data-animate]")];
     let max = 0;
 
-    elements.forEach((el) => {
+    elements.forEach(el => {
       const style = getComputedStyle(el);
       const durations = (style.animationDuration || "0s")
         .split(",")
-        .map((s) => parseFloat(s) * 1000);
+        .map(s => parseFloat(s) * 1000);
       const delays = (style.animationDelay || "0s")
         .split(",")
-        .map((s) => parseFloat(s) * 1000);
+        .map(s => parseFloat(s) * 1000);
 
       durations.forEach((d, i) => {
         const total = d + (delays[i] || 0);
@@ -53,7 +53,16 @@ export const initFullPage = ({
     return max;
   };
 
-  const goTo = (nextIndex) => {
+  const scrollToElementInSection = (section, elementId) => {
+    const targetElement = section.querySelector(`#${elementId}`);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      return true;
+    }
+    return false;
+  };
+
+  const goTo = (nextIndex, targetElementId = null) => {
     if (isAnimating || nextIndex < 0 || nextIndex >= sections.length) return;
 
     if (typeof beforeSectionChange === "function") {
@@ -77,7 +86,7 @@ export const initFullPage = ({
     const maxDuration = Math.max(
       getMaxAnimationDuration(current),
       getMaxAnimationDuration(next),
-      1000,
+      1000
     );
 
     setTimeout(() => {
@@ -95,6 +104,12 @@ export const initFullPage = ({
       isAnimating = false;
 
       updateBodyScroll(currentIndex);
+
+      // Если передан ID элемента, скроллим к нему внутри активной секции
+      if (targetElementId) {
+        scrollToElementInSection(sections[currentIndex], targetElementId);
+      }
+
       if (onSectionChange) onSectionChange(currentIndex, nextIndex);
     }, maxDuration);
   };
@@ -108,25 +123,54 @@ export const initFullPage = ({
 
     const activeSection = container.querySelector("section.active");
 
-    if (activeSection && activeSection.id === targetId) {
-      history.pushState(null, null, " ");
+    // Сначала проверяем, не является ли хэш ID самой секции
+    const targetSectionIndex = Array.from(sections).findIndex(
+      s => s.id === targetId
+    );
+
+    if (targetSectionIndex !== -1) {
+      // Если это ID секции, просто переходим к ней
+      setTimeout(() => {
+        goTo(targetSectionIndex);
+        document.body.scrollTop = 0;
+        sections[targetSectionIndex].scrollTop = 0;
+        window.scrollTo({ top: 0 });
+        history.pushState(null, null, " ");
+      }, 50);
       return;
     }
 
-    const targetIndex = Array.from(sections).findIndex(
-      (s) => s.id === targetId,
-    );
+    // Ищем элемент с таким ID внутри любой секции
+    let foundSectionIndex = -1;
+    let foundElement = null;
 
-    if (targetIndex === -1) return;
+    for (let i = 0; i < sections.length; i++) {
+      const element = sections[i].querySelector(`#${targetId}`);
+      if (element) {
+        foundSectionIndex = i;
+        foundElement = element;
+        break;
+      }
+    }
+
+    if (foundSectionIndex === -1) return;
+
+    if (
+      activeSection &&
+      Array.from(sections).indexOf(activeSection) === foundSectionIndex
+    ) {
+      setTimeout(() => {
+        scrollToElementInSection(activeSection, targetId);
+        history.pushState(null, null, " ");
+      }, 50);
+      return;
+    }
 
     setTimeout(() => {
-      goTo(targetIndex);
-
+      goTo(foundSectionIndex, targetId);
       document.body.scrollTop = 0;
-      sections[targetIndex].scrollTop = 0;
-
+      sections[foundSectionIndex].scrollTop = 0;
       window.scrollTo({ top: 0 });
-
       history.pushState(null, null, " ");
     }, 50);
   };
@@ -137,7 +181,7 @@ export const initFullPage = ({
 
   window.addEventListener(
     "wheel",
-    (e) => {
+    e => {
       if (Math.abs(e.deltaY) < 30 || isAnimating) return;
 
       const now = Date.now();
@@ -159,26 +203,24 @@ export const initFullPage = ({
 
       if (e.deltaY > 0 && (!section.scrollHeight || atBottom)) {
         goTo(currentIndex + 1);
-
         return;
       }
 
       if (e.deltaY < 0 && isLastSection && lastAtTop) {
         goTo(currentIndex - 1);
-
         return;
       }
 
       if (e.deltaY < 0 && (!section.scrollHeight || atTop) && !isLastSection) {
         goTo(currentIndex - 1);
-
         return;
       }
     },
-    { passive: true },
+    { passive: true }
   );
-  sections.forEach((section) =>
-    section.addEventListener("click", (e) => {
+
+  sections.forEach(section =>
+    section.addEventListener("click", e => {
       if (isAnimating) return;
 
       if (e.target.closest("a, button, input, label, select, textarea, form"))
@@ -195,6 +237,6 @@ export const initFullPage = ({
       } else {
         goTo(currentIndex + 1);
       }
-    }),
+    })
   );
 };
