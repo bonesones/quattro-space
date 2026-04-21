@@ -3,6 +3,35 @@ import { initFullPage } from "@/utils/fullpage.js";
 export function setupCategoryFullpage({ container, header }) {
   if (!container) return;
 
+  const CATEGORY_SAFE_GAP_PX = 16;
+
+  const applyCategoryHeroShift = () => {
+    const firstSection = container.querySelector("section");
+    if (!firstSection) return;
+
+    const imageWrapper = firstSection.querySelector(".image-wrapper");
+    const breadcrumbs = firstSection.querySelector(".breadcrumbs");
+    const title = firstSection.querySelector("h1");
+    if (!imageWrapper || !breadcrumbs || !title) return;
+
+    const wrapperRect = imageWrapper.getBoundingClientRect();
+    const breadcrumbsRect = breadcrumbs.getBoundingClientRect();
+    const titleRect = title.getBoundingClientRect();
+
+    const minAllowedTop = breadcrumbsRect.bottom + CATEGORY_SAFE_GAP_PX;
+    const minAllowedShift = minAllowedTop - wrapperRect.top;
+    const titleShift = -titleRect.height;
+    const safeShift = Math.max(titleShift, minAllowedShift);
+
+    imageWrapper.style.setProperty("--hero-wrapper-shift", `${safeShift}px`);
+  };
+
+  const clearCategoryHeroShift = () => {
+    const firstSection = container.querySelector("section");
+    const imageWrapper = firstSection?.querySelector(".image-wrapper");
+    imageWrapper?.style.removeProperty("--hero-wrapper-shift");
+  };
+
   initFullPage({
     container,
     onSectionChange: (_, index) => {
@@ -19,6 +48,7 @@ export function setupCategoryFullpage({ container, header }) {
         title?.classList.remove("category-title-animated");
         mainImage?.classList.remove("category-image-animated");
         imageWrapper?.classList.remove("category-image-wrapper-animated");
+        clearCategoryHeroShift();
       }
     },
     beforeSectionChange: (currentIndex, nextIndex) => {
@@ -34,6 +64,7 @@ export function setupCategoryFullpage({ container, header }) {
         imageWrapper?.classList.contains("category-image-wrapper-animated");
 
       if (currentIndex === 0 && !isFirstSectionAnimated) {
+        applyCategoryHeroShift();
         mainImages.forEach((mainImage) =>
           mainImage.classList.add("category-image-animated"),
         );
@@ -48,6 +79,7 @@ export function setupCategoryFullpage({ container, header }) {
           mainImage.classList.remove("category-image-animated"),
         );
         imageWrapper?.classList.remove("category-image-wrapper-animated");
+        clearCategoryHeroShift();
       }
 
       if (nextIndex === 0) {
@@ -56,6 +88,7 @@ export function setupCategoryFullpage({ container, header }) {
           mainImage.classList.remove("category-image-animated"),
         );
         imageWrapper?.classList.remove("category-image-wrapper-animated");
+        clearCategoryHeroShift();
       }
 
       return true;
