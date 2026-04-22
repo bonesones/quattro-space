@@ -13,6 +13,7 @@ import { initKitchenPage } from "./init/kitchen.js";
 import { initBlogsPage } from "./init/blogs.js";
 import { initBlogPage } from "./init/blog.js";
 import { initVenueViewingForm } from "./components/venue-viewing-form/venue-viewing-form.js";
+import { initCookieBanner } from "./components/cookie-banner/cookie-banner.js";
 
 const page = document.body.dataset.page || "home";
 
@@ -43,4 +44,5 @@ document.addEventListener("DOMContentLoaded", () => {
   else if (currentPage === "blog") initBlogPage();
 
   initVenueViewingForm(document);
+  initCookieBanner();
 });
