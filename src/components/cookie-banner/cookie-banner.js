@@ -8,7 +8,7 @@ const createCookieBannerMarkup = ({ isHiddenByDefault } = {}) => `
     -webkit-appearance: none;
     width: 18px;
     height: 18px;
-    border: 2px solid #4CAF50;
+    border: 2px solid #d40063;
     border-radius: 4px;
     background: white;
     cursor: pointer;
@@ -17,8 +17,8 @@ const createCookieBannerMarkup = ({ isHiddenByDefault } = {}) => `
   }
   
   .custom-checkbox:checked {
-    background-color: #4CAF50;
-    border-color: #4CAF50;
+    background-color: #d40063;
+    border-color: #d40063;
   }
   
   .custom-checkbox:checked::after {
@@ -48,7 +48,7 @@ const createCookieBannerMarkup = ({ isHiddenByDefault } = {}) => `
   </p>
   <p class="mb-2 text-sm leading-tight">
     Продолжая использовать сайт, вы соглашаетесь на
-    <a href="/cookie-policy/" target="_blank" rel="noopener noreferrer" class="text-[#4CAF50] hover:text-green-600">
+    <a href="/cookie-policy/" target="_blank" rel="noopener noreferrer" class="text-accent-pink">
       использование файлов cookie.
     </a>
   </p>
@@ -83,7 +83,7 @@ const createCookieBannerMarkup = ({ isHiddenByDefault } = {}) => `
   <button
     id="accept-cookie-settings"
     type="button"
-    class="inline-flex justify-center items-center h-[38px] px-3.5 rounded-lg border-none cursor-pointer text-sm bg-[#4CAF50] text-white hover:bg-green-600 transition-colors"
+    class="inline-flex justify-center items-center h-9.5 px-3.5 rounded-lg border-none cursor-pointer text-sm bg-accent-pink text-white transition-colors"
   >
     Принять
   </button>
@@ -103,7 +103,9 @@ const saveCookieConsent = ({ analytics, ads }) => {
 
 export const initCookieBanner = () => {
   if (typeof window === "undefined") return;
-  const alreadyAccepted = Boolean(localStorage.getItem(COOKIE_CONSENT_FLAG_KEY));
+  const alreadyAccepted = Boolean(
+    localStorage.getItem(COOKIE_CONSENT_FLAG_KEY)
+  );
 
   let banner = document.getElementById("cookie-banner");
 
