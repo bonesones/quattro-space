@@ -58,7 +58,8 @@ export const initFullPage = ({
     if (targetElement) {
       const sectionRect = section.getBoundingClientRect();
       const targetRect = targetElement.getBoundingClientRect();
-      const targetScrollTop = section.scrollTop + (targetRect.top - sectionRect.top);
+      const targetScrollTop =
+        section.scrollTop + (targetRect.top - sectionRect.top);
 
       section.scrollTo({
         top: Math.max(0, targetScrollTop),
@@ -142,7 +143,11 @@ export const initFullPage = ({
         document.body.scrollTop = 0;
         sections[targetSectionIndex].scrollTop = 0;
         window.scrollTo({ top: 0 });
-        history.pushState(null, null, " ");
+        history.replaceState(
+          null,
+          null,
+          window.location.pathname + window.location.search
+        );
       }, 50);
       return;
     }
