@@ -56,7 +56,14 @@ export const initFullPage = ({
   const scrollToElementInSection = (section, elementId) => {
     const targetElement = section.querySelector(`#${elementId}`);
     if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      const sectionRect = section.getBoundingClientRect();
+      const targetRect = targetElement.getBoundingClientRect();
+      const targetScrollTop = section.scrollTop + (targetRect.top - sectionRect.top);
+
+      section.scrollTo({
+        top: Math.max(0, targetScrollTop),
+        behavior: "smooth"
+      });
       return true;
     }
     return false;
