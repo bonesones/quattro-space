@@ -70,10 +70,14 @@ export const initFullPage = ({
     return false;
   };
 
-  const goTo = (nextIndex, targetElementId = null) => {
+  const goTo = (
+    nextIndex,
+    targetElementId = null,
+    { skipBeforeSectionChange = false } = {}
+  ) => {
     if (isAnimating || nextIndex < 0 || nextIndex >= sections.length) return;
 
-    if (typeof beforeSectionChange === "function") {
+    if (!skipBeforeSectionChange && typeof beforeSectionChange === "function") {
       const result = beforeSectionChange(currentIndex, nextIndex);
       if (result === false) return;
     }
@@ -139,7 +143,7 @@ export const initFullPage = ({
     if (targetSectionIndex !== -1) {
       // Если это ID секции, просто переходим к ней
       setTimeout(() => {
-        goTo(targetSectionIndex);
+        goTo(targetSectionIndex, null, { skipBeforeSectionChange: true });
         document.body.scrollTop = 0;
         sections[targetSectionIndex].scrollTop = 0;
         window.scrollTo({ top: 0 });
@@ -179,7 +183,7 @@ export const initFullPage = ({
     }
 
     setTimeout(() => {
-      goTo(foundSectionIndex, targetId);
+      goTo(foundSectionIndex, targetId, { skipBeforeSectionChange: true });
       document.body.scrollTop = 0;
       sections[foundSectionIndex].scrollTop = 0;
       window.scrollTo({ top: 0 });

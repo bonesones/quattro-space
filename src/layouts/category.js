@@ -15,7 +15,7 @@ export const CategoryLayout = category => {
         ${renderBreadcrumbs([
           { href: "/", label: "Главная", isHome: true },
           { href: "/#venues", label: "Форматы" },
-          { href: `/${category.slug}.html`, label: category.title },
+          { href: `/${category.slug}.html`, label: category.title }
         ])}
 
         <h1 class="text-title-lg-sm leading-normal lg:text-title-md xl:text-title-lg uppercase font-grotesk text-center lg:text-left lg:mt-6">${
@@ -40,7 +40,7 @@ export const CategoryLayout = category => {
         </div>
 
         <form
-            class="mt-16 flex flex-col lg:flex-row lg:justify-between gap-10 lg:gap-4 mx-auto w-full"
+            class="filter-form mt-16 flex flex-col lg:flex-row lg:justify-between gap-10 lg:gap-4 mx-auto w-full"
             >
 
             <fieldset class="flex flex-col lg:flex-row gap-6 lg:gap-8">
@@ -226,7 +226,7 @@ export const CategoryLayout = category => {
         ${renderBreadcrumbs([
           { href: "/", label: "Главная", isHome: true },
           { href: "/#venues", label: "Форматы" },
-          { href: `/${category.slug}.html`, label: category.title },
+          { href: `/${category.slug}.html`, label: category.title }
         ])}
 
         <h2 class="uppercase text-subtitle-md lg:text-subtitle-lg text-center lg:mt-12">Подходящие площадки</h2>
@@ -305,8 +305,11 @@ export const CategoryLayout = category => {
             ${renderBreadcrumbs([
               { href: "/", label: "Главная", isHome: true },
               { href: "/", label: "Форматы" },
-              { href: `/${category.slug}.html`, label: category.title },
-            ]).replace('class="hidden lg:block text-body-sm lg:mt-6"', 'class="hidden lg:block text-body-sm lg:mt-6 px-main 2xl:container mx-auto"')}
+              { href: `/${category.slug}.html`, label: category.title }
+            ]).replace(
+              'class="hidden lg:block text-body-sm lg:mt-6"',
+              'class="hidden lg:block text-body-sm lg:mt-6 px-main 2xl:container mx-auto"'
+            )}
 
 
             <div class="h-full mt-25 lg:mt-12 max-w-260 mx-auto px-main">

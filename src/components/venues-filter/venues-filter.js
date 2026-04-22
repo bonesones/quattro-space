@@ -5,9 +5,12 @@ export function renderVenueFilter() {
 }
 
 export const initVenueFilter = async () => {
-  const form = document.querySelector(".venue-filter-form");
+  const forms = document.querySelectorAll(".filter-form");
 
-  if (form) {
+  forms.forEach((form) => {
+    if (form.dataset.filterFormBound === "1") return;
+    form.dataset.filterFormBound = "1";
+
     form.addEventListener("submit", async function(e) {
       e.preventDefault();
 
@@ -17,6 +20,7 @@ export const initVenueFilter = async () => {
       try {
         const urlObj = new URL(actionUrl);
         const anchor = urlObj.hash;
+        const anchorId = anchor.replace(/^#/, "");
         const baseUrl = actionUrl.split("#")[0];
         const params = new URLSearchParams(formData);
         const urlWithParams = baseUrl + "?" + params.toString();
@@ -31,14 +35,14 @@ export const initVenueFilter = async () => {
         if (response.ok) {
           const html = await response.text();
 
-          const resultsContainer = document.querySelector(
-            "#venues-list-container"
-          );
+          const resultsContainer = anchorId
+            ? document.getElementById(anchorId)
+            : null;
 
           if (resultsContainer) {
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, "text/html");
-            const newResults = doc.querySelector("#venues-list-container");
+            const newResults = anchorId ? doc.getElementById(anchorId) : null;
 
             if (newResults) {
               resultsContainer.innerHTML = newResults.innerHTML;
@@ -53,5 +57,5 @@ export const initVenueFilter = async () => {
         console.error("Ошибка: ", error);
       }
     });
-  }
+  });
 };
