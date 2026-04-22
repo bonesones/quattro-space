@@ -21,10 +21,6 @@ const current = PAGES[page] || PAGES.home;
 
 const content = current.content;
 
-if (current.title) {
-  document.title = current.title;
-}
-
 BaseLayout({
   header: renderHeader(),
   footer: renderFooter(),
