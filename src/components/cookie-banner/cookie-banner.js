@@ -1,7 +1,7 @@
 const COOKIE_CONSENT_FLAG_KEY = "cookieConsentSaved";
 const COOKIE_CONSENT_PREFS_KEY = "cookieConsentPreferences";
 
-const createCookieBannerMarkup = () => `
+const createCookieBannerMarkup = ({ isHiddenByDefault } = {}) => `
 <style>
   .custom-checkbox {
     appearance: none;
@@ -39,6 +39,7 @@ const createCookieBannerMarkup = () => `
 
 <div
   id="cookie-banner"
+  ${isHiddenByDefault ? 'style="display:none;"' : ""}
   class="fixed right-4 bottom-4 z-[1200] max-w-[360px] w-[calc(100%-32px)] bg-white border border-gray-200 rounded-xl shadow-lg p-4 text-gray-800"
 >
   <p class="mb-2 font-bold">Настройки Cookie</p>
@@ -89,6 +90,9 @@ const createCookieBannerMarkup = () => `
 </div>
 `;
 
+export const renderCookieBanner = ({ isHiddenByDefault = true } = {}) =>
+  createCookieBannerMarkup({ isHiddenByDefault });
+
 const saveCookieConsent = ({ analytics, ads }) => {
   localStorage.setItem(COOKIE_CONSENT_FLAG_KEY, "1");
   localStorage.setItem(
@@ -99,12 +103,25 @@ const saveCookieConsent = ({ analytics, ads }) => {
 
 export const initCookieBanner = () => {
   if (typeof window === "undefined") return;
-  if (localStorage.getItem(COOKIE_CONSENT_FLAG_KEY)) return;
-  if (document.getElementById("cookie-banner")) return;
+  const alreadyAccepted = Boolean(localStorage.getItem(COOKIE_CONSENT_FLAG_KEY));
 
-  document.body.insertAdjacentHTML("beforeend", createCookieBannerMarkup());
+  let banner = document.getElementById("cookie-banner");
 
-  const banner = document.getElementById("cookie-banner");
+  if (alreadyAccepted) {
+    banner?.remove();
+    return;
+  }
+
+  if (!banner) {
+    document.body.insertAdjacentHTML(
+      "beforeend",
+      createCookieBannerMarkup({ isHiddenByDefault: false })
+    );
+    banner = document.getElementById("cookie-banner");
+  } else {
+    banner.style.display = "block";
+  }
+
   const settings = document.getElementById("cookie-settings");
   const toggleButton = document.getElementById("toggle-cookie-settings");
   const acceptButton = document.getElementById("accept-cookie-settings");
@@ -126,7 +143,7 @@ export const initCookieBanner = () => {
 
   toggleButton.addEventListener("click", () => {
     isSettingsOpen = !isSettingsOpen;
-    settings.style.display = isSettingsOpen ? "block" : "none";
+    settings.classList.toggle("hidden", !isSettingsOpen);
     toggleButton.setAttribute("aria-expanded", String(isSettingsOpen));
   });
 

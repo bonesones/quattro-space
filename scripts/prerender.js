@@ -32,9 +32,13 @@ const getAssetPaths = distPath => {
 const renderLayout = async (page, assetPaths) => {
   const { renderHeader } = await import("../src/components/header/header.js");
   const { renderFooter } = await import("../src/components/footer/footer.js");
+  const { renderCookieBanner } = await import(
+    "../src/components/cookie-banner/cookie-banner.js"
+  );
 
   const header = renderHeader();
   const footer = renderFooter();
+  const cookieBanner = renderCookieBanner({ isHiddenByDefault: true });
 
   return `<!doctype html>
 <html lang="ru" class="scroll-smooth lg:h-full">
@@ -61,6 +65,7 @@ const renderLayout = async (page, assetPaths) => {
       </main>
       ${footer}
     </div>
+    ${cookieBanner}
   </body>
 </html>`;
 };
