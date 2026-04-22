@@ -177,7 +177,11 @@ export const initFullPage = ({
     ) {
       setTimeout(() => {
         scrollToElementInSection(activeSection, targetId);
-        history.pushState(null, null, " ");
+        history.replaceState(
+          null,
+          null,
+          window.location.pathname + window.location.search
+        );
       }, 50);
       return;
     }
@@ -187,7 +191,11 @@ export const initFullPage = ({
       document.body.scrollTop = 0;
       sections[foundSectionIndex].scrollTop = 0;
       window.scrollTo({ top: 0 });
-      history.pushState(null, null, " ");
+      history.replaceState(
+        null,
+        null,
+        window.location.pathname + window.location.search
+      );
     }, 50);
   };
 
